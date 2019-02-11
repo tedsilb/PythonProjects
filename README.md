@@ -1,4 +1,2 @@
-# 99-bottles
-99 bottles of beer on the the wall (lyrics generator).
-
-Basic python project to practice.
+# Python Projects
+Various python projects I work on from time to time.

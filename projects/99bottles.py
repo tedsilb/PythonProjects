@@ -1,5 +1,6 @@
 # 99 bottles lyrics generator
 
+# Define the function to generate the lyrics
 def gen_lyrics():
   for i in range(99, 0, -1):
     if (i == 2):
@@ -12,4 +13,5 @@ def gen_lyrics():
       print(f'{i} bottles of beer on the wall, {i} bottles of beer!')
       print(f'Take one down, pass it around, {i - 1} bottles of beer on the wall!')
 
+# Run the function, generate lyrics
 gen_lyrics()
