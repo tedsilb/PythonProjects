@@ -8,18 +8,24 @@
 #   Round all numbers printed out to the nearest whole number.
 #   Allow the user to select whether they want to submit the weight in either grams or pounds.
 
-def estimateWeight(pWgt, nWgt, dWgt, qWgt):
+def estimateWeight(wgtP, wgtN, wgtD, wgtQ):
   # Parse arguments
-  pWgt = float(pWgt)
-  nWgt = float(nWgt)
-  dWgt = float(dWgt)
-  qWgt = float(qWgt)
+  wgtP = float(wgtP)
+  wgtN = float(wgtN)
+  wgtD = float(wgtD)
+  wgtQ = float(wgtQ)
   
+  # Define values
+  valPerP = 0.01
+  valPerN = 0.05
+  valPerD = 0.10
+  valPerQ = 0.25
+
   # Define weights 
-  wgtPerPenny = 2.5
-  wgtPerNickel = 5.0
-  wgtPerDime = 2.268
-  wgtPerQuarter = 2.67
+  wgtPerP = 2.5
+  wgtPerN = 5.0
+  wgtPerD = 2.268
+  wgtPerQ = 2.67
 
   # Define amounts per wrapper
   wrapperCapacityP = 50
@@ -28,7 +34,26 @@ def estimateWeight(pWgt, nWgt, dWgt, qWgt):
   wrapperCapacityQ = 40
 
   # Calculate number of coins for each weight
-  pNum = pWgt / wgtPerPenny
-  nNum = nWgt / wgtPerNickel
-  dNum = dWgt / wgtPerDime
-  qNum = qWgt / wgtPerQuarter
+  numP = wgtP / wgtPerP
+  numN = wgtN / wgtPerN
+  numD = wgtD / wgtPerD
+  numQ = wgtQ / wgtPerQ
+
+  # Parse number of coints to integers
+  numP = int(numP)
+  numN = int(numN)
+  numD = int(numD)
+  numQ = int(numQ)
+
+  # Determine number of wrappers needed
+  wrappersP = numP / wrapperCapacityP
+  wrappersN = numN / wrapperCapacityN
+  wrappersD = numD / wrapperCapacityD
+  wrappersQ = numQ / wrapperCapacityQ
+
+  # Determine value of currency
+  valueP = numP * valPerP
+  valueN = numN * valPerN
+  valueD = numD * valPerD
+  valueQ = numQ * valPerQ
+  valueTotal = valueP + valueN + valueD + valueQ
