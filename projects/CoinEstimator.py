@@ -29,3 +29,6 @@ def estimateWeight(pWgt, nWgt, dWgt, qWgt):
 
   # Calculate number of coins for each weight
   pNum = pWgt / wgtPerPenny
+  nNum = nWgt / wgtPerNickel
+  dNum = dWgt / wgtPerDime
+  qNum = qWgt / wgtPerQuarter
