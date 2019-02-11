@@ -57,3 +57,10 @@ def estimateWeight(wgtP, wgtN, wgtD, wgtQ):
   valueD = numD * valPerD
   valueQ = numQ * valPerQ
   valueTotal = valueP + valueN + valueD + valueQ
+
+  # Print the return values for the user
+  print(f'You have {numP} pennies, and you will need {wrappersP} for them.')
+  print(f'You have {numN} nickels, and you will need {wrappersN} for them.')
+  print(f'You have {numD} dimes, and you will need {wrappersD} for them.')
+  print(f'You have {numQ} quarters, and you will need {wrappersQ} for them.')
+  print(f'The total value of your coins is {valueTotal}.')
