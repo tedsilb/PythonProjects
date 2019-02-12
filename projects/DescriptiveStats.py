@@ -1,4 +1,4 @@
-# Generate descriptive statistics for a list of numbers
+# Calculate descriptive statistics for a list of numbers
 
 # Import dependencies
 import math
