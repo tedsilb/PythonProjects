@@ -1,17 +1,17 @@
-# Determine the mean, median, and mode for a list of numbers
+# Generate descriptive statistics for a list of numbers
 
 # Import dependencies
 import math
 
 # Define function
-def centralTendency():
+def descriptiveStats():
   # Prepare to gather numbers
   numbersList = []
   stopGathering = 0
 
   # Gather list of numbers from user
   while (stopGathering == 0):
-    enteredNumber = input('Please enter a number (press enter to stop):')
+    enteredNumber = input('Please enter a number (press enter to stop): ')
     if (enteredNumber == ''):
       stopGathering = 1
     else:
@@ -52,4 +52,4 @@ def centralTendency():
   print(f'The mode of these numbers is {listMode}.')
 
 # Call function
-centralTendency()
+descriptiveStats()
