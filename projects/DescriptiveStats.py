@@ -21,7 +21,7 @@ def descriptiveStats():
   # Calculate sum of list
   listSum = 0
   for number in numbersList:
-    listSum =+ number
+    listSum += number
 
   # Calculate mean
   listMean = listSum / len(numbersList)
@@ -74,16 +74,16 @@ def descriptiveStats():
 
   # Calculate confidence interval
   listLB = round(listMean - (tStat * listStErr), roundTo)
-  listUB = round(listMean - (tStat * listStErr), roundTo)
+  listUB = round(listMean + (tStat * listStErr), roundTo)
 
   # Print data for user
-  print(f'The mean of these numbers is {listMean}.')
-  print(f'The median of these numbers is {listMedian}.')
-  print(f'The mode of these numbers is {listMode}.')
-  print(f'The range of these numbers is [{listMin}, {listMax}]')
-  print(f'The variance of these numbers is {listVar}')
-  print(f'The standard deviation of these numbers is {listStDev}')
-  print(f'The standard error of these numbers is {listStErr}')
+  print(f'Mean:     {listMean}')
+  print(f'Median:   {listMedian}')
+  print(f'Mode:     {listMode}')
+  print(f'Range:    [{listMin}, {listMax}]')
+  print(f'Variance: {listVar}')
+  print(f'Standard Deviation: {listStDev}')
+  print(f'Standard Error:     {listStErr}')
   print(f'{confInt}% confidence interval:')
   print(f'  Lower Bound: {listLB}')
   print(f'  Upper Bound: {listUB}')
