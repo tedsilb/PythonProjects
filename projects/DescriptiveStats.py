@@ -27,7 +27,7 @@ def descriptiveStats():
   listMean = listSum / len(numbersList)
 
   # Round mean based on user input
-  roundTo = int(input('How many decimal places would you like to round the mean to? '))
+  roundTo = int(input('How many decimal places would your numbers rounded to? '))
   listMean = round(listMean, roundTo)
 
   # Calculate median
@@ -46,10 +46,47 @@ def descriptiveStats():
   # Calculate mode
   listMode = max(set(medianList), key=medianList.count)
 
+  # Calculate range
+  listMin = min(numbersList)
+  listMax = max(numbersList)
+
+  # Calculate variance
+  listSqDiffsFromMean = []
+  for number in numbersList:
+    listSqDiffsFromMean.append((number - listMean) ** 2)
+  listVar = 0
+  for sqDiff in listSqDiffsFromMean:
+    listVar += sqDiff
+  listVar = round(listVar / len(numbersList), roundTo)
+  
+  # Calculate standard deviation and standard error
+  listStDev = round(listVar ** 0.5, roundTo)
+  listStErr = round(listStDev / len(numbersList), roundTo)
+
+  # Ask user for confidence interval
+  confInt = int(input('Please enter a confidence interval (90, 95, 99): '))
+  if (confInt == 90):
+    tStat = 1.64
+  elif (confInt == 95):
+    tStat = 1.96
+  elif (confInt == 99):
+    tStat = 2.58
+
+  # Calculate confidence interval
+  listLB = round(listMean - (tStat * listStErr), roundTo)
+  listUB = round(listMean - (tStat * listStErr), roundTo)
+
   # Print data for user
   print(f'The mean of these numbers is {listMean}.')
   print(f'The median of these numbers is {listMedian}.')
   print(f'The mode of these numbers is {listMode}.')
+  print(f'The range of these numbers is [{listMin}, {listMax}]')
+  print(f'The variance of these numbers is {listVar}')
+  print(f'The standard deviation of these numbers is {listStDev}')
+  print(f'The standard error of these numbers is {listStErr}')
+  print(f'{confInt}% confidence interval:')
+  print(f'  Lower Bound: {listLB}')
+  print(f'  Upper Bound: {listUB}')
 
 # Call function
 descriptiveStats()
