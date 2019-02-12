@@ -34,9 +34,9 @@ def descriptiveStats():
   # Determine if list is even or odd length
   if (len(numbersList) % 2 == 0):
     # If it's even, grab the middle two numbers and average them
-    medianTempNo1 = medianList[int(len(medianList) / 2)]
-    medianTempNo2 = medianList[int((len(medianList) / 2) + 1)]
-    listMedian = (medianTempNo1 + medianTempNo2) / 2
+    medianLower = medianList[int(len(medianList) / 2)]
+    medianUpper = medianList[int((len(medianList) / 2) + 1)]
+    listMedian = (medianLower + medianUpper) / 2
   else:
     # If it's odd, grab the middle number
     listMedian = medianList[math.ceil(len(medianList) / 2)]
