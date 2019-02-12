@@ -7,13 +7,13 @@ import math
 def descriptiveStats():
   # Prepare to gather numbers
   numbersList = []
-  stopGathering = 0
+  stopGathering = False
 
   # Gather list of numbers from user
-  while (stopGathering == 0):
+  while (stopGathering == False):
     enteredNumber = input('Please enter a number (press enter to stop): ')
     if (enteredNumber == ''):
-      stopGathering = 1
+      stopGathering = True
     else:
       enteredNumber = float(enteredNumber)
       numbersList.append(enteredNumber)
