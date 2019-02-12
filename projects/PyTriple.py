@@ -7,7 +7,7 @@ def pyTriple(a, b, c):
   a = int(float(a))
   b = int(float(b))
   c = int(float(c))
-  
+
   # Figure out which side is the longest
   if (a > b and a > c):
     largestNo = a
@@ -21,7 +21,7 @@ def pyTriple(a, b, c):
     largestNo = c
     smallNo1 = a
     smallNo2 = b
-  
+
   # Square the numbers
   lNoSq = largestNo * largestNo
   sNo1Sq = smallNo1 * smallNo1
