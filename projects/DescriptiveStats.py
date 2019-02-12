@@ -38,7 +38,7 @@ def descriptiveStats():
     medianTempNo2 = medianList[int((len(medianList) / 2) + 1)]
     listMedian = (medianTempNo1 + medianTempNo2) / 2
   else:
-    # If it's odd, grab the middle number.
+    # If it's odd, grab the middle number
     listMedian = medianList[math.ceil(len(medianList) / 2)]
 
   # Calculate mode
