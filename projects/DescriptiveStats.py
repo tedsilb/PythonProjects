@@ -18,12 +18,10 @@ def descriptiveStats():
       enteredNumber = float(enteredNumber)
       numbersList.append(enteredNumber)
 
-  # Calculate sum of list
+  # Calculate mean
   listSum = 0
   for number in numbersList:
     listSum += number
-
-  # Calculate mean
   listMean = listSum / len(numbersList)
 
   # Round mean based on user input
