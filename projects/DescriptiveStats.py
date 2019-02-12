@@ -25,7 +25,7 @@ def descriptiveStats():
   listMean = listSum / len(numbersList)
 
   # Round mean based on user input
-  roundTo = int(input('How many decimal places would your numbers rounded to? '))
+  roundTo = int(input('How many decimal places would you like your numbers rounded to? '))
   listMean = round(listMean, roundTo)
 
   # Calculate median
