@@ -3,8 +3,8 @@
 # Import dependencies
 import math
 
-# Define function
-def descriptiveStats():
+# Define function to gather numbers
+def gatherNumbers():
   # Prepare to gather numbers
   numbersList = []
   stopGathering = False
@@ -17,7 +17,10 @@ def descriptiveStats():
     else:
       enteredNumber = float(enteredNumber)
       numbersList.append(enteredNumber)
+  return numbersList
 
+# Define function to calculate stats
+def descriptiveStats(numbersList):
   # Calculate mean
   listSum = 0
   for number in numbersList:
@@ -56,7 +59,7 @@ def descriptiveStats():
   for sqDiff in listSqDiffsFromMean:
     listVar += sqDiff
   listVar = round(listVar / len(numbersList), roundTo)
-  
+
   # Calculate standard deviation and standard error
   listStDev = round(listVar ** 0.5, roundTo)
   listStErr = round(listStDev / len(numbersList), roundTo)
@@ -86,5 +89,5 @@ def descriptiveStats():
   print(f'  Lower Bound: {listLB}')
   print(f'  Upper Bound: {listUB}')
 
-# Call function
-descriptiveStats()
+# Call function to gather numbers and calculate descriptive stats
+descriptiveStats(gatherNumbers())

@@ -4,14 +4,7 @@
 import math
 
 # Define function
-def calcChange():
-  # Gather data from user
-  print('Please enter a price (no dollar sign), and this program will tell you what combination of coins you will need.')
-  price = input('Enter price: ')
-
-  # Parse price into float
-  price = float(price)
-
+def calcChange(price):
   # Set value of coins
   valueQ = 0.25
   valueD = 0.10
@@ -46,7 +39,12 @@ def calcChange():
   remainingValue -= (numP * valueP)
 
   # Print values to console
-  print(f'For ${price}, you will need {numQ} quarters, {numD} dimes, {numN} nickels, and {numP} pennies.')
+  return f'For ${price}, you will need {numQ} quarters, {numD} dimes, {numN} nickels, and {numP} pennies.'
 
-# Call function with user data
-calcChange()
+# Gather data from user
+print('Please enter a price (no dollar sign), and this program will tell you what combination of coins you will need.')
+userPrice = float(input('Enter price: '))
+
+# Call function, print response
+response = calcChange(userPrice)
+print(response)

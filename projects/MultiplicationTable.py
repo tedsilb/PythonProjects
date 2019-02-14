@@ -1,12 +1,9 @@
 # Generate a multiplication table.
 
 # Define function
-def genMultiTable():
-  # Gather the number of rows/columns to generate
-  print('This program will generate a multiplication table (up to 31, cleanly).')
-  toGen = int(input('Please enter the number of rows/columns to generate: '))
+def genMultiTable(toGen):
+  # Add one to toGen
   toGen += 1
-  print('\n')
 
   # Print the headers
   currentRow = '     '
@@ -34,5 +31,10 @@ def genMultiTable():
         currentRow += f' {multiNum * number} '
     print(currentRow)
 
+# Gather the number of rows/columns to generate
+print('This program will generate a multiplication table (up to 31, cleanly).')
+userNo = int(input('Please enter the number of rows/columns to generate: '))
+print('\n')
+
 # Run function
-genMultiTable()
+genMultiTable(userNo)

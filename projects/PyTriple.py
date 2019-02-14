@@ -2,18 +2,7 @@
 # https://en.wikipedia.org/wiki/Pythagorean_triple
 
 # Define the function that will check for this
-def pyTriple():
-  # Gather numbers from user
-  print('Please enter three whole numbers. This function will check to see if they form a pythagorean triple.')
-  a = input('Please enter your first number:')
-  b = input('Please enter your second number:')
-  c = input('Please enter your third number:')
-
-  # Turn the passed arguments into numbers
-  a = int(float(a))
-  b = int(float(b))
-  c = int(float(c))
-
+def pyTriple(a, b, c):
   # Figure out which side is the longest
   if (a > b) and (a > c):
     largestNo = a
@@ -39,5 +28,12 @@ def pyTriple():
   else:
     return 'No, this is not a pythagorean triple.'
 
+# Gather numbers from user
+print('Please enter three whole numbers. This function will check to see if they form a pythagorean triple.')
+userNoA = int(input('Please enter your first number: '))
+userNoB = int(input('Please enter your second number: '))
+userNoC = int(input('Please enter your third number: '))
+
 # Call the function, print response
-print(pyTriple())
+response = pyTriple(userNoA, userNoB, userNoC)
+print(response)
