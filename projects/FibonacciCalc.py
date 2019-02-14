@@ -12,25 +12,30 @@ def fibonacciGen():
       fibNo = 0
       # Print calculation for user
       print(f'The {nTerm}st number in the Fibonacci sequence is {fibNo}')
+    
     elif nTerm == 2:
       fibNo = 1
       # Print calculation for user
       print(f'The {nTerm}nd number in the Fibonacci sequence is {fibNo}')
+    
     elif nTerm == 3:
       fibNo = 1
       # Print calculation for user
       print(f'The {nTerm}rd number in the Fibonacci sequence is {fibNo}')
+  
   # Otherwise will need to generate
   else:
     # Initialise the loop at 3
     prevNo1 = 0
     prevNo2 = 1
     fibNo = 1
+    
     # Start the loop to generate the Fibonacci number
     for i in range(3, nTerm):
       prevNo1 = prevNo2
       prevNo2 = fibNo
       fibNo = prevNo1 + prevNo2
+    
     # Print calculation for user
     print(f'The {nTerm}th number in the Fibonacci sequence is {fibNo}')
 
