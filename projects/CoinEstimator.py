@@ -4,7 +4,14 @@
 import math
 
 # Define function
-def estimateWeight(wgtP, wgtN, wgtD, wgtQ):
+def estimateWeight():
+  # Gather data from users
+  print('Please enter the weights of your coins (in grams):')
+  wgtP = input('What is the weight of your pennies? ')
+  wgtN = input('What is the weight of your nickels? ')
+  wgtD = input('What is the weight of your dimes? ')
+  wgtQ = input('What is the weight of your quarters? ')
+
   # Parse arguments
   wgtP = float(wgtP)
   wgtN = float(wgtN)
@@ -105,12 +112,5 @@ def estimateWeight(wgtP, wgtN, wgtD, wgtQ):
   # Value of coins
   print(f'The total value of your coins is ${valueTotal}.')
 
-# Gather data from users
-print('Please enter the weights of your coins (in grams):')
-usrWgtP = input('What is the weight of your pennies? ')
-usrWgtN = input('What is the weight of your nickels? ')
-usrWgtD = input('What is the weight of your dimes? ')
-usrWgtQ = input('What is the weight of your quarters? ')
-
 # Run function
-estimateWeight(usrWgtP, usrWgtN, usrWgtD, usrWgtQ)
+estimateWeight()

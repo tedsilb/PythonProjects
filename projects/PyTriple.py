@@ -2,7 +2,13 @@
 # https://en.wikipedia.org/wiki/Pythagorean_triple
 
 # Define the function that will check for this
-def pyTriple(a, b, c):
+def pyTriple():
+  # Gather numbers from user
+  print('Please enter three whole numbers. This function will check to see if they form a pythagorean triple.')
+  a = input('Please enter your first number:')
+  b = input('Please enter your second number:')
+  c = input('Please enter your third number:')
+
   # Turn the passed arguments into numbers
   a = int(float(a))
   b = int(float(b))
@@ -33,12 +39,5 @@ def pyTriple(a, b, c):
   else:
     return 'No, this is not a pythagorean triple.'
 
-# Gather numbers from user
-print('Please enter three whole numbers. This function will check to see if they form a pythagorean triple.')
-number1 = input('Please enter your first number:')
-number2 = input('Please enter your second number:')
-number3 = input('Please enter your third number:')
-
-# Run the function, print response
-response = pyTriple(number1, number2, number3)
-print(response)
+# Call the function, print response
+print(pyTriple())
