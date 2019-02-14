@@ -10,9 +10,9 @@ def gatherNumbers():
   stopGathering = False
 
   # Gather list of numbers from user
-  while (stopGathering == False):
+  while stopGathering == False:
     enteredNumber = input('Please enter a number (press enter to stop): ')
-    if (enteredNumber == ''):
+    if enteredNumber == '':
       stopGathering = True
     else:
       enteredNumber = float(enteredNumber)
@@ -35,7 +35,7 @@ def descriptiveStats(numbersList):
   medianList = numbersList
   medianList.sort()
   # Determine if list is even or odd length
-  if (len(numbersList) % 2 == 0):
+  if (len(numbersList) % 2) == 0:
     # If it's even, grab the middle two numbers and average them
     medianLower = medianList[int(len(medianList) / 2)]
     medianUpper = medianList[int((len(medianList) / 2) + 1)]
@@ -66,11 +66,11 @@ def descriptiveStats(numbersList):
 
   # Ask user for confidence interval
   confInt = int(input('Please enter a confidence interval (90, 95, 99): '))
-  if (confInt == 90):
+  if confInt == 90:
     tStat = 1.64
-  elif (confInt == 95):
+  elif confInt == 95:
     tStat = 1.96
-  elif (confInt == 99):
+  elif confInt == 99:
     tStat = 2.58
 
   # Calculate confidence interval
