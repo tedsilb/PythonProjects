@@ -20,14 +20,14 @@ def higherLower():
   guesses = 0
 
   # Start the loop to let the user guess
-  while (guessCorrect == False):
+  while guessCorrect == False:
     guessedNumber = int(input('Guess a number: '))
     guesses += 1
-    if (guessedNumber == numberToGuess):
+    if guessedNumber == numberToGuess:
       print(f'Correct! You got the number in {guesses} guesses.')
-    elif (guessedNumber > numberToGuess):
+    elif guessedNumber > numberToGuess:
       print('Lower!')
-    elif (guessedNumber < numberToGuess):
+    elif guessedNumber < numberToGuess:
       print('Higher!')
 
 # Call the function

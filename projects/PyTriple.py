@@ -15,15 +15,15 @@ def pyTriple():
   c = int(float(c))
 
   # Figure out which side is the longest
-  if (a > b and a > c):
+  if (a > b) and (a > c):
     largestNo = a
     smallNo1 = b
     smallNo2 = c
-  elif (b > a and b > c):
+  elif (b > a) and (b > c):
     largestNo = b
     smallNo1 = a
     smallNo2 = c
-  elif (c > a and c > b):
+  elif (c > a) and (c > b):
     largestNo = c
     smallNo1 = a
     smallNo2 = b
@@ -34,7 +34,7 @@ def pyTriple():
   sNo2Sq = smallNo2 * smallNo2
 
   # Determine if the numbers form a pythagorean triple
-  if (lNoSq == sNo1Sq + sNo2Sq):
+  if lNoSq == (sNo1Sq + sNo2Sq):
     return 'Yes, this is a pythagorean triple.'
   else:
     return 'No, this is not a pythagorean triple.'

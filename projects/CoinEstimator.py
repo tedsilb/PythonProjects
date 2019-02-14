@@ -66,46 +66,46 @@ def estimateWeight():
 
   # Print the return values for the user
   # Pennies
-  if (numP == 1):
-    if (wrappersP == 1):
+  if numP == 1:
+    if wrappersP == 1:
       print(f'You have {numP} penny, and you will need {wrappersP} wrapper for them.')
     else:
       print(f'You have {numP} penny, and you will need {wrappersP} wrappers for them.')
   else:
-    if (wrappersP == 1):
+    if wrappersP == 1:
       print(f'You have {numP} pennies, and you will need {wrappersP} wrapper for them.')
     else:
       print(f'You have {numP} pennies, and you will need {wrappersP} wrappers for them.')
   # Nickels
-  if (numN == 1):
-    if (wrappersN == 1):
+  if numN == 1:
+    if wrappersN == 1:
       print(f'You have {numN} nickel, and you will need {wrappersN} wrapper for them.')
     else:
       print(f'You have {numN} nickel, and you will need {wrappersN} wrappers for them.')
   else:
-    if (wrappersN == 1):
+    if wrappersN == 1:
       print(f'You have {numN} nickels, and you will need {wrappersN} wrapper for them.')
     else:
       print(f'You have {numN} nickels, and you will need {wrappersN} wrappers for them.')
   # Dimes
-  if (numD == 1):
-    if (wrappersD == 1):
+  if numD == 1:
+    if wrappersD == 1:
       print(f'You have {numD} dime, and you will need {wrappersD} wrapper for them.')
     else:
       print(f'You have {numD} dime, and you will need {wrappersD} wrappers for them.')
   else:
-    if (wrappersD == 1):
+    if wrappersD == 1:
       print(f'You have {numD} dimes, and you will need {wrappersD} wrapper for them.')
     else:
       print(f'You have {numD} dimes, and you will need {wrappersD} wrappers for them.')
   # Quarters
-  if (numQ == 1):
-    if (wrappersQ == 1):
+  if numQ == 1:
+    if wrappersQ == 1:
       print(f'You have {numQ} quarter, and you will need {wrappersQ} wrapper for them.')
     else:
       print(f'You have {numQ} quarter, and you will need {wrappersQ} wrappers for them.')
   else:
-    if (wrappersQ == 1):
+    if wrappersQ == 1:
       print(f'You have {numQ} quarters, and you will need {wrappersQ} wrapper for them.')
     else:
       print(f'You have {numQ} quarters, and you will need {wrappersQ} wrappers for them.')
