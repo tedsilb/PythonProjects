@@ -77,17 +77,34 @@ def descriptiveStats(numbersList):
   listLB = round(listMean - (tStat * listStErr), roundTo)
   listUB = round(listMean + (tStat * listStErr), roundTo)
 
-  # Print data for user
-  print(f'Mean:     {listMean}')
-  print(f'Median:   {listMedian}')
-  print(f'Mode:     {listMode}')
-  print(f'Range:    [{listMin}, {listMax}]')
-  print(f'Variance: {listVar}')
-  print(f'Standard Deviation: {listStDev}')
-  print(f'Standard Error:     {listStErr}')
-  print(f'{confInt}% confidence interval:')
-  print(f'  Lower Bound: {listLB}')
-  print(f'  Upper Bound: {listUB}')
+  # Put data into a dictionary
+  returnDict = {}
+  returnDict['mean'] = listMean
+  returnDict['median'] = listMedian
+  returnDict['mode'] = listMode
+  returnDict['min'] = listMin
+  returnDict['max'] = listMax
+  returnDict['variance'] = listVar
+  returnDict['stDev'] = listStDev
+  returnDict['stErr'] = listStErr
+  returnDict['confInt'] = confInt
+  returnDict['lowerBound'] = listLB
+  returnDict['upperBound'] = listUB
+
+  # Return data
+  return returnDict
 
 # Call function to gather numbers and calculate descriptive stats
-descriptiveStats(gatherNumbers())
+response = descriptiveStats(gatherNumbers())
+
+# Print data for user
+print(f'Mean:     {response["mean"]}')
+print(f'Median:   {response["median"]}')
+print(f'Mode:     {response["mode"]}')
+print(f'Range:    [{response["min"]}, {response["max"]}]')
+print(f'Variance: {response["variance"]}')
+print(f'Standard Deviation: {response["stDev"]}')
+print(f'Standard Error:     {response["stErr"]}')
+print(f'{response["confInt"]}% confidence interval:')
+print(f'  Lower Bound: {response["lowerBound"]}')
+print(f'  Upper Bound: {response["upperBound"]}')
