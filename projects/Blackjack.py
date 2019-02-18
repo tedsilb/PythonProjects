@@ -76,24 +76,22 @@ def playBlackjack():
 
   # Set up user's hand
   hand = []
-  handValue = 0
 
   # Set up starting score and turn
+  global earnedScore
   earnedScore = 100
-  roundScore = 0
   currentRound = 1
   totalRounds = 5
 
   # Define function to process a turn
   def takeTurn():
-    choice = input('Would you like to hit or stand?')
+    choice = input('Would you like to hit or stand? ')
     if (choice.lower() == 'hit') or (choice.lower() == 'h'):
       print('Dealing new card...')
       takeNewCard()
     elif (choice.lower() == 'stand') or (choice.lower() == 's'):
       print('Ending turn...')
-      endTurn()
-      return
+      endTurn(calcHandValue())
 
   # Define function to calculate hand value
   def calcHandValue():
@@ -101,12 +99,6 @@ def playBlackjack():
     for card in hand:
       handValue += card.value
     return handValue
-
-  # Define function to calculate round score
-  def calcRoundScore():
-    calcHandValue()
-    roundScore = 0
-    roundScore = 21 - handValue
 
   # Define function to take a new card
   def takeNewCard():
@@ -120,15 +112,9 @@ def playBlackjack():
     # Get index of new card in hand (will be the last one)
     handCardIndex = len(hand) - 1
     print(f'You have taken a {hand[handCardIndex].name} of {hand[handCardIndex].suit}.')
-    if handValue > 21:
-      print('Bust! Subtracting 21 points.')
-      earnedScore -= 21
-      endTurn()
-    elif handValue == 21:
-      print('Perfect 21! Ending turn.')
-      endTurn()
-    else:
-      return
+    # Indicate that we want to use the global earnedScore var
+    global earnedScore
+    earnedScore = endTurn(handValue)
 
   # Define function to start turn
   def startTurn():
@@ -138,11 +124,27 @@ def playBlackjack():
     takeNewCard()
     takeNewCard()
     currentValue()
+    takeTurn()
 
   # Define function to end turn
-  def endTurn():
-    earnedScore = 21 - roundScore
-    print(f'You have earned {earnedScore}')
+  def endTurn(handValue):
+    returnValue = 0
+    roundScore = 0
+    if handValue > 21:
+      print('Bust! Subtracting 21 points.')
+      returnValue = 21
+      roundScore = 21
+    elif handValue == 21:
+      print('Perfect 21! Ending turn.')
+      returnValue = 0
+      roundScore = 0
+    else:
+      returnValue = 21 - handValue
+      roundScore = returnValue
+    print(f'Round score: {roundScore}')
+    global earnedScore
+    print(f'Current overall score: {earnedScore - roundScore}')
+    return returnValue
 
   # Define function to print current card value
   def currentValue():
