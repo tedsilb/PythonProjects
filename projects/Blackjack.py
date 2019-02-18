@@ -6,7 +6,7 @@ import random
 # Define function
 def playBlackjack():
   # Set up card class
-  class Card:
+  class Card(object):
     def __init__(self, number, suit, name, value):
       self.number = number
       self.suit = suit
@@ -14,60 +14,75 @@ def playBlackjack():
       self.value = value
 
   # Set up deck
-  cardDeck = {}
+  cardDeck = []
   def genCardDeck():
-    cardDeck[1] = Card(1, 'Hearts', 'ace', 1),
-    cardDeck[2] = Card(2, 'Hearts', 'two', 2),
-    cardDeck[3] = Card(3, 'Hearts', 'three', 3),
-    cardDeck[4] = Card(4, 'Hearts', 'four', 4),
-    cardDeck[5] = Card(5, 'Hearts', 'five', 5),
-    cardDeck[6] = Card(6, 'Hearts', 'six', 6),
-    cardDeck[7] = Card(7, 'Hearts', 'seven', 7),
-    cardDeck[8] = Card(8, 'Hearts', 'eight', 8),
-    cardDeck[9] = Card(9, 'Hearts', 'nine', 9),
-    cardDeck[10] = Card(10, 'Hearts', 'ten', 10),
-    cardDeck[11] = Card(11, 'Hearts', 'jack', 10),
-    cardDeck[12] = Card(12, 'Hearts', 'queen', 10),
-    cardDeck[13] = Card(13, 'Hearts', 'king', 10),
-    cardDeck[14] = Card(14, 'Diamonds', 'ace', 1),
-    cardDeck[15] = Card(15, 'Diamonds', 'two', 2),
-    cardDeck[16] = Card(16, 'Diamonds', 'three', 3),
-    cardDeck[17] = Card(17, 'Diamonds', 'four', 4),
-    cardDeck[18] = Card(18, 'Diamonds', 'five', 5),
-    cardDeck[19] = Card(19, 'Diamonds', 'six', 6),
-    cardDeck[20] = Card(20, 'Diamonds', 'seven', 7),
-    cardDeck[21] = Card(21, 'Diamonds', 'eight', 8),
-    cardDeck[22] = Card(22, 'Diamonds', 'nine', 9),
-    cardDeck[23] = Card(23, 'Diamonds', 'ten', 10),
-    cardDeck[24] = Card(24, 'Diamonds', 'jack', 10),
-    cardDeck[25] = Card(25, 'Diamonds', 'queen', 10),
-    cardDeck[26] = Card(26, 'Diamonds', 'king', 10),
-    cardDeck[27] = Card(27, 'Spades', 'ace', 1),
-    cardDeck[28] = Card(28, 'Spades', 'two', 2),
-    cardDeck[29] = Card(29, 'Spades', 'three', 3),
-    cardDeck[30] = Card(30, 'Spades', 'four', 4),
-    cardDeck[31] = Card(31, 'Spades', 'five', 5),
-    cardDeck[32] = Card(32, 'Spades', 'six', 6),
-    cardDeck[33] = Card(33, 'Spades', 'seven', 7),
-    cardDeck[34] = Card(34, 'Spades', 'eight', 8),
-    cardDeck[35] = Card(35, 'Spades', 'nine', 9),
-    cardDeck[36] = Card(36, 'Spades', 'ten', 10),
-    cardDeck[37] = Card(37, 'Spades', 'jack', 10),
-    cardDeck[38] = Card(38, 'Spades', 'queen', 10),
-    cardDeck[39] = Card(39, 'Spades', 'king', 10),
-    cardDeck[40] = Card(40, 'Clubs', 'ace', 1),
-    cardDeck[41] = Card(41, 'Clubs', 'two', 2),
-    cardDeck[42] = Card(42, 'Clubs', 'three', 3),
-    cardDeck[43] = Card(43, 'Clubs', 'four', 4),
-    cardDeck[44] = Card(44, 'Clubs', 'five', 5),
-    cardDeck[45] = Card(45, 'Clubs', 'six', 6),
-    cardDeck[46] = Card(46, 'Clubs', 'seven', 7),
-    cardDeck[47] = Card(47, 'Clubs', 'eight', 8),
-    cardDeck[48] = Card(48, 'Clubs', 'nine', 9),
-    cardDeck[49] = Card(49, 'Clubs', 'ten', 10),
-    cardDeck[50] = Card(50, 'Clubs', 'jack', 10),
-    cardDeck[51] = Card(51, 'Clubs', 'queen', 10),
-    cardDeck[52] = Card(52, 'Clubs', 'king', 10)
+    sH = 'hearts'
+    sD = 'diamonds'
+    sS = 'spades'
+    sC = 'clubs'
+    cardDeck.clear()
+    cardDeck.append(Card(1, sH, 'ace', 1))
+    cardDeck.append(Card(2, sH, 'two', 2))
+    cardDeck.append(Card(3, sH, 'three', 3))
+    cardDeck.append(Card(4, sH, 'four', 4))
+    cardDeck.append(Card(5, sH, 'five', 5))
+    cardDeck.append(Card(6, sH, 'six', 6))
+    cardDeck.append(Card(7, sH, 'seven', 7))
+    cardDeck.append(Card(8, sH, 'eight', 8))
+    cardDeck.append(Card(9, sH, 'nine', 9))
+    cardDeck.append(Card(10, sH, 'ten', 10))
+    cardDeck.append(Card(11, sH, 'jack', 10))
+    cardDeck.append(Card(12, sH, 'queen', 10))
+    cardDeck.append(Card(13, sH, 'king', 10))
+    cardDeck.append(Card(14, sD, 'ace', 1))
+    cardDeck.append(Card(15, sD, 'two', 2))
+    cardDeck.append(Card(16, sD, 'three', 3))
+    cardDeck.append(Card(17, sD, 'four', 4))
+    cardDeck.append(Card(18, sD, 'five', 5))
+    cardDeck.append(Card(19, sD, 'six', 6))
+    cardDeck.append(Card(20, sD, 'seven', 7))
+    cardDeck.append(Card(21, sD, 'eight', 8))
+    cardDeck.append(Card(22, sD, 'nine', 9))
+    cardDeck.append(Card(23, sD, 'ten', 10))
+    cardDeck.append(Card(24, sD, 'jack', 10))
+    cardDeck.append(Card(25, sD, 'queen', 10))
+    cardDeck.append(Card(26, sD, 'king', 10))
+    cardDeck.append(Card(27, sS, 'ace', 1))
+    cardDeck.append(Card(28, sS, 'two', 2))
+    cardDeck.append(Card(29, sS, 'three', 3))
+    cardDeck.append(Card(30, sS, 'four', 4))
+    cardDeck.append(Card(31, sS, 'five', 5))
+    cardDeck.append(Card(32, sS, 'six', 6))
+    cardDeck.append(Card(33, sS, 'seven', 7))
+    cardDeck.append(Card(34, sS, 'eight', 8))
+    cardDeck.append(Card(35, sS, 'nine', 9))
+    cardDeck.append(Card(36, sS, 'ten', 10))
+    cardDeck.append(Card(37, sS, 'jack', 10))
+    cardDeck.append(Card(38, sS, 'queen', 10))
+    cardDeck.append(Card(39, sS, 'king', 10))
+    cardDeck.append(Card(40, sC, 'ace', 1))
+    cardDeck.append(Card(41, sC, 'two', 2))
+    cardDeck.append(Card(42, sC, 'three', 3))
+    cardDeck.append(Card(43, sC, 'four', 4))
+    cardDeck.append(Card(44, sC, 'five', 5))
+    cardDeck.append(Card(45, sC, 'six', 6))
+    cardDeck.append(Card(46, sC, 'seven', 7))
+    cardDeck.append(Card(47, sC, 'eight', 8))
+    cardDeck.append(Card(48, sC, 'nine', 9))
+    cardDeck.append(Card(49, sC, 'ten', 10))
+    cardDeck.append(Card(50, sC, 'jack', 10))
+    cardDeck.append(Card(51, sC, 'queen', 10))
+    cardDeck.append(Card(52, sC, 'king', 10))
+
+  # Set up user's hand
+  hand = []
+  handValue = 0
+
+  # Set up starting score and turn
+  earnedScore = 100
+  roundScore = 0
+  currentRound = 1
+  totalRounds = 5
 
   # Define function to process a turn
   def takeTurn():
@@ -84,34 +99,60 @@ def playBlackjack():
   def calcHandValue():
     handValue = 0
     for card in hand:
-      handValue += card['value']
+      handValue += card.value
+    return handValue
+
+  # Define function to calculate round score
+  def calcRoundScore():
+    calcHandValue()
+    roundScore = 0
+    roundScore = 21 - handValue
 
   # Define function to take a new card
   def takeNewCard():
-    currentCardIndex = random.choice(list(cardDeck.keys()))
+    currentCardIndex = random.choice(cardDeck).number
     # Insert card into hand
-    hand[currentCardIndex] = cardDeck[currentCardIndex]
+    hand.append(cardDeck[currentCardIndex])
+    # Remove card from deck
+    cardDeck.pop(currentCardIndex)
+    # Recalculate hand value
+    handValue = calcHandValue()
+    # Get index of new card in hand (will be the last one)
+    handCardIndex = len(hand) - 1
+    print(f'You have taken a {hand[handCardIndex].name} of {hand[handCardIndex].suit}.')
+    print(f'The current value of your cards is {handValue}.')
+    if handValue > 21:
+      print('Bust! Subtracting 21 points.')
+      earnedScore -= 21
+      endTurn()
+    elif handValue == 21:
+      print('Perfect 21! Ending turn.')
+      endTurn()
+    else:
+      return
+
+  # Define function to start turn
+  def startTurn():
+    print(f'Starting round {currentRound} of {totalRounds}.')
+    print(f'Your score is currently {earnedScore}.')
+    print('Drawing two cards...')
+    takeNewCard()
+    takeNewCard()
 
   # Define function to end turn
   def endTurn():
-    1 == 1  # placeholder
+    earnedScore = 21 - roundScore
+    print(f'You have earned {earnedScore}')
 
   # Generate card deck, initially
   genCardDeck()
 
-  # Set up user's hand
-  hand = {}
-  handValue = 0
-
-  # Set up starting score
-  score = 100
-
   # Start the game, give direction to user
   print('Blackjack!')
-  print('This game will play a game of blackjack.')
+  print('This program will play a game of blackjack.')
 
-  # temp
-  takeNewCard()
+  # Start round, initially
+  startTurn()
 
 # Call function
 playBlackjack()
