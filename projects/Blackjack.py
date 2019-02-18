@@ -120,7 +120,6 @@ def playBlackjack():
     # Get index of new card in hand (will be the last one)
     handCardIndex = len(hand) - 1
     print(f'You have taken a {hand[handCardIndex].name} of {hand[handCardIndex].suit}.')
-    print(f'The current value of your cards is {handValue}.')
     if handValue > 21:
       print('Bust! Subtracting 21 points.')
       earnedScore -= 21
@@ -138,11 +137,17 @@ def playBlackjack():
     print('Drawing two cards...')
     takeNewCard()
     takeNewCard()
+    currentValue()
 
   # Define function to end turn
   def endTurn():
     earnedScore = 21 - roundScore
     print(f'You have earned {earnedScore}')
+
+  # Define function to print current card value
+  def currentValue():
+    value = calcHandValue()
+    print(f'The current value of your cards is {value}.')
 
   # Generate card deck, initially
   genCardDeck()
