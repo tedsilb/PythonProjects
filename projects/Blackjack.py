@@ -77,21 +77,32 @@ def playBlackjack():
   # Set up user's hand
   hand = []
 
-  # Set up starting score and turn
+  # Set up starting score
   global earnedScore
   earnedScore = 100
-  currentRound = 1
-  totalRounds = 5
 
   # Define function to process a turn
-  def takeTurn():
+  def hitOrStand():
     choice = input('Would you like to hit or stand? ')
     if (choice.lower() == 'hit') or (choice.lower() == 'h'):
       print('Dealing new card...')
       takeNewCard()
+      bustReturn = calcHandValue()
+      if bustReturn > 21:
+        print('Bust! Subtracting 21 points.')
+      elif bustReturn == 21:
+        print('Perfect 21! Ending turn.')
+      else:
+        currentValue()
+        hitOrStand()
     elif (choice.lower() == 'stand') or (choice.lower() == 's'):
       print('Ending turn...')
       endTurn(calcHandValue())
+
+  # Define function to print current card value
+  def currentValue():
+    value = calcHandValue()
+    print(f'The current value of your cards is {value}.')
 
   # Define function to calculate hand value
   def calcHandValue():
@@ -102,64 +113,47 @@ def playBlackjack():
 
   # Define function to take a new card
   def takeNewCard():
-    currentCardIndex = random.choice(cardDeck).number
+    currentCard = random.choice(cardDeck)
     # Insert card into hand
-    hand.append(cardDeck[currentCardIndex])
+    hand.append(currentCard)
     # Remove card from deck
-    cardDeck.pop(currentCardIndex)
-    # Recalculate hand value
-    handValue = calcHandValue()
+    cardDeck.remove(currentCard)
     # Get index of new card in hand (will be the last one)
     handCardIndex = len(hand) - 1
     print(f'You have taken a {hand[handCardIndex].name} of {hand[handCardIndex].suit}.')
-    # Indicate that we want to use the global earnedScore var
-    global earnedScore
-    earnedScore = endTurn(handValue)
 
   # Define function to start turn
-  def startTurn():
-    print(f'Starting round {currentRound} of {totalRounds}.')
+  def startTurn(i, rounds):
+    print(f'Starting round {i} of {rounds}.')
     print(f'Your score is currently {earnedScore}.')
     print('Drawing two cards...')
+    hand.clear()
     takeNewCard()
     takeNewCard()
     currentValue()
-    takeTurn()
+    hitOrStand()
 
   # Define function to end turn
   def endTurn(handValue):
-    returnValue = 0
-    roundScore = 0
-    if handValue > 21:
-      print('Bust! Subtracting 21 points.')
-      returnValue = 21
-      roundScore = 21
-    elif handValue == 21:
-      print('Perfect 21! Ending turn.')
-      returnValue = 0
-      roundScore = 0
-    else:
-      returnValue = 21 - handValue
-      roundScore = returnValue
+    roundScore = 21 - handValue
     print(f'Round score: {roundScore}')
     global earnedScore
-    print(f'Current overall score: {earnedScore - roundScore}')
-    return returnValue
-
-  # Define function to print current card value
-  def currentValue():
-    value = calcHandValue()
-    print(f'The current value of your cards is {value}.')
-
-  # Generate card deck, initially
-  genCardDeck()
+    earnedScore -= roundScore
+    return
 
   # Start the game, give direction to user
   print('Blackjack!')
   print('This program will play a game of blackjack.')
 
-  # Start round, initially
-  startTurn()
+  # Run rounds a number of times
+  rounds = 5
+  for i in range(1, rounds + 1):
+    genCardDeck()
+    startTurn(i, rounds)
+    if i < rounds:
+      print(f'Score after round {i}: {earnedScore}')
+    else:
+      print(f'Final score: {earnedScore}')
 
 # Call function
 playBlackjack()
