@@ -27,7 +27,7 @@ def fibonacciGen(nTerm):
     fibNo = 1
 
     # Start the loop to generate the Fibonacci number
-    for i in range(3, nTerm):
+    for _ in range(3, nTerm):
       prevNo1 = prevNo2
       prevNo2 = fibNo
       fibNo = prevNo1 + prevNo2
