@@ -28,7 +28,24 @@ def caesarCipher():
 
   # Define decrypt function
   def cDecrypt(listToDecrypt, decryptionKey):
-    1 == 1
+    # Set up list to store decrypted words
+    decryptedList = []
+
+    # Run thorough list, decrypt words
+    for word in listToDecrypt:
+      currentWord = ''
+      for letter in word:
+        currentIndex = cryptBase.index(letter) + 1
+        newIndex = (currentIndex - decryptionKey + 26) % 26
+        newIndex -= 1
+        currentWord += cryptBase[newIndex]
+      decryptedList.append(currentWord)
+
+    # Rejoin list to string
+    encryptedString = ' '.join(decryptedList)
+
+    # Return string
+    return encryptedString
 
   # Set up list of alphabet to use for encryption/decryption
   cryptBase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M']
@@ -41,7 +58,7 @@ def caesarCipher():
   if operation == 'encrypt' or operation == 'e':
     operation = 'e'
     stringCrypt = input('Please enter the word or string to encrypt: ')
-  elif operation == 'decrypt' or operation == 'e':
+  elif operation == 'decrypt' or operation == 'd':
     operation = 'd'
     stringCrypt = input('Please enter the word or string to decrypt: ')
 
@@ -68,3 +85,7 @@ def caesarCipher():
 
   # Return response
   return response
+
+# Call function, print response
+response = caesarCipher()
+print(response)
