@@ -1,9 +1,11 @@
 # A function to reverse a string
 
 def reverseString(inputWord):
+  wordToReverse = inputWord
   returnWord = ''
-  for letter in reversed(inputWord):
-    returnWord += letter
+  for _ in wordToReverse:
+    returnWord += wordToReverse[-1:]
+    wordToReverse = wordToReverse[:-1]
   return returnWord
 
 # Ask user for a string to reverse
