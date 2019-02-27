@@ -1,4 +1,5 @@
 # This program will encrypt and decrypt messages using a Caesar cypher
+# By Ted Silbernagel
 
 # Import dependencies
 import string

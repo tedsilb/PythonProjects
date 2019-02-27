@@ -1,4 +1,5 @@
 # A function to reverse a string
+# By Ted Silbernagel
 
 def reverseString(inputWord):
   wordToReverse = inputWord

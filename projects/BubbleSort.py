@@ -1,4 +1,5 @@
 # Super basic bubble sort algorithm
+# By Ted Silbernagel
 
 # Define function to check to see if a list is sorted
 def listIsSorted(listToCheck):

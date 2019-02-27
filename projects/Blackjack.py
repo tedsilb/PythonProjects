@@ -1,4 +1,5 @@
 # This program will play a game of blackjack
+# By Ted Silbernagel
 
 # Import dependencies
 import random

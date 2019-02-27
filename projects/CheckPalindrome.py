@@ -1,4 +1,5 @@
 # A function to check if a word is a palindrome
+# By Ted Silbernagel
 
 def checkPalindrome(inputWord):
   reversedWord = ''

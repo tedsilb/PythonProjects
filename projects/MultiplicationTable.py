@@ -1,4 +1,5 @@
 # Generate a multiplication table.
+# By Ted Silbernagel
 
 # Define function
 def genMultiTable(toGen):

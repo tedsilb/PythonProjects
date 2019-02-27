@@ -1,4 +1,5 @@
 # This program will allow for many mathematical operations on two numbers
+# By Ted Silbernagel
 
 def calculate(firstNo, secondNo, method):
   # Parse data and return calculated value

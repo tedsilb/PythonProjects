@@ -1,4 +1,5 @@
 # Given a price, determine how many of each coin is needed to pay for it.
+# By Ted Silbernagel
 
 # Import dependencies
 import math

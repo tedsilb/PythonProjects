@@ -1,4 +1,5 @@
 # Calculates all factors of a number
+# By Ted Silbernagel
 
 # Define function
 def calcFactors(userNo):

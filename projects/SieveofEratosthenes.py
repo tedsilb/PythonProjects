@@ -1,4 +1,5 @@
-# This program will use the Sieve of Eratosthenes algorithm to find all prime numbers up to a given number.
+# This program uses the Sieve of Eratosthenes algorithm to find all prime numbers up to a given number.
+# By Ted Silbernagel
 
 # Define function
 def sieveE(userNo):

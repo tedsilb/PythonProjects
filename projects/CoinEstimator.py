@@ -1,4 +1,5 @@
 # Given the weights of types of coins, estimate the number of coins and the number of wrappers needed.
+# By Ted Silbernagel
 
 # Import dependencies
 import math

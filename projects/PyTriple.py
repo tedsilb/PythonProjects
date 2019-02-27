@@ -1,4 +1,5 @@
 # Check to see if three sides form a pythatgorian triple.
+# By Ted Silbernagel
 # https://en.wikipedia.org/wiki/Pythagorean_triple
 
 # Define the function that will check for this

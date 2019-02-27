@@ -1,4 +1,5 @@
 # Calculate descriptive statistics for a list of numbers
+# By Ted Silbernagel
 
 # Import dependencies
 import math

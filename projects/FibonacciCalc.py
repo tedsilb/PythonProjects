@@ -1,4 +1,5 @@
 # Generate the nth term in the Fibonacci sequence
+# By Ted Silbernagel
 
 # Define function
 def fibonacciGen(nTerm):

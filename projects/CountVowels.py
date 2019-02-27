@@ -1,4 +1,5 @@
 # This program will count the number of vowels in a string
+# By Ted Silbernagel
 
 def countVowels(inputString):
   # Set up count vars for vowels

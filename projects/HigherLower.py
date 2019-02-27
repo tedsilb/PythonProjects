@@ -1,4 +1,5 @@
 # Guessing game - try to guess the number
+# By Ted Silbernagel
 
 # Import dependencies
 import random

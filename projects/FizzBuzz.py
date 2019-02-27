@@ -1,4 +1,5 @@
 # A simple FizzBuzz program
+# By Ted Silbernagel
 
 # Define function
 def fizzBuzz():
