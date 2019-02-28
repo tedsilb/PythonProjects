@@ -1,4 +1,4 @@
-# This program will flip a coin repeatedly, keeping track of heads/tails
+# This program will flip a coin repeatedly, keeping track of heads and tails
 # By Ted Silbernagel
 
 # Import dependencies
