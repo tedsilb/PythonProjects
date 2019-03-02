@@ -107,5 +107,5 @@ usrWgtN = float(input('What is the weight of your nickels? '))
 usrWgtD = float(input('What is the weight of your dimes? '))
 usrWgtQ = float(input('What is the weight of your quarters? '))
 
-# Run function
+# Call function
 estimateWeight(usrWgtP, usrWgtN, usrWgtD, usrWgtQ)
