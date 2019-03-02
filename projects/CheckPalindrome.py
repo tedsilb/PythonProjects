@@ -14,5 +14,5 @@ def checkPalindrome(inputWord):
 print('This program will check to see if a given word is a palindrome.')
 stringToReverse = input('Please enter a word: ')
 
-# Run function, print results
+# Call function, print results
 checkPalindrome(stringToReverse)
