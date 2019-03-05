@@ -1,8 +1,14 @@
 # Calculates all factors of a number
 # By Ted Silbernagel
 
+# Import dependencies
+from time import time
+
 # Define function
-def calcFactors(userNo):
+def calcFactors(userNo):  
+  # Get start time
+  startTime = time()
+  
   # Create array to store the factors in
   allFactors = []
 
@@ -12,7 +18,11 @@ def calcFactors(userNo):
       allFactors.append(number)
 
   # Return data to user
-  return f'All factors of {userNo}: {allFactors}'
+  returnData = {}
+  returnData['userNo'] = userNo
+  returnData['allFactors'] = allFactors
+  returnData['timeTaken'] = round(time() - startTime, 4)
+  return returnData
 
 # Get number from user
 print('This program will calculate all factors of the number you specify.')
@@ -20,4 +30,5 @@ enteredNo = int(input('Please enter a number: '))
 
 # Call function, print response
 response = calcFactors(enteredNo)
-print(response)
+print(f'All factors of {response["userNo"]}: {response["allFactors"]}')
+print(f'Took {response["timeTaken"]}s.')
