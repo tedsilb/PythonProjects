@@ -4,21 +4,21 @@
 # Define function
 def fibonacciGen(nTerm):
   # Check to see if they picked 1 or 2
-  if nTerm < 4:
+  if nTerm <= 3:
     if nTerm == 1:
       fibNo = 0
-      # Print calculation for user
-      print(f'The {nTerm}st number in the Fibonacci sequence is {fibNo}')
+      # Return calculation for user
+      return f'The {nTerm}st number in the Fibonacci sequence is {fibNo}'
 
     elif nTerm == 2:
       fibNo = 1
-      # Print calculation for user
-      print(f'The {nTerm}nd number in the Fibonacci sequence is {fibNo}')
+      # Return calculation for user
+      return f'The {nTerm}nd number in the Fibonacci sequence is {fibNo}'
 
     elif nTerm == 3:
       fibNo = 1
-      # Print calculation for user
-      print(f'The {nTerm}rd number in the Fibonacci sequence is {fibNo}')
+      # Return calculation for user
+      return f'The {nTerm}rd number in the Fibonacci sequence is {fibNo}'
 
   # Otherwise will need to generate
   else:
@@ -33,7 +33,7 @@ def fibonacciGen(nTerm):
       prevNo2 = fibNo
       fibNo = prevNo1 + prevNo2
 
-    # Print calculation for user
+    # Return calculation for user
     return f'The {nTerm}th number in the Fibonacci sequence is {fibNo}'
 
 # Get n term from user
