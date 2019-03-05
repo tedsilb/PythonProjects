@@ -91,6 +91,8 @@ def playBlackjack():
       bustReturn = calcHandValue()
       if bustReturn > 21:
         print('Bust! Subtracting 21 points.')
+        global earnedScore
+        earnedScore -= 21
       elif bustReturn == 21:
         print('Perfect 21! Ending turn.')
       else:
@@ -154,7 +156,16 @@ def playBlackjack():
     if i < rounds:
       print(f'Score after round {i}: {earnedScore}')
     else:
-      print(f'Final score: {earnedScore}')
+      if earnedScore >= 90:
+        print(f'Final score: {earnedScore}. Grade: A')
+      elif earnedScore >= 80:
+        print(f'Final score: {earnedScore}. Grade: B')
+      elif earnedScore >= 70:
+        print(f'Final score: {earnedScore}. Grade: C')
+      elif earnedScore >= 60:
+        print(f'Final score: {earnedScore}. Grade: D.')
+      else:
+        print(f'Final score: {earnedScore}. Grade: F.')
 
 # Call function
 playBlackjack()
