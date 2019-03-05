@@ -21,7 +21,7 @@ def calcFactors(userNo):
   returnData = {}
   returnData['userNo'] = userNo
   returnData['allFactors'] = allFactors
-  returnData['timeTaken'] = round(time() - startTime, 4)
+  returnData['timeTaken'] = round(time() - startTime, 6)
   return returnData
 
 # Get number from user

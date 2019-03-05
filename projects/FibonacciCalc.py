@@ -9,47 +9,31 @@ def fibonacciGen(nTerm):
   # Get start time
   startTime = time()
 
-  # Set up returnData object
-  returnData = {}
-
   # Check to see if they picked 1 or 2
   if nTerm <= 3:
     if nTerm == 1:
       fibNo = 0
-      returnData['nTerm'] = nTerm
-      returnData['fibNo'] = fibNo
-      returnData['timeTaken'] = round(time() - startTime, 6)
-
     elif nTerm == 2:
       fibNo = 1
-      returnData['nTerm'] = nTerm
-      returnData['fibNo'] = fibNo
-      returnData['timeTaken'] = round(time() - startTime, 6)
-
     elif nTerm == 3:
       fibNo = 1
-      returnData['nTerm'] = nTerm
-      returnData['fibNo'] = fibNo
-      returnData['timeTaken'] = round(time() - startTime, 6)
-
   # Otherwise will need to generate
   else:
     # Initialise the loop at 3
     prevNo1 = 0
     prevNo2 = 1
     fibNo = 1
-
     # Start the loop to generate the Fibonacci number
     for _ in range(3, nTerm):
       prevNo1 = prevNo2
       prevNo2 = fibNo
       fibNo = prevNo1 + prevNo2
 
-    # Return calculation for user
-    returnData['nTerm'] = nTerm
-    returnData['fibNo'] = fibNo
-    returnData['timeTaken'] = round(time() - startTime, 6)
-  
+  # Return calculation for user
+  returnData = {}
+  returnData['nTerm'] = nTerm
+  returnData['fibNo'] = fibNo
+  returnData['timeTaken'] = round(time() - startTime, 6)
   return returnData
 
 # Get n term from user
