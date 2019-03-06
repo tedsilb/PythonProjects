@@ -1,6 +1,5 @@
 # A Tic Tac Toe program. Uses tkinter for GUI. This is my first program ever to use a GUI
 # By Ted Silbernagel
-#TODO: Check to see if the computer won. Cascade logic from cell A1 to the rest.
 
 # Import dependencies
 import tkinter as tk
@@ -55,7 +54,7 @@ class TicTacToe:
     # Set up bottom label
     self.bottomLabel = tk.Label(master, text = 'New game. Your turn.')
     self.bottomLabel.grid(row = 4, column = 1, columnspan = 2, rowspan = 2, sticky = tk.W + tk.E)
-    self.bottomButton = tk.Button(master, text = 'Reset Game', command = self.resetGame2)
+    self.bottomButton = tk.Button(master, text = 'Reset Game', command = self.resetGame)
     self.bottomButton.grid(row = 4, column = 3)
 
   # Set up button handlers
@@ -77,42 +76,173 @@ class TicTacToe:
         self.bottomLabel['text'] = 'You win!'
       else:
         self.bottomLabel['text'] = 'Computer\'s turn...'
-        sleep(1)
-        cpuChoice = choice(self.availableCells)
-        print(cpuChoice)
+        sleep(0.5)
+        # Ensure winning moves
+        # A block
+        if (('A2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('B1' in self.cpuChosenCells and 'C1' in self.cpuChosenCells)
+          or ('B2' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          and 'A1' in self.availableCells:
+          cpuChoice = 'A1'
+        elif (('A1' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('B2' in self.cpuChosenCells and 'C2' in self.cpuChosenCells)) \
+          and 'A2' in self.availableCells:
+          cpuChoice = 'A2'
+        elif (('A1' in self.cpuChosenCells and 'A2' in self.cpuChosenCells) \
+          or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)
+          or ('C1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          and 'A3' in self.availableCells:
+          cpuChoice = 'A3'
+        # B block
+        elif (('B2' in self.cpuChosenCells and 'B3' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'C1' in self.cpuChosenCells)) \
+          and 'B1' in self.availableCells:
+          cpuChoice = 'B1'
+        elif (('B1' in self.cpuChosenCells and 'B3' in self.cpuChosenCells) \
+          or ('A2' in self.cpuChosenCells and 'C2' in self.cpuChosenCells)
+          or ('A1' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          and 'B2' in self.availableCells:
+          cpuChoice = 'B2'
+        elif (('B1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells) \
+          or ('A3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          and 'B3' in self.availableCells:
+          cpuChoice = 'B3'
+        # C block
+        if (('C2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'B1' in self.cpuChosenCells)
+          or ('B2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells)) \
+          and 'C1' in self.availableCells:
+          cpuChoice = 'C1'
+        elif (('C1' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
+          or ('A2' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          and 'C2' in self.availableCells:
+          cpuChoice = 'C2'
+        elif (('A1' in self.cpuChosenCells and 'A2' in self.cpuChosenCells) \
+          or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)
+          or ('C1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          and 'C3' in self.availableCells:
+          cpuChoice = 'C3'
+        else:
+          cpuChoice = choice(self.availableCells)
         if cpuChoice == 'A1':
           self.btnA1['text'] = 'O'
           self.cpuChosenCells.append('A1')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
         elif cpuChoice == 'A2':
           self.btnA2['text'] = 'O'
           self.cpuChosenCells.append('A2')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
         elif cpuChoice == 'A3':
           self.btnA3['text'] = 'O'
           self.cpuChosenCells.append('A3')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
         elif cpuChoice == 'B1':
           self.btnB1['text'] = 'O'
           self.cpuChosenCells.append('B1')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
         elif cpuChoice == 'B2':
           self.btnB2['text'] = 'O'
           self.cpuChosenCells.append('B2')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
         elif cpuChoice == 'B3':
           self.btnB3['text'] = 'O'
           self.cpuChosenCells.append('B3')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
         elif cpuChoice == 'C1':
           self.btnC1['text'] = 'O'
           self.cpuChosenCells.append('C1')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
         elif cpuChoice == 'C2':
           self.btnC2['text'] = 'O'
           self.cpuChosenCells.append('C2')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
         elif cpuChoice == 'C3':
           self.btnC3['text'] = 'O'
           self.cpuChosenCells.append('C3')
-        self.bottomLabel['text'] = 'Your turn.'
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        if self.bottomLabel['text'] != 'Computer wins :(':
+          self.bottomLabel['text'] = 'Your turn.'
     else:
       self.bottomLabel['text'] = 'Spot already selected. Try again'
   def callA2(self):
     if self.btnA2['text'] == '':
       self.btnA2['text'] = 'X'
+      try:
+        self.availableCells.remove('A2')
+      except ValueError:
+        pass
       if (self.btnA1['text'] == 'X' and self.btnA2['text'] == 'X' and self.btnA3['text'] == 'X') \
         or (self.btnB1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnB3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnC2['text'] == 'X' and self.btnC3['text'] == 'X') \
@@ -122,11 +252,129 @@ class TicTacToe:
         or (self.btnA1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnC3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnA3['text'] == 'X'):
         self.bottomLabel['text'] = 'You win!'
+      else:
+        self.bottomLabel['text'] = 'Computer\'s turn...'
+        sleep(0.5)
+        cpuChoice = choice(self.availableCells)
+        if cpuChoice == 'A1':
+          self.btnA1['text'] = 'O'
+          self.cpuChosenCells.append('A1')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'A2':
+          self.btnA2['text'] = 'O'
+          self.cpuChosenCells.append('A2')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'A3':
+          self.btnA3['text'] = 'O'
+          self.cpuChosenCells.append('A3')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'B1':
+          self.btnB1['text'] = 'O'
+          self.cpuChosenCells.append('B1')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'B2':
+          self.btnB2['text'] = 'O'
+          self.cpuChosenCells.append('B2')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'B3':
+          self.btnB3['text'] = 'O'
+          self.cpuChosenCells.append('B3')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'C1':
+          self.btnC1['text'] = 'O'
+          self.cpuChosenCells.append('C1')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'C2':
+          self.btnC2['text'] = 'O'
+          self.cpuChosenCells.append('C2')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'C3':
+          self.btnC3['text'] = 'O'
+          self.cpuChosenCells.append('C3')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        if self.bottomLabel['text'] != 'Computer wins :(':
+          self.bottomLabel['text'] = 'Your turn.'
     else:
       self.bottomLabel['text'] = 'Spot already selected. Try again'
   def callA3(self):
     if self.btnA3['text'] == '':
       self.btnA3['text'] = 'X'
+      try:
+        self.availableCells.remove('A3')
+      except ValueError:
+        pass
       if (self.btnA1['text'] == 'X' and self.btnA2['text'] == 'X' and self.btnA3['text'] == 'X') \
         or (self.btnB1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnB3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnC2['text'] == 'X' and self.btnC3['text'] == 'X') \
@@ -136,11 +384,129 @@ class TicTacToe:
         or (self.btnA1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnC3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnA3['text'] == 'X'):
         self.bottomLabel['text'] = 'You win!'
+      else:
+        self.bottomLabel['text'] = 'Computer\'s turn...'
+        sleep(0.5)
+        cpuChoice = choice(self.availableCells)
+        if cpuChoice == 'A1':
+          self.btnA1['text'] = 'O'
+          self.cpuChosenCells.append('A1')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'A2':
+          self.btnA2['text'] = 'O'
+          self.cpuChosenCells.append('A2')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'A3':
+          self.btnA3['text'] = 'O'
+          self.cpuChosenCells.append('A3')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'B1':
+          self.btnB1['text'] = 'O'
+          self.cpuChosenCells.append('B1')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'B2':
+          self.btnB2['text'] = 'O'
+          self.cpuChosenCells.append('B2')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'B3':
+          self.btnB3['text'] = 'O'
+          self.cpuChosenCells.append('B3')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'C1':
+          self.btnC1['text'] = 'O'
+          self.cpuChosenCells.append('C1')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'C2':
+          self.btnC2['text'] = 'O'
+          self.cpuChosenCells.append('C2')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'C3':
+          self.btnC3['text'] = 'O'
+          self.cpuChosenCells.append('C3')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        if self.bottomLabel['text'] != 'Computer wins :(':
+          self.bottomLabel['text'] = 'Your turn.'
     else:
-      self.bottomLabel['text'] = 'That spot\'s already selected. Try again'
+      self.bottomLabel['text'] = 'Spot already selected. Try again'
   def callB1(self):
     if self.btnB1['text'] == '':
       self.btnB1['text'] = 'X'
+      try:
+        self.availableCells.remove('B1')
+      except ValueError:
+        pass
       if (self.btnA1['text'] == 'X' and self.btnA2['text'] == 'X' and self.btnA3['text'] == 'X') \
         or (self.btnB1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnB3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnC2['text'] == 'X' and self.btnC3['text'] == 'X') \
@@ -150,11 +516,129 @@ class TicTacToe:
         or (self.btnA1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnC3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnA3['text'] == 'X'):
         self.bottomLabel['text'] = 'You win!'
+      else:
+        self.bottomLabel['text'] = 'Computer\'s turn...'
+        sleep(0.5)
+        cpuChoice = choice(self.availableCells)
+        if cpuChoice == 'A1':
+          self.btnA1['text'] = 'O'
+          self.cpuChosenCells.append('A1')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'A2':
+          self.btnA2['text'] = 'O'
+          self.cpuChosenCells.append('A2')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'A3':
+          self.btnA3['text'] = 'O'
+          self.cpuChosenCells.append('A3')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'B1':
+          self.btnB1['text'] = 'O'
+          self.cpuChosenCells.append('B1')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'B2':
+          self.btnB2['text'] = 'O'
+          self.cpuChosenCells.append('B2')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'B3':
+          self.btnB3['text'] = 'O'
+          self.cpuChosenCells.append('B3')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'C1':
+          self.btnC1['text'] = 'O'
+          self.cpuChosenCells.append('C1')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'C2':
+          self.btnC2['text'] = 'O'
+          self.cpuChosenCells.append('C2')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'C3':
+          self.btnC3['text'] = 'O'
+          self.cpuChosenCells.append('C3')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        if self.bottomLabel['text'] != 'Computer wins :(':
+          self.bottomLabel['text'] = 'Your turn.'
     else:
-      self.bottomLabel['text'] = 'That spot\'s already selected. Try again'
+      self.bottomLabel['text'] = 'Spot already selected. Try again'
   def callB2(self):
     if self.btnB2['text'] == '':
       self.btnB2['text'] = 'X'
+      try:
+        self.availableCells.remove('B2')
+      except ValueError:
+        pass
       if (self.btnA1['text'] == 'X' and self.btnA2['text'] == 'X' and self.btnA3['text'] == 'X') \
         or (self.btnB1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnB3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnC2['text'] == 'X' and self.btnC3['text'] == 'X') \
@@ -164,11 +648,129 @@ class TicTacToe:
         or (self.btnA1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnC3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnA3['text'] == 'X'):
         self.bottomLabel['text'] = 'You win!'
+      else:
+        self.bottomLabel['text'] = 'Computer\'s turn...'
+        sleep(0.5)
+        cpuChoice = choice(self.availableCells)
+        if cpuChoice == 'A1':
+          self.btnA1['text'] = 'O'
+          self.cpuChosenCells.append('A1')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'A2':
+          self.btnA2['text'] = 'O'
+          self.cpuChosenCells.append('A2')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'A3':
+          self.btnA3['text'] = 'O'
+          self.cpuChosenCells.append('A3')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'B1':
+          self.btnB1['text'] = 'O'
+          self.cpuChosenCells.append('B1')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'B2':
+          self.btnB2['text'] = 'O'
+          self.cpuChosenCells.append('B2')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'B3':
+          self.btnB3['text'] = 'O'
+          self.cpuChosenCells.append('B3')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'C1':
+          self.btnC1['text'] = 'O'
+          self.cpuChosenCells.append('C1')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'C2':
+          self.btnC2['text'] = 'O'
+          self.cpuChosenCells.append('C2')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'C3':
+          self.btnC3['text'] = 'O'
+          self.cpuChosenCells.append('C3')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        if self.bottomLabel['text'] != 'Computer wins :(':
+          self.bottomLabel['text'] = 'Your turn.'
     else:
-      self.bottomLabel['text'] = 'That spot\'s already selected. Try again'
+      self.bottomLabel['text'] = 'Spot already selected. Try again'
   def callB3(self):
     if self.btnB3['text'] == '':
       self.btnB3['text'] = 'X'
+      try:
+        self.availableCells.remove('B3')
+      except ValueError:
+        pass
       if (self.btnA1['text'] == 'X' and self.btnA2['text'] == 'X' and self.btnA3['text'] == 'X') \
         or (self.btnB1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnB3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnC2['text'] == 'X' and self.btnC3['text'] == 'X') \
@@ -178,11 +780,129 @@ class TicTacToe:
         or (self.btnA1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnC3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnA3['text'] == 'X'):
         self.bottomLabel['text'] = 'You win!'
+      else:
+        self.bottomLabel['text'] = 'Computer\'s turn...'
+        sleep(0.5)
+        cpuChoice = choice(self.availableCells)
+        if cpuChoice == 'A1':
+          self.btnA1['text'] = 'O'
+          self.cpuChosenCells.append('A1')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'A2':
+          self.btnA2['text'] = 'O'
+          self.cpuChosenCells.append('A2')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'A3':
+          self.btnA3['text'] = 'O'
+          self.cpuChosenCells.append('A3')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'B1':
+          self.btnB1['text'] = 'O'
+          self.cpuChosenCells.append('B1')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'B2':
+          self.btnB2['text'] = 'O'
+          self.cpuChosenCells.append('B2')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'B3':
+          self.btnB3['text'] = 'O'
+          self.cpuChosenCells.append('B3')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'C1':
+          self.btnC1['text'] = 'O'
+          self.cpuChosenCells.append('C1')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'C2':
+          self.btnC2['text'] = 'O'
+          self.cpuChosenCells.append('C2')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'C3':
+          self.btnC3['text'] = 'O'
+          self.cpuChosenCells.append('C3')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        if self.bottomLabel['text'] != 'Computer wins :(':
+          self.bottomLabel['text'] = 'Your turn.'
     else:
-      self.bottomLabel['text'] = 'That spot\'s already selected. Try again'
+      self.bottomLabel['text'] = 'Spot already selected. Try again'
   def callC1(self):
     if self.btnC1['text'] == '':
       self.btnC1['text'] = 'X'
+      try:
+        self.availableCells.remove('C1')
+      except ValueError:
+        pass
       if (self.btnA1['text'] == 'X' and self.btnA2['text'] == 'X' and self.btnA3['text'] == 'X') \
         or (self.btnB1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnB3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnC2['text'] == 'X' and self.btnC3['text'] == 'X') \
@@ -192,11 +912,129 @@ class TicTacToe:
         or (self.btnA1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnC3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnA3['text'] == 'X'):
         self.bottomLabel['text'] = 'You win!'
+      else:
+        self.bottomLabel['text'] = 'Computer\'s turn...'
+        sleep(0.5)
+        cpuChoice = choice(self.availableCells)
+        if cpuChoice == 'A1':
+          self.btnA1['text'] = 'O'
+          self.cpuChosenCells.append('A1')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'A2':
+          self.btnA2['text'] = 'O'
+          self.cpuChosenCells.append('A2')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'A3':
+          self.btnA3['text'] = 'O'
+          self.cpuChosenCells.append('A3')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'B1':
+          self.btnB1['text'] = 'O'
+          self.cpuChosenCells.append('B1')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'B2':
+          self.btnB2['text'] = 'O'
+          self.cpuChosenCells.append('B2')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'B3':
+          self.btnB3['text'] = 'O'
+          self.cpuChosenCells.append('B3')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'C1':
+          self.btnC1['text'] = 'O'
+          self.cpuChosenCells.append('C1')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'C2':
+          self.btnC2['text'] = 'O'
+          self.cpuChosenCells.append('C2')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'C3':
+          self.btnC3['text'] = 'O'
+          self.cpuChosenCells.append('C3')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        if self.bottomLabel['text'] != 'Computer wins :(':
+          self.bottomLabel['text'] = 'Your turn.'
     else:
-      self.bottomLabel['text'] = 'That spot\'s already selected. Try again'
+      self.bottomLabel['text'] = 'Spot already selected. Try again'
   def callC2(self):
     if self.btnC2['text'] == '':
       self.btnC2['text'] = 'X'
+      try:
+        self.availableCells.remove('C2')
+      except ValueError:
+        pass
       if (self.btnA1['text'] == 'X' and self.btnA2['text'] == 'X' and self.btnA3['text'] == 'X') \
         or (self.btnB1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnB3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnC2['text'] == 'X' and self.btnC3['text'] == 'X') \
@@ -206,11 +1044,129 @@ class TicTacToe:
         or (self.btnA1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnC3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnA3['text'] == 'X'):
         self.bottomLabel['text'] = 'You win!'
+      else:
+        self.bottomLabel['text'] = 'Computer\'s turn...'
+        sleep(0.5)
+        cpuChoice = choice(self.availableCells)
+        if cpuChoice == 'A1':
+          self.btnA1['text'] = 'O'
+          self.cpuChosenCells.append('A1')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'A2':
+          self.btnA2['text'] = 'O'
+          self.cpuChosenCells.append('A2')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'A3':
+          self.btnA3['text'] = 'O'
+          self.cpuChosenCells.append('A3')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'B1':
+          self.btnB1['text'] = 'O'
+          self.cpuChosenCells.append('B1')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'B2':
+          self.btnB2['text'] = 'O'
+          self.cpuChosenCells.append('B2')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'B3':
+          self.btnB3['text'] = 'O'
+          self.cpuChosenCells.append('B3')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'C1':
+          self.btnC1['text'] = 'O'
+          self.cpuChosenCells.append('C1')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'C2':
+          self.btnC2['text'] = 'O'
+          self.cpuChosenCells.append('C2')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'C3':
+          self.btnC3['text'] = 'O'
+          self.cpuChosenCells.append('C3')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        if self.bottomLabel['text'] != 'Computer wins :(':
+          self.bottomLabel['text'] = 'Your turn.'
     else:
-      self.bottomLabel['text'] = 'That spot\'s already selected. Try again'
+      self.bottomLabel['text'] = 'Spot already selected. Try again'
   def callC3(self):
     if self.btnC3['text'] == '':
       self.btnC3['text'] = 'X'
+      try:
+        self.availableCells.remove('C3')
+      except ValueError:
+        pass
       if (self.btnA1['text'] == 'X' and self.btnA2['text'] == 'X' and self.btnA3['text'] == 'X') \
         or (self.btnB1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnB3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnC2['text'] == 'X' and self.btnC3['text'] == 'X') \
@@ -220,11 +1176,125 @@ class TicTacToe:
         or (self.btnA1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnC3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnA3['text'] == 'X'):
         self.bottomLabel['text'] = 'You win!'
+      else:
+        self.bottomLabel['text'] = 'Computer\'s turn...'
+        sleep(0.5)
+        cpuChoice = choice(self.availableCells)
+        if cpuChoice == 'A1':
+          self.btnA1['text'] = 'O'
+          self.cpuChosenCells.append('A1')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'A2':
+          self.btnA2['text'] = 'O'
+          self.cpuChosenCells.append('A2')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'A3':
+          self.btnA3['text'] = 'O'
+          self.cpuChosenCells.append('A3')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'B1':
+          self.btnB1['text'] = 'O'
+          self.cpuChosenCells.append('B1')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'B2':
+          self.btnB2['text'] = 'O'
+          self.cpuChosenCells.append('B2')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'B3':
+          self.btnB3['text'] = 'O'
+          self.cpuChosenCells.append('B3')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'C1':
+          self.btnC1['text'] = 'O'
+          self.cpuChosenCells.append('C1')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'C2':
+          self.btnC2['text'] = 'O'
+          self.cpuChosenCells.append('C2')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        elif cpuChoice == 'C3':
+          self.btnC3['text'] = 'O'
+          self.cpuChosenCells.append('C3')
+          if (self.btnA1['text'] == 'O' and self.btnA2['text'] == 'O' and self.btnA3['text'] == 'O') \
+            or (self.btnB1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnB3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnC2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB1['text'] == 'O' and self.btnC1['text'] == 'O') \
+            or (self.btnA2['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC2['text'] == 'O') \
+            or (self.btnA3['text'] == 'O' and self.btnB3['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
+            or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
+            self.bottomLabel['text'] = 'Computer wins :('
+        if self.bottomLabel['text'] != 'Computer wins :(':
+          self.bottomLabel['text'] = 'Your turn.'
     else:
-      self.bottomLabel['text'] = 'That spot\'s already selected. Try again'
+      self.bottomLabel['text'] = 'Spot already selected. Try again'
 
   # Set up function to reset game
-  def resetGame2(self):
+  def resetGame(self):
     self.btnA1['text'] = ''
     self.btnA2['text'] = ''
     self.btnA3['text'] = ''
