@@ -18,6 +18,20 @@ class TicTacToe:
     self.availableCells = ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3']
     self.cpuChosenCells = []
 
+    # Set up function to check if user won
+    def userHasWon(self):
+      if (self.btnA1['text'] == 'X' and self.btnA2['text'] == 'X' and self.btnA3['text'] == 'X') \
+        or (self.btnB1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnB3['text'] == 'X') \
+        or (self.btnC1['text'] == 'X' and self.btnC2['text'] == 'X' and self.btnC3['text'] == 'X') \
+        or (self.btnA1['text'] == 'X' and self.btnB1['text'] == 'X' and self.btnC1['text'] == 'X') \
+        or (self.btnA2['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnC2['text'] == 'X') \
+        or (self.btnA3['text'] == 'X' and self.btnB3['text'] == 'X' and self.btnC3['text'] == 'X') \
+        or (self.btnA1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnC3['text'] == 'X') \
+        or (self.btnC1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnA3['text'] == 'X'):
+        return True
+      else:
+        return False
+
     # Set up first row
     self.btnA1 = tk.Button(master, text = '', height = 1, width = 2, command = self.callA1)
     self.btnA1.grid(row = 1, column = 1)
@@ -65,14 +79,7 @@ class TicTacToe:
       self.btnA1['text'] = 'X'
       self.availableCells.remove('A1')
       # Check to see if you won
-      if (self.btnA1['text'] == 'X' and self.btnA2['text'] == 'X' and self.btnA3['text'] == 'X') \
-        or (self.btnB1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnB3['text'] == 'X') \
-        or (self.btnC1['text'] == 'X' and self.btnC2['text'] == 'X' and self.btnC3['text'] == 'X') \
-        or (self.btnA1['text'] == 'X' and self.btnB1['text'] == 'X' and self.btnC1['text'] == 'X') \
-        or (self.btnA2['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnC2['text'] == 'X') \
-        or (self.btnA3['text'] == 'X' and self.btnB3['text'] == 'X' and self.btnC3['text'] == 'X') \
-        or (self.btnA1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnC3['text'] == 'X') \
-        or (self.btnC1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnA3['text'] == 'X'):
+      if self.userHasWon():
         self.bottomLabel['text'] = 'You win!'
       # If you didn't win, change to computer's turn
       else:
