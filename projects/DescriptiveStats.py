@@ -37,10 +37,12 @@ def descriptiveStats(numbersList):
   medianList.sort()
   # Determine if list is even or odd length
   if (len(numbersList) % 2) == 0:
-    # If it's even, grab the middle two numbers and average them
+    # If it's even, grab the middle two numbers
     medianLower = medianList[int(len(medianList) / 2)]
     medianUpper = medianList[int((len(medianList) / 2) + 1)]
-    listMedian = (medianLower + medianUpper) / 2
+    listMedian = []
+    listMedian.append(medianLower)
+    listMedian.append(medianUpper)
   else:
     # If it's odd, grab the middle number
     listMedian = medianList[math.ceil(len(medianList) / 2)]
