@@ -1,11 +1,14 @@
 # A Tic Tac Toe program. Uses tkinter for GUI. This is my first program ever to use a GUI
 # By Ted Silbernagel
 
+# TODO: Make CPU smarter
+
 # Import dependencies
 import tkinter as tk
 import tkinter.font as font
 from time import sleep
 from random import choice
+from functools import partial
 
 # Set up class for GUI
 class TicTacToe:
@@ -13,194 +16,73 @@ class TicTacToe:
     # Set up core
     self.master = master
     master.title("Tic Tac Toe")
-    self.buttonsEnabled = True
 
-    # Set up list for cpu to select from
+    # Set up base variables
+    self.buttonsEnabled = True
     self.availableCells = ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3']
     self.cpuChosenCells = []
+    self.buttonFont = ('Helvetica', 90)
 
-    # Set up first row
-    self.btnA1 = tk.Button(master, text = '', height = 1, width = 2, command = self.callA1)
+    # Define buttons
+    self.btnA1 = tk.Button(master, text = '', height = 1, width = 2)
+    self.btnA2 = tk.Button(master, text = '', height = 1, width = 2)
+    self.btnA3 = tk.Button(master, text = '', height = 1, width = 2)
+    self.btnB1 = tk.Button(master, text = '', height = 1, width = 2)
+    self.btnB2 = tk.Button(master, text = '', height = 1, width = 2)
+    self.btnB3 = tk.Button(master, text = '', height = 1, width = 2)
+    self.btnC1 = tk.Button(master, text = '', height = 1, width = 2)
+    self.btnC2 = tk.Button(master, text = '', height = 1, width = 2)
+    self.btnC3 = tk.Button(master, text = '', height = 1, width = 2)
+    
+    # Set grid locations
     self.btnA1.grid(row = 1, column = 1)
-    self.btnA1['font'] = ('Helvetica', 90)
-    self.btnA2 = tk.Button(master, text = '', height = 1, width = 2, command = self.callA2)
     self.btnA2.grid(row = 1, column = 2)
-    self.btnA2['font'] = ('Helvetica', 90)
-    self.btnA3 = tk.Button(master, text = '', height = 1, width = 2, command = self.callA3)
     self.btnA3.grid(row = 1, column = 3)
-    self.btnA3['font'] = ('Helvetica', 90)
-
-    # Set up second row
-    self.btnB1 = tk.Button(master, text = '', height = 1, width = 2, command = self.callB1)
     self.btnB1.grid(row = 2, column = 1)
-    self.btnB1['font'] = ('Helvetica', 90)
-    self.btnB2 = tk.Button(master, text = '', height = 1, width = 2, command = self.callB2)
     self.btnB2.grid(row = 2, column = 2)
-    self.btnB2['font'] = ('Helvetica', 90)
-    self.btnB3 = tk.Button(master, text = '', height = 1, width = 2, command = self.callB3)
     self.btnB3.grid(row = 2, column = 3)
-    self.btnB3['font'] = ('Helvetica', 90)
-
-    # Set up third row
-    self.btnC1 = tk.Button(master, text = '', height = 1, width = 2, command = self.callC1)
     self.btnC1.grid(row = 3, column = 1)
-    self.btnC1['font'] = ('Helvetica', 90)
-    self.btnC2 = tk.Button(master, text = '', height = 1, width = 2, command = self.callC2)
     self.btnC2.grid(row = 3, column = 2)
-    self.btnC2['font'] = ('Helvetica', 90)
-    self.btnC3 = tk.Button(master, text = '', height = 1, width = 2, command = self.callC3)
     self.btnC3.grid(row = 3, column = 3)
-    self.btnC3['font'] = ('Helvetica', 90)
+
+    # Define button commands
+    self.btnA1['command'] = partial(self.buttonPress, self.btnA1, 'A1')
+    self.btnA2['command'] = partial(self.buttonPress, self.btnA2, 'A2')
+    self.btnA3['command'] = partial(self.buttonPress, self.btnA3, 'A3')
+    self.btnB1['command'] = partial(self.buttonPress, self.btnB1, 'B1')
+    self.btnB2['command'] = partial(self.buttonPress, self.btnB2, 'B2')
+    self.btnB3['command'] = partial(self.buttonPress, self.btnB3, 'B3')
+    self.btnC1['command'] = partial(self.buttonPress, self.btnC1, 'C1')
+    self.btnC2['command'] = partial(self.buttonPress, self.btnC2, 'C2')
+    self.btnC3['command'] = partial(self.buttonPress, self.btnC3, 'C3')
+
+    # Set button fonts
+    self.btnA1['font'] = self.buttonFont
+    self.btnA2['font'] = self.buttonFont
+    self.btnA3['font'] = self.buttonFont
+    self.btnB1['font'] = self.buttonFont
+    self.btnB2['font'] = self.buttonFont
+    self.btnB3['font'] = self.buttonFont
+    self.btnC1['font'] = self.buttonFont
+    self.btnC2['font'] = self.buttonFont
+    self.btnC3['font'] = self.buttonFont
 
     # Set up bottom label
     self.bottomLabel = tk.Label(master, text = 'New game. Your turn.')
     self.bottomLabel.grid(row = 4, column = 1, columnspan = 2, rowspan = 2, sticky = tk.W + tk.E)
+    self.bottomLabel['font'] = ('Helvetica', 15)
     self.bottomButton = tk.Button(master, text = 'Reset Game', command = self.resetGame)
     self.bottomButton.grid(row = 4, column = 3)
 
-  # Set up button handlers
-  def callA1(self):
+  # Set up function to handle button presses
+  def buttonPress(self, button, gridLoc):
     # Ensure buttons are enabled
     if self.buttonsEnabled == True:
       # Ensure cell isn't yet selected
-      if self.btnA1['text'] == '':
-        # Set the cell as checked
-        self.btnA1['text'] = 'X'
-        self.availableCells.remove('A1')
-        # Check to see if you won
-        if self.hasWon('X'):
-          self.bottomLabel['text'] = 'You win!'
-          self.buttonsEnabled = False
-        # If you didn't win, take computer's turn
-        else:
-          self.takeCpuTurn()
-
-      # If cell's selected, display error
-      else:
-        self.bottomLabel['text'] = 'Spot already selected. Try again'
-  def callA2(self):
-    # Ensure buttons are enabled
-    if self.buttonsEnabled == True:
-      # Ensure cell isn't yet selected
-      if self.btnA2['text'] == '':
-        # Set the cell as checked
-        self.btnA2['text'] = 'X'
-        self.availableCells.remove('A2')
-        # Check to see if you won
-        if self.hasWon('X'):
-          self.bottomLabel['text'] = 'You win!'
-          self.buttonsEnabled = False
-        # If you didn't win, take computer's turn
-        else:
-          self.takeCpuTurn()
-
-      # If cell's selected, display error
-      else:
-        self.bottomLabel['text'] = 'Spot already selected. Try again'
-  def callA3(self):
-    # Ensure buttons are enabled
-    if self.buttonsEnabled == True:
-      # Ensure cell isn't yet selected
-      if self.btnA3['text'] == '':
-        # Set the cell as checked
-        self.btnA3['text'] = 'X'
-        self.availableCells.remove('A3')
-        # Check to see if you won
-        if self.hasWon('X'):
-          self.bottomLabel['text'] = 'You win!'
-          self.buttonsEnabled = False
-        # If you didn't win, take computer's turn
-        else:
-          self.takeCpuTurn()
-
-      # If cell's selected, display error
-      else:
-        self.bottomLabel['text'] = 'Spot already selected. Try again'
-  def callB1(self):
-    # Ensure buttons are enabled
-    if self.buttonsEnabled == True:
-      # Ensure cell isn't yet selected
-      if self.btnB1['text'] == '':
-        # Set the cell as checked
-        self.btnB1['text'] = 'X'
-        self.availableCells.remove('B1')
-        # Check to see if you won
-        if self.hasWon('X'):
-          self.bottomLabel['text'] = 'You win!'
-          self.buttonsEnabled = False
-        # If you didn't win, take computer's turn
-        else:
-          self.takeCpuTurn()
-
-      # If cell's selected, display error
-      else:
-        self.bottomLabel['text'] = 'Spot already selected. Try again'
-  def callB2(self):
-    # Ensure buttons are enabled
-    if self.buttonsEnabled == True:
-      # Ensure cell isn't yet selected
-      if self.btnB2['text'] == '':
-        # Set the cell as checked
-        self.btnB2['text'] = 'X'
-        self.availableCells.remove('B2')
-        # Check to see if you won
-        if self.hasWon('X'):
-          self.bottomLabel['text'] = 'You win!'
-          self.buttonsEnabled = False
-        # If you didn't win, take computer's turn
-        else:
-          self.takeCpuTurn()
-
-      # If cell's selected, display error
-      else:
-        self.bottomLabel['text'] = 'Spot already selected. Try again'
-  def callB3(self):
-    # Ensure buttons are enabled
-    if self.buttonsEnabled == True:
-      # Ensure cell isn't yet selected
-      if self.btnB3['text'] == '':
-        # Set the cell as checked
-        self.btnB3['text'] = 'X'
-        self.availableCells.remove('B3')
-        # Check to see if you won
-        if self.hasWon('X'):
-          self.bottomLabel['text'] = 'You win!'
-          self.buttonsEnabled = False
-        # If you didn't win, take computer's turn
-        else:
-          self.takeCpuTurn()
-
-      # If cell's selected, display error
-      else:
-        self.bottomLabel['text'] = 'Spot already selected. Try again'
-  def callC1(self):
-    # Ensure buttons are enabled
-    if self.buttonsEnabled == True:
-      # Ensure cell isn't yet selected
-      if self.btnC1['text'] == '':
-        # Set the cell as checked
-        self.btnC1['text'] = 'X'
-        self.availableCells.remove('C1')
-        # Check to see if you won
-        if self.hasWon('X'):
-          self.bottomLabel['text'] = 'You win!'
-          self.buttonsEnabled = False
-        # If you didn't win, take computer's turn
-        else:
-          self.takeCpuTurn()
-
-      # If cell's selected, display error
-      else:
-        self.bottomLabel['text'] = 'Spot already selected. Try again'
-
-  def callC2(self):
-    # Ensure buttons are enabled
-    if self.buttonsEnabled == True:
-      # Ensure cell isn't yet selected
-      if self.btnC2['text'] == '':
+      if button['text'] == '':
         # Set the cell as checked, remove from available
-        self.btnC2['text'] = 'X'
-        self.availableCells.remove('C2')
+        button['text'] = 'X'
+        self.availableCells.remove(gridLoc)
         # Check to see if you won
         if self.hasWon('X'):
           self.bottomLabel['text'] = 'You win!'
@@ -211,27 +93,7 @@ class TicTacToe:
 
       # If cell's selected, display error
       else:
-        self.bottomLabel['text'] = 'Spot already selected. Try again'
-
-  def callC3(self):
-    # Ensure buttons are enabled
-    if self.buttonsEnabled == True:
-      # Ensure cell isn't yet selected
-      if self.btnC3['text'] == '':
-        # Set the cell as checked, remove from available
-        self.btnC3['text'] = 'X'
-        self.availableCells.remove('C3')
-        # Check to see if you won
-        if self.hasWon('X'):
-          self.bottomLabel['text'] = 'You win!'
-          self.buttonsEnabled = False
-        # If you didn't win, take computer's turn
-        else:
-          self.takeCpuTurn()
-
-      # If cell's selected, display error
-      else:
-        self.bottomLabel['text'] = 'Spot already selected. Try again'
+        self.bottomLabel['text'] = 'Spot already selected. Try again.'
 
   # Set up function to take CPU turn
   def takeCpuTurn(self):
