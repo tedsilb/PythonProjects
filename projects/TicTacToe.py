@@ -80,7 +80,7 @@ class TicTacToe:
         # Ensure winning moves
         # A block
         if (('A2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
-          or ('B1' in self.cpuChosenCells and 'C1' in self.cpuChosenCells)
+          or ('B1' in self.cpuChosenCells and 'C1' in self.cpuChosenCells) \
           or ('B2' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
           and 'A1' in self.availableCells:
           cpuChoice = 'A1'
@@ -89,7 +89,7 @@ class TicTacToe:
           and 'A2' in self.availableCells:
           cpuChoice = 'A2'
         elif (('A1' in self.cpuChosenCells and 'A2' in self.cpuChosenCells) \
-          or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)
+          or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
           or ('C1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
           and 'A3' in self.availableCells:
           cpuChoice = 'A3'
@@ -99,7 +99,7 @@ class TicTacToe:
           and 'B1' in self.availableCells:
           cpuChoice = 'B1'
         elif (('B1' in self.cpuChosenCells and 'B3' in self.cpuChosenCells) \
-          or ('A2' in self.cpuChosenCells and 'C2' in self.cpuChosenCells)
+          or ('A2' in self.cpuChosenCells and 'C2' in self.cpuChosenCells) \
           or ('A1' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
           and 'B2' in self.availableCells:
           cpuChoice = 'B2'
@@ -108,8 +108,8 @@ class TicTacToe:
           and 'B3' in self.availableCells:
           cpuChoice = 'B3'
         # C block
-        if (('C2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
-          or ('A1' in self.cpuChosenCells and 'B1' in self.cpuChosenCells)
+        elif (('C2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'B1' in self.cpuChosenCells) \
           or ('B2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells)) \
           and 'C1' in self.availableCells:
           cpuChoice = 'C1'
@@ -118,12 +118,13 @@ class TicTacToe:
           and 'C2' in self.availableCells:
           cpuChoice = 'C2'
         elif (('A1' in self.cpuChosenCells and 'A2' in self.cpuChosenCells) \
-          or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)
+          or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
           or ('C1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
           and 'C3' in self.availableCells:
           cpuChoice = 'C3'
         else:
           cpuChoice = choice(self.availableCells)
+        # Check if computer won
         if cpuChoice == 'A1':
           self.btnA1['text'] = 'O'
           self.cpuChosenCells.append('A1')
