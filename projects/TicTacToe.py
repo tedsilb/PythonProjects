@@ -59,12 +59,12 @@ class TicTacToe:
 
   # Set up button handlers
   def callA1(self):
+    # Ensure cell isn't yet selected
     if self.btnA1['text'] == '':
+      # Set the cell as checked
       self.btnA1['text'] = 'X'
-      try:
-        self.availableCells.remove('A1')
-      except ValueError:
-        pass
+      self.availableCells.remove('A1')
+      # Check to see if you won
       if (self.btnA1['text'] == 'X' and self.btnA2['text'] == 'X' and self.btnA3['text'] == 'X') \
         or (self.btnB1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnB3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnC2['text'] == 'X' and self.btnC3['text'] == 'X') \
@@ -74,6 +74,7 @@ class TicTacToe:
         or (self.btnA1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnC3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnA3['text'] == 'X'):
         self.bottomLabel['text'] = 'You win!'
+      # If you didn't win, change to computer's turn
       else:
         self.bottomLabel['text'] = 'Computer\'s turn...'
         sleep(0.5)
@@ -236,15 +237,16 @@ class TicTacToe:
         self.availableCells.remove(cpuChoice)
         if self.bottomLabel['text'] != 'Computer wins :(':
           self.bottomLabel['text'] = 'Your turn.'
+    # If cell's selected, display error
     else:
       self.bottomLabel['text'] = 'Spot already selected. Try again'
   def callA2(self):
+    # Ensure cell isn't yet selected
     if self.btnA2['text'] == '':
+      # Set the cell as checked
       self.btnA2['text'] = 'X'
-      try:
-        self.availableCells.remove('A2')
-      except ValueError:
-        pass
+      self.availableCells.remove('A2')
+      # Check to see if you won
       if (self.btnA1['text'] == 'X' and self.btnA2['text'] == 'X' and self.btnA3['text'] == 'X') \
         or (self.btnB1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnB3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnC2['text'] == 'X' and self.btnC3['text'] == 'X') \
@@ -254,6 +256,7 @@ class TicTacToe:
         or (self.btnA1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnC3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnA3['text'] == 'X'):
         self.bottomLabel['text'] = 'You win!'
+      # If you didn't win, change to computer's turn
       else:
         self.bottomLabel['text'] = 'Computer\'s turn...'
         sleep(0.5)
@@ -416,15 +419,16 @@ class TicTacToe:
         self.availableCells.remove(cpuChoice)
         if self.bottomLabel['text'] != 'Computer wins :(':
           self.bottomLabel['text'] = 'Your turn.'
+    # If cell's selected, display error
     else:
       self.bottomLabel['text'] = 'Spot already selected. Try again'
   def callA3(self):
+    # Ensure cell isn't yet selected
     if self.btnA3['text'] == '':
+      # Set the cell as checked
       self.btnA3['text'] = 'X'
-      try:
-        self.availableCells.remove('A3')
-      except ValueError:
-        pass
+      self.availableCells.remove('A3')
+      # Check to see if you won
       if (self.btnA1['text'] == 'X' and self.btnA2['text'] == 'X' and self.btnA3['text'] == 'X') \
         or (self.btnB1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnB3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnC2['text'] == 'X' and self.btnC3['text'] == 'X') \
@@ -434,6 +438,7 @@ class TicTacToe:
         or (self.btnA1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnC3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnA3['text'] == 'X'):
         self.bottomLabel['text'] = 'You win!'
+      # If you didn't win, change to computer's turn
       else:
         self.bottomLabel['text'] = 'Computer\'s turn...'
         sleep(0.5)
@@ -596,15 +601,16 @@ class TicTacToe:
         self.availableCells.remove(cpuChoice)
         if self.bottomLabel['text'] != 'Computer wins :(':
           self.bottomLabel['text'] = 'Your turn.'
+    # If cell's selected, display error
     else:
       self.bottomLabel['text'] = 'Spot already selected. Try again'
   def callB1(self):
+    # Ensure cell isn't yet selected
     if self.btnB1['text'] == '':
+      # Set the cell as checked
       self.btnB1['text'] = 'X'
-      try:
-        self.availableCells.remove('B1')
-      except ValueError:
-        pass
+      self.availableCells.remove('B1')
+      # Check to see if you won
       if (self.btnA1['text'] == 'X' and self.btnA2['text'] == 'X' and self.btnA3['text'] == 'X') \
         or (self.btnB1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnB3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnC2['text'] == 'X' and self.btnC3['text'] == 'X') \
@@ -614,6 +620,7 @@ class TicTacToe:
         or (self.btnA1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnC3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnA3['text'] == 'X'):
         self.bottomLabel['text'] = 'You win!'
+      # If you didn't win, change to computer's turn
       else:
         self.bottomLabel['text'] = 'Computer\'s turn...'
         sleep(0.5)
@@ -776,15 +783,16 @@ class TicTacToe:
         self.availableCells.remove(cpuChoice)
         if self.bottomLabel['text'] != 'Computer wins :(':
           self.bottomLabel['text'] = 'Your turn.'
+    # If cell's selected, display error
     else:
       self.bottomLabel['text'] = 'Spot already selected. Try again'
   def callB2(self):
+    # Ensure cell isn't yet selected
     if self.btnB2['text'] == '':
+      # Set the cell as checked
       self.btnB2['text'] = 'X'
-      try:
-        self.availableCells.remove('B2')
-      except ValueError:
-        pass
+      self.availableCells.remove('B2')
+      # Check to see if you won
       if (self.btnA1['text'] == 'X' and self.btnA2['text'] == 'X' and self.btnA3['text'] == 'X') \
         or (self.btnB1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnB3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnC2['text'] == 'X' and self.btnC3['text'] == 'X') \
@@ -794,6 +802,7 @@ class TicTacToe:
         or (self.btnA1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnC3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnA3['text'] == 'X'):
         self.bottomLabel['text'] = 'You win!'
+      # If you didn't win, change to computer's turn
       else:
         self.bottomLabel['text'] = 'Computer\'s turn...'
         sleep(0.5)
@@ -956,15 +965,16 @@ class TicTacToe:
         self.availableCells.remove(cpuChoice)
         if self.bottomLabel['text'] != 'Computer wins :(':
           self.bottomLabel['text'] = 'Your turn.'
+    # If cell's selected, display error
     else:
       self.bottomLabel['text'] = 'Spot already selected. Try again'
   def callB3(self):
+    # Ensure cell isn't yet selected
     if self.btnB3['text'] == '':
+      # Set the cell as checked
       self.btnB3['text'] = 'X'
-      try:
-        self.availableCells.remove('B3')
-      except ValueError:
-        pass
+      self.availableCells.remove('B3')
+      # Check to see if you won
       if (self.btnA1['text'] == 'X' and self.btnA2['text'] == 'X' and self.btnA3['text'] == 'X') \
         or (self.btnB1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnB3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnC2['text'] == 'X' and self.btnC3['text'] == 'X') \
@@ -974,6 +984,7 @@ class TicTacToe:
         or (self.btnA1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnC3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnA3['text'] == 'X'):
         self.bottomLabel['text'] = 'You win!'
+      # If you didn't win, change to computer's turn
       else:
         self.bottomLabel['text'] = 'Computer\'s turn...'
         sleep(0.5)
@@ -1136,15 +1147,16 @@ class TicTacToe:
         self.availableCells.remove(cpuChoice)
         if self.bottomLabel['text'] != 'Computer wins :(':
           self.bottomLabel['text'] = 'Your turn.'
+    # If cell's selected, display error
     else:
       self.bottomLabel['text'] = 'Spot already selected. Try again'
   def callC1(self):
+    # Ensure cell isn't yet selected
     if self.btnC1['text'] == '':
+      # Set the cell as checked
       self.btnC1['text'] = 'X'
-      try:
-        self.availableCells.remove('C1')
-      except ValueError:
-        pass
+      self.availableCells.remove('C1')
+      # Check to see if you won
       if (self.btnA1['text'] == 'X' and self.btnA2['text'] == 'X' and self.btnA3['text'] == 'X') \
         or (self.btnB1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnB3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnC2['text'] == 'X' and self.btnC3['text'] == 'X') \
@@ -1154,6 +1166,7 @@ class TicTacToe:
         or (self.btnA1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnC3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnA3['text'] == 'X'):
         self.bottomLabel['text'] = 'You win!'
+      # If you didn't win, change to computer's turn
       else:
         self.bottomLabel['text'] = 'Computer\'s turn...'
         sleep(0.5)
@@ -1316,15 +1329,16 @@ class TicTacToe:
         self.availableCells.remove(cpuChoice)
         if self.bottomLabel['text'] != 'Computer wins :(':
           self.bottomLabel['text'] = 'Your turn.'
+    # If cell's selected, display error
     else:
       self.bottomLabel['text'] = 'Spot already selected. Try again'
   def callC2(self):
+    # Ensure cell isn't yet selected
     if self.btnC2['text'] == '':
+      # Set the cell as checked
       self.btnC2['text'] = 'X'
-      try:
-        self.availableCells.remove('C2')
-      except ValueError:
-        pass
+      self.availableCells.remove('C2')
+      # Check to see if you won
       if (self.btnA1['text'] == 'X' and self.btnA2['text'] == 'X' and self.btnA3['text'] == 'X') \
         or (self.btnB1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnB3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnC2['text'] == 'X' and self.btnC3['text'] == 'X') \
@@ -1334,6 +1348,7 @@ class TicTacToe:
         or (self.btnA1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnC3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnA3['text'] == 'X'):
         self.bottomLabel['text'] = 'You win!'
+      # If you didn't win, change to computer's turn
       else:
         self.bottomLabel['text'] = 'Computer\'s turn...'
         sleep(0.5)
@@ -1496,15 +1511,16 @@ class TicTacToe:
         self.availableCells.remove(cpuChoice)
         if self.bottomLabel['text'] != 'Computer wins :(':
           self.bottomLabel['text'] = 'Your turn.'
+    # If cell's selected, display error
     else:
       self.bottomLabel['text'] = 'Spot already selected. Try again'
   def callC3(self):
+    # Ensure cell isn't yet selected
     if self.btnC3['text'] == '':
+      # Set the cell as checked
       self.btnC3['text'] = 'X'
-      try:
-        self.availableCells.remove('C3')
-      except ValueError:
-        pass
+      self.availableCells.remove('C3')
+      # Check to see if you won
       if (self.btnA1['text'] == 'X' and self.btnA2['text'] == 'X' and self.btnA3['text'] == 'X') \
         or (self.btnB1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnB3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnC2['text'] == 'X' and self.btnC3['text'] == 'X') \
@@ -1514,6 +1530,7 @@ class TicTacToe:
         or (self.btnA1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnC3['text'] == 'X') \
         or (self.btnC1['text'] == 'X' and self.btnB2['text'] == 'X' and self.btnA3['text'] == 'X'):
         self.bottomLabel['text'] = 'You win!'
+      # If you didn't win, change to computer's turn
       else:
         self.bottomLabel['text'] = 'Computer\'s turn...'
         sleep(0.5)
@@ -1676,6 +1693,7 @@ class TicTacToe:
         self.availableCells.remove(cpuChoice)
         if self.bottomLabel['text'] != 'Computer wins :(':
           self.bottomLabel['text'] = 'Your turn.'
+    # If cell's selected, display error
     else:
       self.bottomLabel['text'] = 'Spot already selected. Try again'
 
