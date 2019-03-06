@@ -233,6 +233,7 @@ class TicTacToe:
             or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
             or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
             self.bottomLabel['text'] = 'Computer wins :('
+        self.availableCells.remove(cpuChoice)
         if self.bottomLabel['text'] != 'Computer wins :(':
           self.bottomLabel['text'] = 'Your turn.'
     else:
@@ -412,6 +413,7 @@ class TicTacToe:
             or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
             or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
             self.bottomLabel['text'] = 'Computer wins :('
+        self.availableCells.remove(cpuChoice)
         if self.bottomLabel['text'] != 'Computer wins :(':
           self.bottomLabel['text'] = 'Your turn.'
     else:
@@ -591,6 +593,7 @@ class TicTacToe:
             or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
             or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
             self.bottomLabel['text'] = 'Computer wins :('
+        self.availableCells.remove(cpuChoice)
         if self.bottomLabel['text'] != 'Computer wins :(':
           self.bottomLabel['text'] = 'Your turn.'
     else:
@@ -770,6 +773,7 @@ class TicTacToe:
             or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
             or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
             self.bottomLabel['text'] = 'Computer wins :('
+        self.availableCells.remove(cpuChoice)
         if self.bottomLabel['text'] != 'Computer wins :(':
           self.bottomLabel['text'] = 'Your turn.'
     else:
@@ -949,6 +953,7 @@ class TicTacToe:
             or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
             or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
             self.bottomLabel['text'] = 'Computer wins :('
+        self.availableCells.remove(cpuChoice)
         if self.bottomLabel['text'] != 'Computer wins :(':
           self.bottomLabel['text'] = 'Your turn.'
     else:
@@ -1128,6 +1133,7 @@ class TicTacToe:
             or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
             or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
             self.bottomLabel['text'] = 'Computer wins :('
+        self.availableCells.remove(cpuChoice)
         if self.bottomLabel['text'] != 'Computer wins :(':
           self.bottomLabel['text'] = 'Your turn.'
     else:
@@ -1307,6 +1313,7 @@ class TicTacToe:
             or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
             or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
             self.bottomLabel['text'] = 'Computer wins :('
+        self.availableCells.remove(cpuChoice)
         if self.bottomLabel['text'] != 'Computer wins :(':
           self.bottomLabel['text'] = 'Your turn.'
     else:
@@ -1486,6 +1493,7 @@ class TicTacToe:
             or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
             or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
             self.bottomLabel['text'] = 'Computer wins :('
+        self.availableCells.remove(cpuChoice)
         if self.bottomLabel['text'] != 'Computer wins :(':
           self.bottomLabel['text'] = 'Your turn.'
     else:
@@ -1665,6 +1673,7 @@ class TicTacToe:
             or (self.btnA1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnC3['text'] == 'O') \
             or (self.btnC1['text'] == 'O' and self.btnB2['text'] == 'O' and self.btnA3['text'] == 'O'):
             self.bottomLabel['text'] = 'Computer wins :('
+        self.availableCells.remove(cpuChoice)
         if self.bottomLabel['text'] != 'Computer wins :(':
           self.bottomLabel['text'] = 'Your turn.'
     else:
