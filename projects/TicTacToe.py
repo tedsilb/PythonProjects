@@ -5,8 +5,6 @@
 
 # Import dependencies
 import tkinter as tk
-import tkinter.font as font
-from time import sleep
 from random import choice
 from functools import partial
 
@@ -15,7 +13,7 @@ class TicTacToe:
   def __init__(self, master):
     # Set up core
     self.master = master
-    master.title("Tic Tac Toe")
+    master.title('Tic Tac Toe')
 
     # Set up base variables
     self.buttonsEnabled = True
@@ -70,7 +68,7 @@ class TicTacToe:
     # Set up bottom label
     self.bottomLabel = tk.Label(master, text = 'New game. Your turn.')
     self.bottomLabel.grid(row = 4, column = 1, columnspan = 2, rowspan = 2, sticky = tk.W + tk.E)
-    self.bottomLabel['font'] = ('Helvetica', 15)
+    self.bottomLabel['font'] = ('Helvetica', 12, 'bold')
     self.bottomButton = tk.Button(master, text = 'Reset Game', command = self.resetGame)
     self.bottomButton.grid(row = 4, column = 3)
 
