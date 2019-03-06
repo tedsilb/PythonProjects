@@ -256,7 +256,54 @@ class TicTacToe:
       else:
         self.bottomLabel['text'] = 'Computer\'s turn...'
         sleep(0.5)
-        cpuChoice = choice(self.availableCells)
+        # Ensure winning moves
+        # A block
+        if (('A2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('B1' in self.cpuChosenCells and 'C1' in self.cpuChosenCells) \
+          or ('B2' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          and 'A1' in self.availableCells:
+          cpuChoice = 'A1'
+        elif (('A1' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('B2' in self.cpuChosenCells and 'C2' in self.cpuChosenCells)) \
+          and 'A2' in self.availableCells:
+          cpuChoice = 'A2'
+        elif (('A1' in self.cpuChosenCells and 'A2' in self.cpuChosenCells) \
+          or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
+          or ('C1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          and 'A3' in self.availableCells:
+          cpuChoice = 'A3'
+        # B block
+        elif (('B2' in self.cpuChosenCells and 'B3' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'C1' in self.cpuChosenCells)) \
+          and 'B1' in self.availableCells:
+          cpuChoice = 'B1'
+        elif (('B1' in self.cpuChosenCells and 'B3' in self.cpuChosenCells) \
+          or ('A2' in self.cpuChosenCells and 'C2' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          and 'B2' in self.availableCells:
+          cpuChoice = 'B2'
+        elif (('B1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells) \
+          or ('A3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          and 'B3' in self.availableCells:
+          cpuChoice = 'B3'
+        # C block
+        elif (('C2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'B1' in self.cpuChosenCells) \
+          or ('B2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells)) \
+          and 'C1' in self.availableCells:
+          cpuChoice = 'C1'
+        elif (('C1' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
+          or ('A2' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          and 'C2' in self.availableCells:
+          cpuChoice = 'C2'
+        elif (('A1' in self.cpuChosenCells and 'A2' in self.cpuChosenCells) \
+          or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
+          or ('C1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          and 'C3' in self.availableCells:
+          cpuChoice = 'C3'
+        else:
+          cpuChoice = choice(self.availableCells)
+        # Check if computer won
         if cpuChoice == 'A1':
           self.btnA1['text'] = 'O'
           self.cpuChosenCells.append('A1')
@@ -388,7 +435,54 @@ class TicTacToe:
       else:
         self.bottomLabel['text'] = 'Computer\'s turn...'
         sleep(0.5)
-        cpuChoice = choice(self.availableCells)
+        # Ensure winning moves
+        # A block
+        if (('A2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('B1' in self.cpuChosenCells and 'C1' in self.cpuChosenCells) \
+          or ('B2' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          and 'A1' in self.availableCells:
+          cpuChoice = 'A1'
+        elif (('A1' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('B2' in self.cpuChosenCells and 'C2' in self.cpuChosenCells)) \
+          and 'A2' in self.availableCells:
+          cpuChoice = 'A2'
+        elif (('A1' in self.cpuChosenCells and 'A2' in self.cpuChosenCells) \
+          or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
+          or ('C1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          and 'A3' in self.availableCells:
+          cpuChoice = 'A3'
+        # B block
+        elif (('B2' in self.cpuChosenCells and 'B3' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'C1' in self.cpuChosenCells)) \
+          and 'B1' in self.availableCells:
+          cpuChoice = 'B1'
+        elif (('B1' in self.cpuChosenCells and 'B3' in self.cpuChosenCells) \
+          or ('A2' in self.cpuChosenCells and 'C2' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          and 'B2' in self.availableCells:
+          cpuChoice = 'B2'
+        elif (('B1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells) \
+          or ('A3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          and 'B3' in self.availableCells:
+          cpuChoice = 'B3'
+        # C block
+        elif (('C2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'B1' in self.cpuChosenCells) \
+          or ('B2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells)) \
+          and 'C1' in self.availableCells:
+          cpuChoice = 'C1'
+        elif (('C1' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
+          or ('A2' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          and 'C2' in self.availableCells:
+          cpuChoice = 'C2'
+        elif (('A1' in self.cpuChosenCells and 'A2' in self.cpuChosenCells) \
+          or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
+          or ('C1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          and 'C3' in self.availableCells:
+          cpuChoice = 'C3'
+        else:
+          cpuChoice = choice(self.availableCells)
+        # Check if computer won
         if cpuChoice == 'A1':
           self.btnA1['text'] = 'O'
           self.cpuChosenCells.append('A1')
@@ -520,7 +614,54 @@ class TicTacToe:
       else:
         self.bottomLabel['text'] = 'Computer\'s turn...'
         sleep(0.5)
-        cpuChoice = choice(self.availableCells)
+        # Ensure winning moves
+        # A block
+        if (('A2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('B1' in self.cpuChosenCells and 'C1' in self.cpuChosenCells) \
+          or ('B2' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          and 'A1' in self.availableCells:
+          cpuChoice = 'A1'
+        elif (('A1' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('B2' in self.cpuChosenCells and 'C2' in self.cpuChosenCells)) \
+          and 'A2' in self.availableCells:
+          cpuChoice = 'A2'
+        elif (('A1' in self.cpuChosenCells and 'A2' in self.cpuChosenCells) \
+          or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
+          or ('C1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          and 'A3' in self.availableCells:
+          cpuChoice = 'A3'
+        # B block
+        elif (('B2' in self.cpuChosenCells and 'B3' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'C1' in self.cpuChosenCells)) \
+          and 'B1' in self.availableCells:
+          cpuChoice = 'B1'
+        elif (('B1' in self.cpuChosenCells and 'B3' in self.cpuChosenCells) \
+          or ('A2' in self.cpuChosenCells and 'C2' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          and 'B2' in self.availableCells:
+          cpuChoice = 'B2'
+        elif (('B1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells) \
+          or ('A3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          and 'B3' in self.availableCells:
+          cpuChoice = 'B3'
+        # C block
+        elif (('C2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'B1' in self.cpuChosenCells) \
+          or ('B2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells)) \
+          and 'C1' in self.availableCells:
+          cpuChoice = 'C1'
+        elif (('C1' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
+          or ('A2' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          and 'C2' in self.availableCells:
+          cpuChoice = 'C2'
+        elif (('A1' in self.cpuChosenCells and 'A2' in self.cpuChosenCells) \
+          or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
+          or ('C1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          and 'C3' in self.availableCells:
+          cpuChoice = 'C3'
+        else:
+          cpuChoice = choice(self.availableCells)
+        # Check if computer won
         if cpuChoice == 'A1':
           self.btnA1['text'] = 'O'
           self.cpuChosenCells.append('A1')
@@ -652,7 +793,54 @@ class TicTacToe:
       else:
         self.bottomLabel['text'] = 'Computer\'s turn...'
         sleep(0.5)
-        cpuChoice = choice(self.availableCells)
+        # Ensure winning moves
+        # A block
+        if (('A2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('B1' in self.cpuChosenCells and 'C1' in self.cpuChosenCells) \
+          or ('B2' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          and 'A1' in self.availableCells:
+          cpuChoice = 'A1'
+        elif (('A1' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('B2' in self.cpuChosenCells and 'C2' in self.cpuChosenCells)) \
+          and 'A2' in self.availableCells:
+          cpuChoice = 'A2'
+        elif (('A1' in self.cpuChosenCells and 'A2' in self.cpuChosenCells) \
+          or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
+          or ('C1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          and 'A3' in self.availableCells:
+          cpuChoice = 'A3'
+        # B block
+        elif (('B2' in self.cpuChosenCells and 'B3' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'C1' in self.cpuChosenCells)) \
+          and 'B1' in self.availableCells:
+          cpuChoice = 'B1'
+        elif (('B1' in self.cpuChosenCells and 'B3' in self.cpuChosenCells) \
+          or ('A2' in self.cpuChosenCells and 'C2' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          and 'B2' in self.availableCells:
+          cpuChoice = 'B2'
+        elif (('B1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells) \
+          or ('A3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          and 'B3' in self.availableCells:
+          cpuChoice = 'B3'
+        # C block
+        elif (('C2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'B1' in self.cpuChosenCells) \
+          or ('B2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells)) \
+          and 'C1' in self.availableCells:
+          cpuChoice = 'C1'
+        elif (('C1' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
+          or ('A2' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          and 'C2' in self.availableCells:
+          cpuChoice = 'C2'
+        elif (('A1' in self.cpuChosenCells and 'A2' in self.cpuChosenCells) \
+          or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
+          or ('C1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          and 'C3' in self.availableCells:
+          cpuChoice = 'C3'
+        else:
+          cpuChoice = choice(self.availableCells)
+        # Check if computer won
         if cpuChoice == 'A1':
           self.btnA1['text'] = 'O'
           self.cpuChosenCells.append('A1')
@@ -784,7 +972,54 @@ class TicTacToe:
       else:
         self.bottomLabel['text'] = 'Computer\'s turn...'
         sleep(0.5)
-        cpuChoice = choice(self.availableCells)
+        # Ensure winning moves
+        # A block
+        if (('A2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('B1' in self.cpuChosenCells and 'C1' in self.cpuChosenCells) \
+          or ('B2' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          and 'A1' in self.availableCells:
+          cpuChoice = 'A1'
+        elif (('A1' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('B2' in self.cpuChosenCells and 'C2' in self.cpuChosenCells)) \
+          and 'A2' in self.availableCells:
+          cpuChoice = 'A2'
+        elif (('A1' in self.cpuChosenCells and 'A2' in self.cpuChosenCells) \
+          or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
+          or ('C1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          and 'A3' in self.availableCells:
+          cpuChoice = 'A3'
+        # B block
+        elif (('B2' in self.cpuChosenCells and 'B3' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'C1' in self.cpuChosenCells)) \
+          and 'B1' in self.availableCells:
+          cpuChoice = 'B1'
+        elif (('B1' in self.cpuChosenCells and 'B3' in self.cpuChosenCells) \
+          or ('A2' in self.cpuChosenCells and 'C2' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          and 'B2' in self.availableCells:
+          cpuChoice = 'B2'
+        elif (('B1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells) \
+          or ('A3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          and 'B3' in self.availableCells:
+          cpuChoice = 'B3'
+        # C block
+        elif (('C2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'B1' in self.cpuChosenCells) \
+          or ('B2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells)) \
+          and 'C1' in self.availableCells:
+          cpuChoice = 'C1'
+        elif (('C1' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
+          or ('A2' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          and 'C2' in self.availableCells:
+          cpuChoice = 'C2'
+        elif (('A1' in self.cpuChosenCells and 'A2' in self.cpuChosenCells) \
+          or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
+          or ('C1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          and 'C3' in self.availableCells:
+          cpuChoice = 'C3'
+        else:
+          cpuChoice = choice(self.availableCells)
+        # Check if computer won
         if cpuChoice == 'A1':
           self.btnA1['text'] = 'O'
           self.cpuChosenCells.append('A1')
@@ -916,7 +1151,54 @@ class TicTacToe:
       else:
         self.bottomLabel['text'] = 'Computer\'s turn...'
         sleep(0.5)
-        cpuChoice = choice(self.availableCells)
+        # Ensure winning moves
+        # A block
+        if (('A2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('B1' in self.cpuChosenCells and 'C1' in self.cpuChosenCells) \
+          or ('B2' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          and 'A1' in self.availableCells:
+          cpuChoice = 'A1'
+        elif (('A1' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('B2' in self.cpuChosenCells and 'C2' in self.cpuChosenCells)) \
+          and 'A2' in self.availableCells:
+          cpuChoice = 'A2'
+        elif (('A1' in self.cpuChosenCells and 'A2' in self.cpuChosenCells) \
+          or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
+          or ('C1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          and 'A3' in self.availableCells:
+          cpuChoice = 'A3'
+        # B block
+        elif (('B2' in self.cpuChosenCells and 'B3' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'C1' in self.cpuChosenCells)) \
+          and 'B1' in self.availableCells:
+          cpuChoice = 'B1'
+        elif (('B1' in self.cpuChosenCells and 'B3' in self.cpuChosenCells) \
+          or ('A2' in self.cpuChosenCells and 'C2' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          and 'B2' in self.availableCells:
+          cpuChoice = 'B2'
+        elif (('B1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells) \
+          or ('A3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          and 'B3' in self.availableCells:
+          cpuChoice = 'B3'
+        # C block
+        elif (('C2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'B1' in self.cpuChosenCells) \
+          or ('B2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells)) \
+          and 'C1' in self.availableCells:
+          cpuChoice = 'C1'
+        elif (('C1' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
+          or ('A2' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          and 'C2' in self.availableCells:
+          cpuChoice = 'C2'
+        elif (('A1' in self.cpuChosenCells and 'A2' in self.cpuChosenCells) \
+          or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
+          or ('C1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          and 'C3' in self.availableCells:
+          cpuChoice = 'C3'
+        else:
+          cpuChoice = choice(self.availableCells)
+        # Check if computer won
         if cpuChoice == 'A1':
           self.btnA1['text'] = 'O'
           self.cpuChosenCells.append('A1')
@@ -1048,7 +1330,54 @@ class TicTacToe:
       else:
         self.bottomLabel['text'] = 'Computer\'s turn...'
         sleep(0.5)
-        cpuChoice = choice(self.availableCells)
+        # Ensure winning moves
+        # A block
+        if (('A2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('B1' in self.cpuChosenCells and 'C1' in self.cpuChosenCells) \
+          or ('B2' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          and 'A1' in self.availableCells:
+          cpuChoice = 'A1'
+        elif (('A1' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('B2' in self.cpuChosenCells and 'C2' in self.cpuChosenCells)) \
+          and 'A2' in self.availableCells:
+          cpuChoice = 'A2'
+        elif (('A1' in self.cpuChosenCells and 'A2' in self.cpuChosenCells) \
+          or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
+          or ('C1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          and 'A3' in self.availableCells:
+          cpuChoice = 'A3'
+        # B block
+        elif (('B2' in self.cpuChosenCells and 'B3' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'C1' in self.cpuChosenCells)) \
+          and 'B1' in self.availableCells:
+          cpuChoice = 'B1'
+        elif (('B1' in self.cpuChosenCells and 'B3' in self.cpuChosenCells) \
+          or ('A2' in self.cpuChosenCells and 'C2' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          and 'B2' in self.availableCells:
+          cpuChoice = 'B2'
+        elif (('B1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells) \
+          or ('A3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          and 'B3' in self.availableCells:
+          cpuChoice = 'B3'
+        # C block
+        elif (('C2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'B1' in self.cpuChosenCells) \
+          or ('B2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells)) \
+          and 'C1' in self.availableCells:
+          cpuChoice = 'C1'
+        elif (('C1' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
+          or ('A2' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          and 'C2' in self.availableCells:
+          cpuChoice = 'C2'
+        elif (('A1' in self.cpuChosenCells and 'A2' in self.cpuChosenCells) \
+          or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
+          or ('C1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          and 'C3' in self.availableCells:
+          cpuChoice = 'C3'
+        else:
+          cpuChoice = choice(self.availableCells)
+        # Check if computer won
         if cpuChoice == 'A1':
           self.btnA1['text'] = 'O'
           self.cpuChosenCells.append('A1')
@@ -1180,7 +1509,54 @@ class TicTacToe:
       else:
         self.bottomLabel['text'] = 'Computer\'s turn...'
         sleep(0.5)
-        cpuChoice = choice(self.availableCells)
+        # Ensure winning moves
+        # A block
+        if (('A2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('B1' in self.cpuChosenCells and 'C1' in self.cpuChosenCells) \
+          or ('B2' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          and 'A1' in self.availableCells:
+          cpuChoice = 'A1'
+        elif (('A1' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('B2' in self.cpuChosenCells and 'C2' in self.cpuChosenCells)) \
+          and 'A2' in self.availableCells:
+          cpuChoice = 'A2'
+        elif (('A1' in self.cpuChosenCells and 'A2' in self.cpuChosenCells) \
+          or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
+          or ('C1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          and 'A3' in self.availableCells:
+          cpuChoice = 'A3'
+        # B block
+        elif (('B2' in self.cpuChosenCells and 'B3' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'C1' in self.cpuChosenCells)) \
+          and 'B1' in self.availableCells:
+          cpuChoice = 'B1'
+        elif (('B1' in self.cpuChosenCells and 'B3' in self.cpuChosenCells) \
+          or ('A2' in self.cpuChosenCells and 'C2' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          and 'B2' in self.availableCells:
+          cpuChoice = 'B2'
+        elif (('B1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells) \
+          or ('A3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          and 'B3' in self.availableCells:
+          cpuChoice = 'B3'
+        # C block
+        elif (('C2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'B1' in self.cpuChosenCells) \
+          or ('B2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells)) \
+          and 'C1' in self.availableCells:
+          cpuChoice = 'C1'
+        elif (('C1' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
+          or ('A2' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          and 'C2' in self.availableCells:
+          cpuChoice = 'C2'
+        elif (('A1' in self.cpuChosenCells and 'A2' in self.cpuChosenCells) \
+          or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
+          or ('C1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          and 'C3' in self.availableCells:
+          cpuChoice = 'C3'
+        else:
+          cpuChoice = choice(self.availableCells)
+        # Check if computer won
         if cpuChoice == 'A1':
           self.btnA1['text'] = 'O'
           self.cpuChosenCells.append('A1')
