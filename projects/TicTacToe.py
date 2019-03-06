@@ -69,12 +69,12 @@ class TicTacToe:
 
     # Set up bottom label
     self.bottomLabel = tk.Label(master)
-    self.bottomLabel.grid(row = 4, column = 1, columnspan = 2, rowspan = 2, sticky = tk.W + tk.E)
+    self.bottomLabel.grid(row = 4, column = 1, columnspan = 2, rowspan = 2, sticky = tk.N + tk.S + tk.W + tk.E)
     self.bottomLabel['font'] = ('Helvetica', 12, 'bold')
 
     # Set up reset game button
     self.bottomButton = tk.Button(master, text = 'Reset Game', command = self.resetGame)
-    self.bottomButton.grid(row = 4, column = 3)
+    self.bottomButton.grid(row = 4, column = 3, columnspan = 2, pady = (15, 15))
 
     # Reset game, initially
     self.resetGame()
