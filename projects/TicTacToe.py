@@ -7,7 +7,7 @@ import tkinter.font as font
 from time import sleep
 from random import choice
 
-# Not sure what I'm doing yet, learning tkinter
+# Set up class for GUI
 class TicTacToe:
   def __init__(self, master):
     # Set up core
