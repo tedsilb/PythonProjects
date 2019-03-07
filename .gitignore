@@ -1,5 +1,6 @@
 .vscode
-dist
+dist/*
+!dist/compile.cmd
 projects/*.dist
 projects/*.build
 *.spec
