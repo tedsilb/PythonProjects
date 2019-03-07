@@ -25,7 +25,7 @@ echo Compilation complete.
 echo.
 echo Moving exe to main dist folder.
 echo.
-robocopy dist/%fileName% ../dist/%fileName%/ %fileName%.exe /MOV
+robocopy dist ../dist/%fileName% %fileName%.exe /MOV
 
 :: Delete temp files
 echo Deleting temporary files...
