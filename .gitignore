@@ -1,6 +1,7 @@
 .vscode
 dist/*
-!dist/compile.cmd
+!dist/compile*
 projects/*.dist
 projects/*.build
 *.spec
+.DS_Store
