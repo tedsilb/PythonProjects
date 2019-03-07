@@ -1,1 +1,5 @@
-/.vscode/*
+.vscode
+dist
+projects/*.dist
+projects/*.build
+*.spec
