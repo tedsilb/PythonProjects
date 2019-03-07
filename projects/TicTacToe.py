@@ -1,7 +1,7 @@
 # A Tic Tac Toe program. Uses tkinter for GUI. This is my first program ever to use a GUI
 # By Ted Silbernagel
 
-# TODO: Make CPU smarter
+# TODO: Make who starts (user/cpu) random. Teach cpu how to start the game smartly
 
 # Import dependencies
 import tkinter as tk
@@ -33,7 +33,7 @@ class TicTacToe:
     self.btnC1 = tk.Button(master, height = 1, width = 2)
     self.btnC2 = tk.Button(master, height = 1, width = 2)
     self.btnC3 = tk.Button(master, height = 1, width = 2)
-    
+
     # Set grid locations
     self.btnA1.grid(row = 1, column = 1)
     self.btnA2.grid(row = 1, column = 2)
@@ -150,7 +150,7 @@ class TicTacToe:
       or ('C1' in self.userChosenCells and 'B2' in self.userChosenCells)) \
       and 'C3' in self.availableCells:
       self.cpuChoice = 'C3'
-    
+
     # Take winning moves for cpu
     # A block
     elif (('A2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
@@ -196,6 +196,13 @@ class TicTacToe:
       or ('C1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
       and 'C3' in self.availableCells:
       self.cpuChoice = 'C3'
+
+    # Take smart starts
+    elif len(self.userChosenCells) == 1 and 'B2' in self.userChosenCells:
+      self.cpuChoice = choice(['A1', 'A3', 'C1', 'C3'])
+    elif len(self.userChosenCells) == 1 and self.userChosenCells[0] in ['A2', 'B1', 'B3', 'C2']:
+      self.cpuChoice = 'B2'
+
     # If no winning moves for user or cpu, choose at random
     else:
       # First make sure it's not a tie
@@ -206,8 +213,8 @@ class TicTacToe:
         self.bottomLabel['text'] = 'Tie.'
         self.buttonsEnabled = False
         return
-    
-    # Set cell as chosen based on logic
+
+    # Set cell as chosen based on previous logic
     if self.cpuChoice == 'A1':
       self.btnA1['text'] = self.cpuIcon
     elif self.cpuChoice == 'A2':
@@ -226,11 +233,11 @@ class TicTacToe:
       self.btnC2['text'] = self.cpuIcon
     elif self.cpuChoice == 'C3':
       self.btnC3['text'] = self.cpuIcon
-    
+
     # Set cell as chosen, remove from available
     self.cpuChosenCells.append(self.cpuChoice)
     self.availableCells.remove(self.cpuChoice)
-    
+
     # Check to see if computer has won
     if self.hasWon(self.cpuIcon):
       self.bottomLabel['text'] = 'Computer wins :('
@@ -269,7 +276,7 @@ class TicTacToe:
     self.cpuChosenCells.clear()
     self.availableCells.clear()
     self.availableCells = ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3']
-  
+
 # Initialise GUI
 root = tk.Tk()
 gui = TicTacToe(root)
