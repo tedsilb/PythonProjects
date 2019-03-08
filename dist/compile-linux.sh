@@ -1,4 +1,6 @@
-# This script uses Pyinstaller to build a script then deletes temp files
+# This script uses Pyinstaller to build a binary then deletes temp files
+# Run this from a terminal, using the name of the file as the argument (no extension)
+# Example: ./compile-linux.sh CoinFlip
 
 # Get file from argument, set up command
 echo Setting up...
