@@ -91,6 +91,9 @@ class TicTacToe:
     # Randomly have cpu start game
     if choice([True, False]) == True:
       self.takeCpuTurn()
+      self.cpuStarted = True
+    else:
+      self.cpuStarted = False
 
   # Set up function to handle button presses
   def buttonPress(self, button, gridLoc):
@@ -118,9 +121,20 @@ class TicTacToe:
   # Set up function to take CPU turn
   def takeCpuTurn(self):
     self.bottomLabel['text'] = self.cpuTurnMsg
+    # Some winning strategies
+    if self.cpuStarted == True and self.cpuChosenCells == ['A1', 'A3']:
+      if self.userChosenCells == ['B1', 'A2'] or self.userChosenCells == ['C1', 'A2']:
+        self.cpuChoice = 'C3'
+      elif self.userChosenCells == ['B3', 'A2']:
+        self.cpuChoice = 'C1'
+      elif self.userChosenCells == ['A2', 'C2']:
+        self.cpuChoice = 'B2'
+    if self.cpuStarted == True and self.userChosenCells == ['B2', 'C3'] \
+      and self.cpuChosenCells == ['A1', 'C1']:
+      self.cpuChoice = 'A3'
     # Block winning moves by user
     # A block
-    if (('A2' in self.userChosenCells and 'A3' in self.userChosenCells) \
+    elif (('A2' in self.userChosenCells and 'A3' in self.userChosenCells) \
       or ('B1' in self.userChosenCells and 'C1' in self.userChosenCells) \
       or ('B2' in self.userChosenCells and 'C3' in self.userChosenCells)) \
       and 'A1' in self.availableCells:
@@ -212,13 +226,16 @@ class TicTacToe:
 
     # Take smart starts
     # User start
-    elif len(self.userChosenCells) == 1 and 'B2' in self.userChosenCells:
-      self.cpuChoice = choice(['A1', 'A3', 'C1', 'C3'])
-    elif len(self.userChosenCells) == 1 and self.userChosenCells[0] in ['A2', 'B1', 'B3', 'C2']:
-      self.cpuChoice = 'B2'
+    elif len(self.userChosenCells) == 1:
+      if self.userChosenCells[0] == 'B2':
+        self.cpuChoice = choice(['A1', 'A3', 'C1', 'C3'])
+      else:
+        self.cpuChoice = 'B2'
     # CPU start
     elif len(self.userChosenCells) == 0:
-      self.cpuChoice = npchoice(['A1', 'A3', 'C1', 'C3', 'B2'], 1, [.225,.225,.225,.225,.1])[0]
+      self.cpuChoice = npchoice(['A1', 'A3', 'C1', 'C3', 'B2', 'A2', 'B3', 'C2', 'B1'],
+                                  1,
+                                  [.2, .2, .2, .2, .1, .025, .025, .025, .025])[0]
 
     # If no winning moves for user or cpu, choose at random
     else:
