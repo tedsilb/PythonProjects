@@ -90,8 +90,8 @@ class TicTacToe:
 
     # Randomly have cpu start game
     if choice([True, False]) == True:
-      self.takeCpuTurn()
       self.cpuStarted = True
+      self.takeCpuTurn()
     else:
       self.cpuStarted = False
 
