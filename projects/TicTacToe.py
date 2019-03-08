@@ -1,12 +1,13 @@
 # A Tic Tac Toe program. Uses tkinter for GUI. This is my first program ever to use a GUI
 # By Ted Silbernagel
 
-# TODO: Make who starts (user/cpu) random. Teach cpu how to start the game smartly
+# TODO: Teach cpu how to start the game smartly
 
 # Import dependencies
 import tkinter as tk
 from random import choice
 from functools import partial
+from numpy.random import choice as npchoice
 
 # Set up class for GUI
 class TicTacToe:
@@ -21,6 +22,14 @@ class TicTacToe:
     self.cpuChosenCells = []
     self.userIcon = 'X'
     self.cpuIcon = 'O'
+    self.cpuWinMsg = 'Computer wins :('
+    self.userWinMsg = 'You win!'
+    self.tieMsg = 'Tie.'
+    self.newGameMsg = 'New game. Your turn.'
+    self.alreadySelectedMsg = 'Spot already selected. Try again.'
+    self.cpuTurnMsg = 'Computer\'s turn...'
+    self.userTurnMsg = 'Your turn.'
+    self.resetGameTxt = 'Reset Game'
     self.buttonFont = ('Helvetica', 90)
 
     # Define buttons
@@ -73,11 +82,15 @@ class TicTacToe:
     self.bottomLabel['font'] = ('Helvetica', 12, 'bold')
 
     # Set up reset game button
-    self.bottomButton = tk.Button(master, text = 'Reset Game', command = self.resetGame)
+    self.bottomButton = tk.Button(master, text = self.resetGameTxt, command = self.resetGame)
     self.bottomButton.grid(row = 4, column = 3, columnspan = 2, pady = (15, 15))
 
     # Reset game, initially
     self.resetGame()
+
+    # Randomly have cpu start game
+    if choice([True, False]) == True:
+      self.takeCpuTurn()
 
   # Set up function to handle button presses
   def buttonPress(self, button, gridLoc):
@@ -92,7 +105,7 @@ class TicTacToe:
         self.availableCells.remove(gridLoc)
         # Check to see if you won
         if self.hasWon(self.userIcon):
-          self.bottomLabel['text'] = 'You win!'
+          self.bottomLabel['text'] = self.userWinMsg
           self.buttonsEnabled = False
         # If you didn't win, take computer's turn
         else:
@@ -100,11 +113,11 @@ class TicTacToe:
 
       # If cell's selected, display error
       else:
-        self.bottomLabel['text'] = 'Spot already selected. Try again.'
+        self.bottomLabel['text'] = self.alreadySelectedMsg
 
   # Set up function to take CPU turn
   def takeCpuTurn(self):
-    self.bottomLabel['text'] = 'Computer\'s turn...'
+    self.bottomLabel['text'] = self.cpuTurnMsg
     # Block winning moves by user
     # A block
     if (('A2' in self.userChosenCells and 'A3' in self.userChosenCells) \
@@ -198,10 +211,14 @@ class TicTacToe:
       self.cpuChoice = 'C3'
 
     # Take smart starts
+    # User start
     elif len(self.userChosenCells) == 1 and 'B2' in self.userChosenCells:
       self.cpuChoice = choice(['A1', 'A3', 'C1', 'C3'])
     elif len(self.userChosenCells) == 1 and self.userChosenCells[0] in ['A2', 'B1', 'B3', 'C2']:
       self.cpuChoice = 'B2'
+    # CPU start
+    elif len(self.userChosenCells) == 0:
+      self.cpuChoice = npchoice(['A1', 'A3', 'C1', 'C3', 'B2'], 1, [.225,.225,.225,.225,.1])[0]
 
     # If no winning moves for user or cpu, choose at random
     else:
@@ -210,7 +227,7 @@ class TicTacToe:
         self.cpuChoice = choice(self.availableCells)
       # If it's a tie, end the game
       else:
-        self.bottomLabel['text'] = 'Tie.'
+        self.bottomLabel['text'] = self.tieMsg
         self.buttonsEnabled = False
         return
 
@@ -240,10 +257,15 @@ class TicTacToe:
 
     # Check to see if computer has won
     if self.hasWon(self.cpuIcon):
-      self.bottomLabel['text'] = 'Computer wins :('
+      self.bottomLabel['text'] = self.cpuWinMsg
       self.buttonsEnabled = False
     else:
-      self.bottomLabel['text'] = 'Your turn.'
+      self.bottomLabel['text'] = self.userTurnMsg
+
+    # Check for tie
+    if len(self.availableCells) == 0 and self.bottomLabel['text'] not in [self.cpuWinMsg, self.userWinMsg]:
+      self.bottomLabel['text'] = self.tieMsg
+      self.buttonsEnabled = False
 
   # Set up function to check if user/cpu won
   def hasWon(self, icon):
@@ -271,7 +293,7 @@ class TicTacToe:
     self.btnC1['text'] = ''
     self.btnC2['text'] = ''
     self.btnC3['text'] = ''
-    self.bottomLabel['text'] = 'New game. Your turn.'
+    self.bottomLabel['text'] = self.newGameMsg
     self.userChosenCells.clear()
     self.cpuChosenCells.clear()
     self.availableCells.clear()
