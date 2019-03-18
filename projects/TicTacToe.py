@@ -119,105 +119,105 @@ class TicTacToe:
   def takeCpuTurn(self):
     self.bottomLabel['text'] = self.cpuTurnMsg
     # Some winning strategies
-    if self.cpuStarted == True and self.cpuChosenCells == ['A1', 'A3']:
-      if self.userChosenCells == ['B1', 'A2'] or self.userChosenCells == ['C1', 'A2']:
-        self.cpuChoice = 'C3'
-      elif self.userChosenCells == ['B3', 'A2']:
-        self.cpuChoice = 'C1'
-      elif self.userChosenCells == ['A2', 'C2']:
-        self.cpuChoice = 'B2'
-    if self.cpuStarted == True and self.userChosenCells == ['B2', 'C3'] \
-      and self.cpuChosenCells == ['A1', 'C1']:
-      self.cpuChoice = 'A3'
+    if self.cpuStarted == True:
+      if self.cpuChosenCells == ['A1', 'A3']:
+        if self.userChosenCells in [['B1', 'A2'], ['C1', 'A2']]:
+          self.cpuChoice = 'C3'
+        elif self.userChosenCells == ['B3', 'A2']:
+          self.cpuChoice = 'C1'
+        elif self.userChosenCells == ['A2', 'C2']:
+          self.cpuChoice = 'B2'
+      elif self.userChosenCells == ['B2', 'C3'] and self.cpuChosenCells == ['A1', 'C1']:
+        self.cpuChoice = 'A3'
     # Block winning moves by user
     # A block
     elif (('A2' in self.userChosenCells and 'A3' in self.userChosenCells) \
-      or ('B1' in self.userChosenCells and 'C1' in self.userChosenCells) \
-      or ('B2' in self.userChosenCells and 'C3' in self.userChosenCells)) \
+          or ('B1' in self.userChosenCells and 'C1' in self.userChosenCells) \
+          or ('B2' in self.userChosenCells and 'C3' in self.userChosenCells)) \
       and 'A1' in self.availableCells:
       self.cpuChoice = 'A1'
     elif (('A1' in self.userChosenCells and 'A3' in self.userChosenCells) \
-      or ('B2' in self.userChosenCells and 'C2' in self.userChosenCells)) \
+          or ('B2' in self.userChosenCells and 'C2' in self.userChosenCells)) \
       and 'A2' in self.availableCells:
       self.cpuChoice = 'A2'
     elif (('A1' in self.userChosenCells and 'A2' in self.userChosenCells) \
-      or ('B3' in self.userChosenCells and 'C3' in self.userChosenCells) \
-      or ('C1' in self.userChosenCells and 'B2' in self.userChosenCells)) \
+          or ('B3' in self.userChosenCells and 'C3' in self.userChosenCells) \
+          or ('C1' in self.userChosenCells and 'B2' in self.userChosenCells)) \
       and 'A3' in self.availableCells:
       self.cpuChoice = 'A3'
     # B block
     elif (('B2' in self.userChosenCells and 'B3' in self.userChosenCells) \
-      or ('A1' in self.userChosenCells and 'C1' in self.userChosenCells)) \
+          or ('A1' in self.userChosenCells and 'C1' in self.userChosenCells)) \
       and 'B1' in self.availableCells:
       self.cpuChoice = 'B1'
     elif (('B1' in self.userChosenCells and 'B3' in self.userChosenCells) \
-      or ('A2' in self.userChosenCells and 'C2' in self.userChosenCells) \
-      or ('A1' in self.userChosenCells and 'C3' in self.userChosenCells)) \
+          or ('A2' in self.userChosenCells and 'C2' in self.userChosenCells) \
+          or ('A1' in self.userChosenCells and 'C3' in self.userChosenCells)) \
       and 'B2' in self.availableCells:
       self.cpuChoice = 'B2'
     elif (('B1' in self.userChosenCells and 'B2' in self.userChosenCells) \
-      or ('A3' in self.userChosenCells and 'C3' in self.userChosenCells)) \
+          or ('A3' in self.userChosenCells and 'C3' in self.userChosenCells)) \
       and 'B3' in self.availableCells:
       self.cpuChoice = 'B3'
     # C block
     elif (('C2' in self.userChosenCells and 'C3' in self.userChosenCells) \
-      or ('A1' in self.userChosenCells and 'B1' in self.userChosenCells) \
-      or ('B2' in self.userChosenCells and 'A3' in self.userChosenCells)) \
+          or ('A1' in self.userChosenCells and 'B1' in self.userChosenCells) \
+          or ('B2' in self.userChosenCells and 'A3' in self.userChosenCells)) \
       and 'C1' in self.availableCells:
       self.cpuChoice = 'C1'
     elif (('C1' in self.userChosenCells and 'C3' in self.userChosenCells) \
-      or ('A2' in self.userChosenCells and 'B2' in self.userChosenCells)) \
+          or ('A2' in self.userChosenCells and 'B2' in self.userChosenCells)) \
       and 'C2' in self.availableCells:
       self.cpuChoice = 'C2'
     elif (('C1' in self.cpuChosenCells and 'C2' in self.userChosenCells) \
-      or ('B3' in self.userChosenCells and 'C3' in self.userChosenCells) \
-      or ('C1' in self.userChosenCells and 'B2' in self.userChosenCells)) \
+          or ('B3' in self.userChosenCells and 'C3' in self.userChosenCells) \
+          or ('C1' in self.userChosenCells and 'B2' in self.userChosenCells)) \
       and 'C3' in self.availableCells:
       self.cpuChoice = 'C3'
 
     # Take winning moves for cpu
     # A block
     elif (('A2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
-      or ('B1' in self.cpuChosenCells and 'C1' in self.cpuChosenCells) \
-      or ('B2' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          or ('B1' in self.cpuChosenCells and 'C1' in self.cpuChosenCells) \
+          or ('B2' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
       and 'A1' in self.availableCells:
       self.cpuChoice = 'A1'
     elif (('A1' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
-      or ('B2' in self.cpuChosenCells and 'C2' in self.cpuChosenCells)) \
+          or ('B2' in self.cpuChosenCells and 'C2' in self.cpuChosenCells)) \
       and 'A2' in self.availableCells:
       self.cpuChoice = 'A2'
     elif (('A1' in self.cpuChosenCells and 'A2' in self.cpuChosenCells) \
-      or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
-      or ('C1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
+          or ('C1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
       and 'A3' in self.availableCells:
       self.cpuChoice = 'A3'
     # B block
     elif (('B2' in self.cpuChosenCells and 'B3' in self.cpuChosenCells) \
-      or ('A1' in self.cpuChosenCells and 'C1' in self.cpuChosenCells)) \
+          or ('A1' in self.cpuChosenCells and 'C1' in self.cpuChosenCells)) \
       and 'B1' in self.availableCells:
       self.cpuChoice = 'B1'
     elif (('B1' in self.cpuChosenCells and 'B3' in self.cpuChosenCells) \
-      or ('A2' in self.cpuChosenCells and 'C2' in self.cpuChosenCells) \
-      or ('A1' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          or ('A2' in self.cpuChosenCells and 'C2' in self.cpuChosenCells) \
+          or ('A1' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
       and 'B2' in self.availableCells:
       self.cpuChoice = 'B2'
     elif (('B1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells) \
-      or ('A3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
+          or ('A3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
       and 'B3' in self.availableCells:
       self.cpuChoice = 'B3'
     # C block
     elif (('C2' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
-      or ('A1' in self.cpuChosenCells and 'B1' in self.cpuChosenCells) \
-      or ('B2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells)) \
+          or ('A1' in self.cpuChosenCells and 'B1' in self.cpuChosenCells) \
+          or ('B2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells)) \
       and 'C1' in self.availableCells:
       self.cpuChoice = 'C1'
     elif (('C1' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
-      or ('A2' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          or ('A2' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
       and 'C2' in self.availableCells:
       self.cpuChoice = 'C2'
     elif (('C1' in self.cpuChosenCells and 'C2' in self.cpuChosenCells) \
-      or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
-      or ('C1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
+          or ('C1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
       and 'C3' in self.availableCells:
       self.cpuChoice = 'C3'
 
