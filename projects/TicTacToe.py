@@ -1,13 +1,10 @@
 # A Tic Tac Toe program. Uses tkinter for GUI. This is my first program ever to use a GUI
 # By Ted Silbernagel
 
-# TODO: Teach cpu how to start the game smartly
-
 # Import dependencies
 import tkinter as tk
-from random import choice
+from random import choice, choices as wchoice
 from functools import partial
-from numpy.random import choice as npchoice
 
 # Set up class for GUI
 class TicTacToe:
@@ -233,9 +230,9 @@ class TicTacToe:
         self.cpuChoice = 'B2'
     # CPU start
     elif len(self.userChosenCells) == 0:
-      self.cpuChoice = npchoice(['A1', 'A3', 'C1', 'C3', 'B2', 'A2', 'B3', 'C2', 'B1'],
-                                  1,
-                                  [.2, .2, .2, .2, .1, .025, .025, .025, .025])[0]
+      self.cpuStartCells = ['A1', 'A3', 'C1', 'C3', 'B2', 'A2', 'B3', 'C2', 'B1']
+      self.cpuStartWeights = [.2, .2, .2, .2, .1, .025, .025, .025, .025]
+      self.cpuChoice = wchoice(population = self.cpuStartCells, weights = self.cpuStartWeights, k = 1)[0]
 
     # If no winning moves for user or cpu, choose at random
     else:
