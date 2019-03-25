@@ -1,8 +1,8 @@
 .vscode
+.DS_Store
 dist/*
 !dist/compile*
 projects/__pycache__
 projects/dist
 projects/build
 *.spec
-.DS_Store
