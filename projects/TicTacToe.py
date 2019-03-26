@@ -312,6 +312,12 @@ class TicTacToe:
     self.cpuChosenCells.clear()
     self.availableCells.clear()
     self.availableCells = ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3']
+    # Randomly have cpu start game
+    if choice([True, False]) == True:
+      self.cpuStarted = True
+      self.takeCpuTurn()
+    else:
+      self.cpuStarted = False
 
 # Initialise GUI
 root = tk.Tk()
