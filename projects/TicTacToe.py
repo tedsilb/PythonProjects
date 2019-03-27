@@ -113,7 +113,7 @@ class TicTacToe:
     self.bottomLabel['text'] = self.cpuTurnMsg
     # Some winning strategies
     if self.cpuStarted:
-      if self.cpuChosenCells == ['A1', 'A3']:
+      if self.cpuChosenCells == ['A1', 'A3'] and len(self.userChosenCells) == 2:
         if self.userChosenCells in [['B1', 'A2'], ['C1', 'A2']]:
           self.cpuChoice = 'C3'
         elif self.userChosenCells == ['B3', 'A2']:
