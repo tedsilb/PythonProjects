@@ -223,7 +223,7 @@ class TicTacToe:
 
     # Take smart starts
     # User start
-    elif len(self.userChosenCells) == 1:
+    elif len(self.userChosenCells) == 1 and not self.cpuChosenCells:
       if self.userChosenCells[0] == 'B2':
         self.cpuChoice = choice(['A1', 'A3', 'C1', 'C3'])
       else:
