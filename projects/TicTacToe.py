@@ -85,13 +85,6 @@ class TicTacToe:
     # Reset game, initially
     self.resetGame()
 
-    # Randomly have cpu start game
-    if choice([True, False]):
-      self.cpuStarted = True
-      self.takeCpuTurn()
-    else:
-      self.cpuStarted = False
-
   # Set up function to handle button presses
   def buttonPress(self, button, gridLoc):
     # Ensure buttons are enabled
