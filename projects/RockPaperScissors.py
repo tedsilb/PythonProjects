@@ -1,4 +1,3 @@
-# A rock paper scissors game
 
 # Import dependencies
 import random
@@ -13,7 +12,7 @@ def playRPS(userChoice):
     usrChoice = 'paper'
   elif userChoice == 's' or userChoice == 'scissors':
     usrChoice = 'scissors'
-  
+
   # List of choices for computer
   choices = ['rock', 'paper', 'scissors']
 
@@ -47,7 +46,7 @@ def playRPS(userChoice):
       results['result'] = 'You lose :('
     else:
       results['result'] = 'Tie.'
-  
+
   return results
 
 # Call function, display results

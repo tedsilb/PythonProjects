@@ -5,10 +5,10 @@
 from time import time
 
 # Define function
-def calcFactors(userNo):  
+def calcFactors(userNo):
   # Get start time
   startTime = time()
-  
+
   # Create array to store the factors in
   allFactors = []
 
