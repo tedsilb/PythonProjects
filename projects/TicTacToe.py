@@ -86,7 +86,7 @@ class TicTacToe:
     self.resetGame()
 
     # Randomly have cpu start game
-    if choice([True, False]) == True:
+    if choice([True, False]):
       self.cpuStarted = True
       self.takeCpuTurn()
     else:
@@ -95,7 +95,7 @@ class TicTacToe:
   # Set up function to handle button presses
   def buttonPress(self, button, gridLoc):
     # Ensure buttons are enabled
-    if self.buttonsEnabled == True:
+    if self.buttonsEnabled:
       # Ensure cell isn't yet selected
       if button['text'] == '':
         # Set the cell as checked and chosen, remove from available
@@ -119,7 +119,7 @@ class TicTacToe:
   def takeCpuTurn(self):
     self.bottomLabel['text'] = self.cpuTurnMsg
     # Some winning strategies
-    if self.cpuStarted == True:
+    if self.cpuStarted:
       if self.cpuChosenCells == ['A1', 'A3']:
         if self.userChosenCells in [['B1', 'A2'], ['C1', 'A2']]:
           self.cpuChoice = 'C3'
@@ -229,7 +229,7 @@ class TicTacToe:
       else:
         self.cpuChoice = 'B2'
     # CPU start
-    elif len(self.userChosenCells) == 0:
+    elif not self.userChosenCells:
       self.cpuStartCells = ['A1', 'A3', 'C1', 'C3', 'B2', 'A2', 'B3', 'C2', 'B1']
       self.cpuStartWeights = [.2, .2, .2, .2, .1, .025, .025, .025, .025]
       self.cpuChoice = wchoice(population = self.cpuStartCells, weights = self.cpuStartWeights, k = 1)[0]
@@ -237,7 +237,7 @@ class TicTacToe:
     # If no winning moves for user or cpu, choose at random
     else:
       # First make sure it's not a tie
-      if len(self.availableCells) != 0:
+      if self.availableCells:
         self.cpuChoice = choice(self.availableCells)
       # If it's a tie, end the game
       else:
@@ -277,7 +277,7 @@ class TicTacToe:
       self.bottomLabel['text'] = self.userTurnMsg
 
     # Check for tie
-    if len(self.availableCells) == 0 and self.bottomLabel['text'] not in [self.cpuWinMsg, self.userWinMsg]:
+    if not self.availableCells and self.bottomLabel['text'] not in [self.cpuWinMsg, self.userWinMsg]:
       self.bottomLabel['text'] = self.tieMsg
       self.buttonsEnabled = False
 
@@ -292,8 +292,7 @@ class TicTacToe:
       or (self.btnA1['text'] == icon and self.btnB2['text'] == icon and self.btnC3['text'] == icon) \
       or (self.btnC1['text'] == icon and self.btnB2['text'] == icon and self.btnA3['text'] == icon):
       return True
-    else:
-      return False
+    return False
 
   # Set up function to reset game
   def resetGame(self):
@@ -313,7 +312,7 @@ class TicTacToe:
     self.availableCells.clear()
     self.availableCells = ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3']
     # Randomly have cpu start game
-    if choice([True, False]) == True:
+    if choice([True, False]):
       self.cpuStarted = True
       self.takeCpuTurn()
     else:
