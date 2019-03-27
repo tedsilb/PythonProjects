@@ -217,7 +217,7 @@ class TicTacToe:
       self.cpuChoice = 'C2'
     elif (('C1' in self.cpuChosenCells and 'C2' in self.cpuChosenCells) \
           or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
-          or ('C1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
+          or ('A1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
       and 'C3' in self.availableCells:
       self.cpuChoice = 'C3'
 
