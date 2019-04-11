@@ -7,7 +7,8 @@ from decimal import setcontext, Context, Decimal
 setcontext(Context(prec=100))
 
 # Set up function to calculate
-def nilakantha(precision):
+def nilakantha(userPrecision):
+  precision = int(userPrecision)
   calculatedPi = Decimal(3.0)
   lastNum = Decimal(2.0)
   for i in range(1, precision + 1):
@@ -25,5 +26,5 @@ def nilakantha(precision):
 # Get precision from user, call function
 print('This program calculates pi to a specific precision.')
 print('(Not the number of decimal places - the higher the precision, the more accurate the calculation will be)')
-response = nilakantha(int(input('Please enter the precision you\'d like: ')))
+response = nilakantha(input('Please enter the precision you\'d like: '))
 print(f'Result: {response}')
