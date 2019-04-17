@@ -24,7 +24,7 @@ def nilakantha(userPrecision):
   return calculatedPi
 
 # Get precision from user, call function
-print('This program calculates pi to a specific precision.')
+print('This program calculates pi to a specific precision using the Nilakantha series.')
 print('(Not the number of decimal places - the higher the precision, the more accurate the calculation will be)')
 response = nilakantha(input('Please enter the precision you\'d like: '))
 print(f'Result: {response}')
