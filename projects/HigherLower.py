@@ -26,6 +26,7 @@ def higherLower():
     guesses += 1
     if guessedNumber == numberToGuess:
       print(f'Correct! You got the number in {guesses} guesses.')
+      guessCorrect = True
     elif guessedNumber > numberToGuess:
       print('Lower!')
     elif guessedNumber < numberToGuess:
