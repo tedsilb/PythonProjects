@@ -1,4 +1,4 @@
-# This program will encrypt and decrypt messages using a Vigenere cypher
+# This program will encrypt and decrypt messages using a Vigenere cipher
 # By Ted Silbernagel
 
 # Import dependencies
@@ -8,17 +8,21 @@ from copy import deepcopy
 # Define main function
 def vigenere():
   # Define function to shift list a certain number of times
-  def shiftList(listToShift, numberToShift):
+  def shiftList(listToShift, numberToShift, direction):
     newList = deepcopy(listToShift)
-    print(listToShift)
-    print(newList)
     for _ in range(0, numberToShift):
-      # Insert the first item at the end of the list
-      firstItem = newList[0]
-      newList.append(firstItem)
-      # Remove the first item
-      newList.pop(0)
-    print(f'Shifting {listToShift} by {numberToShift} to {newList}')
+      if direction == 'forward':
+        # Insert the first item at the end of the list
+        firstItem = newList[0]
+        newList.append(firstItem)
+        # Remove the first item
+        newList.pop(0)
+      elif direction == 'back':
+        # Insert the last item at the start of the list
+        lastItem = newList[-1]
+        newList.insert(0, lastItem)
+        # Remove the last item
+        newList.pop()
     return newList
 
   # Define function to encrypt data
@@ -36,7 +40,7 @@ def vigenere():
       keyLetterPos = cryptBase.index(userKey[n])
 
       # Create shifted cryptBase for this letter
-      shiftedCryptBase = shiftList(cryptBase, keyLetterPos)
+      shiftedCryptBase = shiftList(cryptBase, keyLetterPos, 'forward')
 
       # Get the encrypted letter
       encryptedLetter = shiftedCryptBase[letterPos]
@@ -47,12 +51,37 @@ def vigenere():
       # Increment n counter
       n += 1
 
-    # Return string
-    return encryptedMsg
+    # Return encrypted string
+    return f'Encrypted message: {encryptedMsg}'
 
   # Define function to decrypt data
   def vigDecrypt(stringToDecrypt, userKey):
-    return 'temp'
+    # Set up string to store decrypted message
+    decryptedMsg = ''
+
+    # Run through string, decrypt message
+    n = 0
+    for letter in stringToDecrypt:
+      # Find position of letter in cryptBase
+      letterPos = cryptBase.index(letter)
+
+      # Find position of key letter in cryptBase
+      keyLetterPos = cryptBase.index(userKey[n])
+
+      # Create shifted cryptBase for this letter
+      shiftedCryptBase = shiftList(cryptBase, keyLetterPos, 'back')
+
+      # Get the decrypted letter
+      decryptedLetter = shiftedCryptBase[letterPos]
+
+      # Add decrypted letter to decrypted message
+      decryptedMsg += decryptedLetter
+
+      # Increment n counter
+      n += 1
+
+    # Return decrypted string
+    return f'Decrypted message: {decryptedMsg}'
 
   # Ask user to encrypt/decrypt
   operation = input('Would you like to (e)ncrypt or (d)ecrypt? ').lower()
@@ -95,7 +124,6 @@ def vigenere():
   # Set up list of letters to use in crypto operations
   cryptBase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M']
   cryptBase += ['N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-  print(cryptBase)
 
   # Call function based on user input
   if operation == 'e':
