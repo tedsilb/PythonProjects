@@ -72,7 +72,7 @@ def caesarCipher():
       crackedString = ' '.join(crackedList)
 
       # Ask user if this makes sense or to try again
-      if input(f'Attempt {i}/27: "{crackedString}": Correct? ') not in ['', 'n']:
+      if input(f'Attempt {i}/26: "{crackedString}": Correct? ') not in ['', 'n']:
         return crackedString
 
     # Otherwise, let the user know crack was unsuccessful
