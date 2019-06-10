@@ -111,7 +111,6 @@ def caesarCipher():
   # Split string into list
   listCrypt = stringCrypt.split(' ')
 
-
   # If not cracking, ask user for key
   if operation != 'c':
     key = int(input('Please enter the key to use (1 to 25): '))
