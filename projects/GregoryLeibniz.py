@@ -26,5 +26,5 @@ def gregoryLeibniz(userPrecision):
 # Get precision from user, call function
 print('This program calculates pi to a specific precision using the Gregory-Leibniz series.')
 print('(Not the number of decimal places - the higher the precision, the more accurate the calculation will be)')
-response = gregoryLeibniz(input('Please enter the precision you\'d like: '))
+response = gregoryLeibniz(input('Please enter the precision you\'d like (at least few hundred thousand): '))
 print(f'Result: {response}')
