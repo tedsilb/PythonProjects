@@ -25,8 +25,8 @@ def pyTriple(a, b, c):
 
   # Determine if the numbers form a pythagorean triple
   if lNoSq == (sNo1Sq + sNo2Sq):
-    return 'Yes, this is a pythagorean triple.'
-  return 'No, this is not a pythagorean triple.'
+    return True
+  return False
 
 # Gather numbers from user
 print('Please enter three whole numbers. This function will check to see if they form a pythagorean triple.')
@@ -35,5 +35,7 @@ userNoB = int(input('Please enter your second number: '))
 userNoC = int(input('Please enter your third number: '))
 
 # Call the function, print response
-response = pyTriple(userNoA, userNoB, userNoC)
-print(response)
+if pyTriple(userNoA, userNoB, userNoC):
+  print('Yes, this is a pythagorean triple.')
+else:
+  print('No, this is not a pythagorean triple.')
