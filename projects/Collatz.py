@@ -7,7 +7,7 @@
 
 # Define function
 def collatz(userNo):
-  currentNo = int(userNo)
+  currentNo = userNo
   print(currentNo)
   steps = 0
   while currentNo != 1:
@@ -21,5 +21,5 @@ def collatz(userNo):
 
 # Call function
 print('This program will perform the Collatz conjecture on a given whole number.')
-noForCollatz = input('Please enter a number: ')
+noForCollatz = int(input('Please enter a number: '))
 collatz(noForCollatz)
