@@ -10,16 +10,16 @@ def countVowels(inputString):
   countU = 0
 
   # Start looping through the string
-  for char in inputString:
-    if char.upper() == 'A':
+  for char in inputString.upper():
+    if char == 'A':
       countA += 1
-    elif char.upper() == 'E':
+    elif char == 'E':
       countE += 1
-    elif char.upper() == 'I':
+    elif char == 'I':
       countI += 1
-    elif char.upper() == 'O':
+    elif char == 'O':
       countO += 1
-    elif char.upper() == 'U':
+    elif char == 'U':
       countU += 1
 
   # Return counts to user
