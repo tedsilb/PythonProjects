@@ -16,6 +16,7 @@ def calculate(firstNo, secondNo, method):
   elif method == 'modulo':
     return firstNo % secondNo
 
+
 def runCalculator():
   # Gather method from user
   print('Calculator - please select what calculation you would like to perform:')
@@ -25,8 +26,7 @@ def runCalculator():
   print('  (D)ivide one number by another')
   print('  (R)aise one number to the power of another')
   print('  Get the r(e)mainder of dividing one number by another')
-  methodSelection = input('Please select a calculation: ')
-  methodSelection = methodSelection.lower()
+  methodSelection = input('Please select a calculation: ').lower()
 
   # Parse method
   if methodSelection == 'a':
@@ -66,8 +66,7 @@ def runCalculator():
     secondNo = input('Enter the number to divide by (denominator): ')
 
   # Parse numbers to float
-  firstNo = float(firstNo)
-  secondNo = float(secondNo)
+  firstNo, secondNo = float(firstNo), float(secondNo)
 
   # Call calculate function with user data
   calculatedValue = calculate(firstNo, secondNo, selectedMethod)

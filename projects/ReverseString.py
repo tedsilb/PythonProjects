@@ -1,6 +1,7 @@
 # A function to reverse a string
 # By Ted Silbernagel
 
+
 def reverseString(inputWord):
   wordToReverse = inputWord
   returnWord = ''
@@ -9,9 +10,5 @@ def reverseString(inputWord):
     wordToReverse = wordToReverse[:-1]
   return returnWord
 
-# Ask user for a string to reverse
-stringToReverse = input('Please enter a word/string to reverse: ')
-
-# Run function, print results
-response = reverseString(stringToReverse)
-print(response)
+# Get user string, run function, print results
+print(reverseString(input('Please enter a word/string to reverse: ')))

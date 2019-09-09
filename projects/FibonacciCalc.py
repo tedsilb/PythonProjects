@@ -4,18 +4,17 @@
 # Import dependencies
 from time import time
 
+
 # Define function
 def fibonacciGen(nTerm):
   # Get start time
   startTime = time()
 
-  # Check to see if they picked 1 or 2
+  # Check to see if they picked 1, 2, or 3
   if nTerm <= 3:
     if nTerm == 1:
       fibNo = 0
-    elif nTerm == 2:
-      fibNo = 1
-    elif nTerm == 3:
+    elif nTerm in [2, 3]:
       fibNo = 1
   # Otherwise will need to generate
   else:
@@ -25,16 +24,15 @@ def fibonacciGen(nTerm):
     fibNo = 1
     # Start the loop to generate the Fibonacci number
     for _ in range(3, nTerm):
-      prevNo1 = prevNo2
-      prevNo2 = fibNo
+      prevNo1, prevNo2 = prevNo2, fibNo
       fibNo = prevNo1 + prevNo2
 
   # Return calculation for user
-  returnData = {}
-  returnData['nTerm'] = nTerm
-  returnData['fibNo'] = fibNo
-  returnData['timeTaken'] = round(time() - startTime, 6)
-  return returnData
+  return {
+    'nTerm': nTerm,
+    'fibNo': fibNo,
+    'timeTaken': round(time() - startTime, 6),
+  }
 
 # Get n term from user
 print('This program will get you a specific number in the Fibonacci sequence.')
@@ -42,12 +40,14 @@ userNTerm = int(input('Please enter which number in the sequence you would like:
 
 # Call function, print response
 response = fibonacciGen(userNTerm)
-if response['fibNo'] == 1:
-  print(f'The {response["nTerm"]}st number in the Fibonacci sequence is {response["fibNo"]}')
-elif response['fibNo'] == 2:
-  print(f'The {response["nTerm"]}nd number in the Fibonacci sequence is {response["fibNo"]}')
-elif response['fibNo'] == 3:
-  print(f'The {response["nTerm"]}rd number in the Fibonacci sequence is {response["fibNo"]}')
+lastDigit = response['nTerm'] % 10
+stringEnd = f'number in the Fibonacci sequence is {response["fibNo"]}'
+if lastDigit == 1:
+  print(f'The {response["nTerm"]}st {stringEnd}')
+elif lastDigit == 2:
+  print(f'The {response["nTerm"]}nd {stringEnd}')
+elif lastDigit == 3:
+  print(f'The {response["nTerm"]}rd {stringEnd}')
 else:
-  print(f'The {response["nTerm"]}th number in the Fibonacci sequence is {response["fibNo"]}')
+  print(f'The {response["nTerm"]}th {stringEnd}')
 print(f'Took {response["timeTaken"]}s.')

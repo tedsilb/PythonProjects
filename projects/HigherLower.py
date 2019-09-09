@@ -4,6 +4,7 @@
 # Import dependencies
 import random
 
+
 # Define function
 def higherLower():
   # Let the user know the game is starting, give instructions

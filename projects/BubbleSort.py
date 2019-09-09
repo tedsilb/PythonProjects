@@ -1,6 +1,7 @@
 # Super basic bubble sort algorithm
 # By Ted Silbernagel
 
+
 # Define function to check to see if a list is sorted
 def listIsSorted(listToCheck):
   for item in listToCheck:
@@ -11,6 +12,7 @@ def listIsSorted(listToCheck):
       if nextItem < item:
         return False
   return True
+
 
 # Define function to bubble sort
 def bubbleSort(userList):

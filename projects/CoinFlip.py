@@ -4,6 +4,7 @@
 # Import dependencies
 import random
 
+
 # Define function to check if a string is a number
 def isNumber(nbr):
   try:
@@ -12,6 +13,7 @@ def isNumber(nbr):
   except ValueError:
     return False
 
+
 # Define function
 def flipCoin():
   userQuit = False
@@ -19,18 +21,21 @@ def flipCoin():
   heads = 0
   tails = 0
   timesToRun = 0
+
   while not userQuit:
     # Flip a coin, get the result
     flip = random.choice([True, False])
+
     # Add to counter
-    if flip == True:
+    if flip:
       heads += 1
       print('Heads.')
     else:
       tails += 1
       print('Tails.')
+
     # Tell user the current totals
-    if heads == 0:
+    if not heads:
       if tails == 1:
         print('Totals: 0 heads, 1 tail')
       else:
@@ -45,11 +50,13 @@ def flipCoin():
         print(f'Totals: {heads} heads, 1 tail')
       else:
         print(f'Totals: {heads} heads, {tails} tails')
+
     # Subtract one from run times
     if timesToRun > 0:
       timesToRun -= 1
+
     # Ask user if they want to continue
-    if timesToRun == 0:
+    if not timesToRun:
       wantToQuit = input('Press q to quit, enter to continue: ')
     if wantToQuit.lower() == 'q':
       userQuit = True

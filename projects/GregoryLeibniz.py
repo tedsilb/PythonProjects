@@ -6,6 +6,7 @@ from decimal import setcontext, Context, Decimal
 # Set maximum decimal places
 setcontext(Context(prec=100))
 
+
 # Set up function to calculate
 def gregoryLeibniz(userPrecision):
   precision = int(userPrecision)
@@ -26,5 +27,4 @@ def gregoryLeibniz(userPrecision):
 # Get precision from user, call function
 print('This program calculates pi to a specific precision using the Gregory-Leibniz series.')
 print('(Not the number of decimal places - the higher the precision, the more accurate the calculation will be)')
-response = gregoryLeibniz(input('Please enter the precision you\'d like (at least few hundred thousand): '))
-print(f'Result: {response}')
+print('Result: ' + gregoryLeibniz(input('Please enter the precision you\'d like (at least few hundred thousand): ')))

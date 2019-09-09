@@ -1,11 +1,11 @@
 # A function to check if a word is a palindrome
 # By Ted Silbernagel
 
+
 def isPalindrome(inputWord):
   if inputWord == inputWord[::-1]:
     return True
-  else:
-    return False
+  return False
 
 # Ask user for a string to reverse
 print('This program will check to see if a given word is a palindrome.')

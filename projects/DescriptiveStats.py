@@ -4,6 +4,7 @@
 # Import dependencies
 import math
 
+
 # Define function to gather numbers
 def gatherNumbers():
   # Prepare to gather numbers
@@ -16,9 +17,9 @@ def gatherNumbers():
     if enteredNumber == '':
       stopGathering = True
     else:
-      enteredNumber = float(enteredNumber)
-      numbersList.append(enteredNumber)
+      numbersList.append(float(enteredNumber))
   return numbersList
+
 
 # Define function to calculate stats
 def descriptiveStats(numbersList):
@@ -36,7 +37,7 @@ def descriptiveStats(numbersList):
   medianList = numbersList
   medianList.sort()
   # Determine if list is even or odd length
-  if (len(numbersList) % 2) == 0:
+  if not len(numbersList) % 2:
     # If it's even, grab the middle two numbers
     listMedian = []
     listMedian.append(medianList[int(len(medianList) / 2)])
@@ -78,22 +79,20 @@ def descriptiveStats(numbersList):
   listLB = round(listMean - (tStat * listStErr), roundTo)
   listUB = round(listMean + (tStat * listStErr), roundTo)
 
-  # Put data into a dictionary
-  returnDict = {}
-  returnDict['mean'] = listMean
-  returnDict['median'] = listMedian
-  returnDict['mode'] = listMode
-  returnDict['min'] = listMin
-  returnDict['max'] = listMax
-  returnDict['variance'] = listVar
-  returnDict['stDev'] = listStDev
-  returnDict['stErr'] = listStErr
-  returnDict['confInt'] = confInt
-  returnDict['lowerBound'] = listLB
-  returnDict['upperBound'] = listUB
-
-  # Return data
-  return returnDict
+  # Return dict of data
+  return {
+    'mean': listMean,
+    'median': listMedian,
+    'mode': listMode,
+    'min': listMin,
+    'max': listMax,
+    'variance': listVar,
+    'stDev': listStDev,
+    'stErr': listStErr,
+    'confInt': confInt,
+    'lowerBound': listLB,
+    'upperBound': listUB,
+  }
 
 # Call function to gather numbers and calculate descriptive stats
 response = descriptiveStats(gatherNumbers())

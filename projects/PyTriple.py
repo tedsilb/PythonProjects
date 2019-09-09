@@ -2,6 +2,7 @@
 # By Ted Silbernagel
 # https://en.wikipedia.org/wiki/Pythagorean_triple
 
+
 # Define the function that will check for this
 def pyTriple(a, b, c):
   # Figure out which side is the longest
@@ -30,12 +31,14 @@ def pyTriple(a, b, c):
 
 # Gather numbers from user
 print('Please enter three whole numbers. This function will check to see if they form a pythagorean triple.')
-userNoA = int(input('Please enter your first number: '))
-userNoB = int(input('Please enter your second number: '))
-userNoC = int(input('Please enter your third number: '))
+nums = [
+  int(input('Please enter your first number: ')),
+  int(input('Please enter your second number: ')),
+  int(input('Please enter your third number: ')),
+]
 
 # Call the function, print response
-if pyTriple(userNoA, userNoB, userNoC):
+if pyTriple(nums[0], nums[1], nums[2]):
   print('Yes, this is a pythagorean triple.')
 else:
   print('No, this is not a pythagorean triple.')

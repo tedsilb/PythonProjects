@@ -1,14 +1,15 @@
 # A simple FizzBuzz program
 # By Ted Silbernagel
 
+
 # Define function
 def fizzBuzz():
   for i in range(1, 101):
-    if (i % 3) == 0 and (i % 5) == 0:
+    if not i % 3 and not i % 5:
       print('FizzBuzz')
-    elif (i % 3) == 0:
+    elif not i % 3:
       print('Fizz')
-    elif (i % 5) == 0:
+    elif not i % 5:
       print('Buzz')
     else:
       print(i)

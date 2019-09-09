@@ -4,6 +4,7 @@
 # Import the random function to generate our numbers
 import random
 
+
 # Set up dice-roll function
 def rollDice(n, sides):  # default to 1 if they dont say how many times to run
   # Parse user input
@@ -13,7 +14,7 @@ def rollDice(n, sides):  # default to 1 if they dont say how many times to run
     n = 1
   try:
     sides = int(sides)
-  except:
+  except ValueError:
     sides = 6
 
   # Roll the dice!

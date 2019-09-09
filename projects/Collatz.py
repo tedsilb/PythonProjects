@@ -5,6 +5,7 @@
 #   If n is even, divide it by 2.
 #   If n is odd, multiply it by 3 and add 1.
 
+
 # Define function
 def collatz(userNo):
   currentNo = userNo
@@ -21,5 +22,4 @@ def collatz(userNo):
 
 # Call function
 print('This program will perform the Collatz conjecture on a given whole number.')
-noForCollatz = int(input('Please enter a number: '))
-collatz(noForCollatz)
+collatz(int(input('Please enter a number: ')))

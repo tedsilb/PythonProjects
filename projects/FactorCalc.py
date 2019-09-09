@@ -4,25 +4,26 @@
 # Import dependencies
 from time import time
 
+
 # Define function
 def calcFactors(userNo):
   # Get start time
   startTime = time()
 
-  # Create array to store the factors in
+  # Create list to store the factors in
   allFactors = []
 
   # Calculate factors
   for number in range(1, userNo + 1):
-    if (userNo % number) == 0:
+    if not userNo % number:
       allFactors.append(number)
 
   # Return data to user
-  returnData = {}
-  returnData['userNo'] = userNo
-  returnData['allFactors'] = allFactors
-  returnData['timeTaken'] = round(time() - startTime, 6)
-  return returnData
+  return {
+    'userNo': userNo,
+    'allFactors': allFactors,
+    'timeTaken': round(time() - startTime, 6),
+  }
 
 # Get number from user
 print('This program will calculate all factors of the number you specify.')

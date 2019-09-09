@@ -2,15 +2,16 @@
 # Import dependencies
 import random
 
+
 # Define function for game
 def playRPS(userChoice):
   # Parse user choice
   userChoice = userChoice.lower()
-  if userChoice == 'r' or userChoice == 'rock':
+  if userChoice in ['r', 'rock']:
     usrChoice = 'rock'
-  elif userChoice == 'p' or userChoice == 'paper':
+  elif userChoice in ['p', 'paper']:
     usrChoice = 'paper'
-  elif userChoice == 's' or userChoice == 'scissors':
+  elif userChoice in ['s', 'scissors']:
     usrChoice = 'scissors'
 
   # List of choices for computer
@@ -20,32 +21,20 @@ def playRPS(userChoice):
   cpuChoice = random.choice(choices)
 
   # Set up return values dict
-  results = {}
-  results['usrChoice'] = usrChoice
-  results['cpuChoice'] = cpuChoice
+  results = {
+    'usrChoice': usrChoice,
+    'cpuChoice': cpuChoice,
+  }
 
   # Check to see who won, return it
-  if usrChoice == 'rock':
-    if cpuChoice == 'scissors':
-      results['result'] = 'You win!'
-    elif cpuChoice == 'p':
-      results['result'] = 'You lose :('
-    else:
-      results['result'] = 'Tie.'
-  elif usrChoice == 'paper':
-    if cpuChoice == 'rock':
-      results['result'] = 'You win!'
-    elif cpuChoice == 'scissors':
-      results['result'] = 'You lose :('
-    else:
-      results['result'] = 'Tie.'
-  elif usrChoice == 'scissors':
-    if cpuChoice == 'paper':
-      results['result'] = 'You win!'
-    elif cpuChoice == 'rock':
-      results['result'] = 'You lose :('
-    else:
-      results['result'] = 'Tie.'
+  if usrChoice == cpuChoice:
+    results['result'] = 'Tie.'
+  elif (usrChoice == 'rock' and cpuChoice == 'scissors'
+        or usrChoice == 'paper' and cpuChoice == 'rock'
+        or usrChoice == 'scissors' and cpuChoice == 'paper'):
+    results['result'] = 'You win!'
+  else:
+    results['result'] = 'You lose :('
 
   return results
 

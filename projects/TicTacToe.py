@@ -1,4 +1,4 @@
-# A Tic Tac Toe program. Uses tkinter for GUI. This is my first program ever to use a GUI
+# A Tic Tac Toe program. Uses tkinter for GUI.
 # By Ted Silbernagel
 
 # Import dependencies
@@ -28,28 +28,30 @@ class TicTacToe:
     self.userTurnMsg = 'Your turn.'
     self.resetGameTxt = 'Reset Game'
     self.buttonFont = ('Helvetica', 90)
+    self.buttonHeight = 1
+    self.buttonWidth = 2
 
     # Define buttons
-    self.btnA1 = tk.Button(master, height = 1, width = 2)
-    self.btnA2 = tk.Button(master, height = 1, width = 2)
-    self.btnA3 = tk.Button(master, height = 1, width = 2)
-    self.btnB1 = tk.Button(master, height = 1, width = 2)
-    self.btnB2 = tk.Button(master, height = 1, width = 2)
-    self.btnB3 = tk.Button(master, height = 1, width = 2)
-    self.btnC1 = tk.Button(master, height = 1, width = 2)
-    self.btnC2 = tk.Button(master, height = 1, width = 2)
-    self.btnC3 = tk.Button(master, height = 1, width = 2)
+    self.btnA1 = tk.Button(master, height=self.buttonHeight, width=self.buttonWidth)
+    self.btnA2 = tk.Button(master, height=self.buttonHeight, width=self.buttonWidth)
+    self.btnA3 = tk.Button(master, height=self.buttonHeight, width=self.buttonWidth)
+    self.btnB1 = tk.Button(master, height=self.buttonHeight, width=self.buttonWidth)
+    self.btnB2 = tk.Button(master, height=self.buttonHeight, width=self.buttonWidth)
+    self.btnB3 = tk.Button(master, height=self.buttonHeight, width=self.buttonWidth)
+    self.btnC1 = tk.Button(master, height=self.buttonHeight, width=self.buttonWidth)
+    self.btnC2 = tk.Button(master, height=self.buttonHeight, width=self.buttonWidth)
+    self.btnC3 = tk.Button(master, height=self.buttonHeight, width=self.buttonWidth)
 
     # Set grid locations
-    self.btnA1.grid(row = 1, column = 1)
-    self.btnA2.grid(row = 1, column = 2)
-    self.btnA3.grid(row = 1, column = 3)
-    self.btnB1.grid(row = 2, column = 1)
-    self.btnB2.grid(row = 2, column = 2)
-    self.btnB3.grid(row = 2, column = 3)
-    self.btnC1.grid(row = 3, column = 1)
-    self.btnC2.grid(row = 3, column = 2)
-    self.btnC3.grid(row = 3, column = 3)
+    self.btnA1.grid(row=1, column=1)
+    self.btnA2.grid(row=1, column=2)
+    self.btnA3.grid(row=1, column=3)
+    self.btnB1.grid(row=2, column=1)
+    self.btnB2.grid(row=2, column=2)
+    self.btnB3.grid(row=2, column=3)
+    self.btnC1.grid(row=3, column=1)
+    self.btnC2.grid(row=3, column=2)
+    self.btnC3.grid(row=3, column=3)
 
     # Define button commands
     self.btnA1['command'] = partial(self.buttonPress, self.btnA1, 'A1')
@@ -75,12 +77,12 @@ class TicTacToe:
 
     # Set up bottom label
     self.bottomLabel = tk.Label(master)
-    self.bottomLabel.grid(row = 4, column = 1, columnspan = 2, rowspan = 2, sticky = tk.N + tk.S + tk.W + tk.E)
+    self.bottomLabel.grid(row=4, column=1, columnspan=2, rowspan=2, sticky=(tk.N + tk.S + tk.W + tk.E))
     self.bottomLabel['font'] = ('Helvetica', 12, 'bold')
 
     # Set up reset game button
-    self.bottomButton = tk.Button(master, text = self.resetGameTxt, command = self.resetGame)
-    self.bottomButton.grid(row = 4, column = 3, columnspan = 2, pady = (15, 15))
+    self.bottomButton = tk.Button(master, text=self.resetGameTxt, command=self.resetGame)
+    self.bottomButton.grid(row=4, column=3, columnspan=2, pady=(15, 15))
 
     # Reset game, initially
     self.resetGame()
@@ -127,45 +129,45 @@ class TicTacToe:
     elif (('A2' in self.userChosenCells and 'A3' in self.userChosenCells) \
           or ('B1' in self.userChosenCells and 'C1' in self.userChosenCells) \
           or ('B2' in self.userChosenCells and 'C3' in self.userChosenCells)) \
-      and 'A1' in self.availableCells:
+        and 'A1' in self.availableCells:
       self.cpuChoice = 'A1'
     elif (('A1' in self.userChosenCells and 'A3' in self.userChosenCells) \
           or ('B2' in self.userChosenCells and 'C2' in self.userChosenCells)) \
-      and 'A2' in self.availableCells:
+        and 'A2' in self.availableCells:
       self.cpuChoice = 'A2'
     elif (('A1' in self.userChosenCells and 'A2' in self.userChosenCells) \
           or ('B3' in self.userChosenCells and 'C3' in self.userChosenCells) \
           or ('C1' in self.userChosenCells and 'B2' in self.userChosenCells)) \
-      and 'A3' in self.availableCells:
+        and 'A3' in self.availableCells:
       self.cpuChoice = 'A3'
     # B block
     elif (('B2' in self.userChosenCells and 'B3' in self.userChosenCells) \
           or ('A1' in self.userChosenCells and 'C1' in self.userChosenCells)) \
-      and 'B1' in self.availableCells:
+        and 'B1' in self.availableCells:
       self.cpuChoice = 'B1'
     elif (('B1' in self.userChosenCells and 'B3' in self.userChosenCells) \
           or ('A2' in self.userChosenCells and 'C2' in self.userChosenCells) \
           or ('A1' in self.userChosenCells and 'C3' in self.userChosenCells)) \
-      and 'B2' in self.availableCells:
+        and 'B2' in self.availableCells:
       self.cpuChoice = 'B2'
     elif (('B1' in self.userChosenCells and 'B2' in self.userChosenCells) \
           or ('A3' in self.userChosenCells and 'C3' in self.userChosenCells)) \
-      and 'B3' in self.availableCells:
+        and 'B3' in self.availableCells:
       self.cpuChoice = 'B3'
     # C block
     elif (('C2' in self.userChosenCells and 'C3' in self.userChosenCells) \
           or ('A1' in self.userChosenCells and 'B1' in self.userChosenCells) \
           or ('B2' in self.userChosenCells and 'A3' in self.userChosenCells)) \
-      and 'C1' in self.availableCells:
+        and 'C1' in self.availableCells:
       self.cpuChoice = 'C1'
     elif (('C1' in self.userChosenCells and 'C3' in self.userChosenCells) \
           or ('A2' in self.userChosenCells and 'B2' in self.userChosenCells)) \
-      and 'C2' in self.availableCells:
+        and 'C2' in self.availableCells:
       self.cpuChoice = 'C2'
     elif (('C1' in self.cpuChosenCells and 'C2' in self.userChosenCells) \
           or ('B3' in self.userChosenCells and 'C3' in self.userChosenCells) \
           or ('C1' in self.userChosenCells and 'B2' in self.userChosenCells)) \
-      and 'C3' in self.availableCells:
+        and 'C3' in self.availableCells:
       self.cpuChoice = 'C3'
 
     # Take winning moves for cpu
@@ -173,45 +175,45 @@ class TicTacToe:
     elif (('A2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
           or ('B1' in self.cpuChosenCells and 'C1' in self.cpuChosenCells) \
           or ('B2' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
-      and 'A1' in self.availableCells:
+        and 'A1' in self.availableCells:
       self.cpuChoice = 'A1'
     elif (('A1' in self.cpuChosenCells and 'A3' in self.cpuChosenCells) \
           or ('B2' in self.cpuChosenCells and 'C2' in self.cpuChosenCells)) \
-      and 'A2' in self.availableCells:
+        and 'A2' in self.availableCells:
       self.cpuChoice = 'A2'
     elif (('A1' in self.cpuChosenCells and 'A2' in self.cpuChosenCells) \
           or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
           or ('C1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
-      and 'A3' in self.availableCells:
+        and 'A3' in self.availableCells:
       self.cpuChoice = 'A3'
     # B block
     elif (('B2' in self.cpuChosenCells and 'B3' in self.cpuChosenCells) \
           or ('A1' in self.cpuChosenCells and 'C1' in self.cpuChosenCells)) \
-      and 'B1' in self.availableCells:
+        and 'B1' in self.availableCells:
       self.cpuChoice = 'B1'
     elif (('B1' in self.cpuChosenCells and 'B3' in self.cpuChosenCells) \
           or ('A2' in self.cpuChosenCells and 'C2' in self.cpuChosenCells) \
           or ('A1' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
-      and 'B2' in self.availableCells:
+        and 'B2' in self.availableCells:
       self.cpuChoice = 'B2'
     elif (('B1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells) \
           or ('A3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells)) \
-      and 'B3' in self.availableCells:
+        and 'B3' in self.availableCells:
       self.cpuChoice = 'B3'
     # C block
     elif (('C2' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
           or ('A1' in self.cpuChosenCells and 'B1' in self.cpuChosenCells) \
           or ('B2' in self.cpuChosenCells and 'A3' in self.cpuChosenCells)) \
-      and 'C1' in self.availableCells:
+        and 'C1' in self.availableCells:
       self.cpuChoice = 'C1'
     elif (('C1' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
           or ('A2' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
-      and 'C2' in self.availableCells:
+        and 'C2' in self.availableCells:
       self.cpuChoice = 'C2'
     elif (('C1' in self.cpuChosenCells and 'C2' in self.cpuChosenCells) \
           or ('B3' in self.cpuChosenCells and 'C3' in self.cpuChosenCells) \
           or ('A1' in self.cpuChosenCells and 'B2' in self.cpuChosenCells)) \
-      and 'C3' in self.availableCells:
+        and 'C3' in self.availableCells:
       self.cpuChoice = 'C3'
 
     # Take smart starts
@@ -225,7 +227,7 @@ class TicTacToe:
     elif not self.userChosenCells:
       self.cpuStartCells = ['A1', 'A3', 'C1', 'C3', 'B2', 'A2', 'B3', 'C2', 'B1']
       self.cpuStartWeights = [.2, .2, .2, .2, .1, .025, .025, .025, .025]
-      self.cpuChoice = wchoice(population = self.cpuStartCells, weights = self.cpuStartWeights, k = 1)[0]
+      self.cpuChoice = wchoice(population=self.cpuStartCells, weights=self.cpuStartWeights, k=1)[0]
 
     # If no winning moves for user or cpu, choose at random
     else:
@@ -276,14 +278,16 @@ class TicTacToe:
 
   # Set up function to check if user/cpu won
   def hasWon(self, icon):
-    if (self.btnA1['text'] == icon and self.btnA2['text'] == icon and self.btnA3['text'] == icon) \
-      or (self.btnB1['text'] == icon and self.btnB2['text'] == icon and self.btnB3['text'] == icon) \
-      or (self.btnC1['text'] == icon and self.btnC2['text'] == icon and self.btnC3['text'] == icon) \
-      or (self.btnA1['text'] == icon and self.btnB1['text'] == icon and self.btnC1['text'] == icon) \
-      or (self.btnA2['text'] == icon and self.btnB2['text'] == icon and self.btnC2['text'] == icon) \
-      or (self.btnA3['text'] == icon and self.btnB3['text'] == icon and self.btnC3['text'] == icon) \
-      or (self.btnA1['text'] == icon and self.btnB2['text'] == icon and self.btnC3['text'] == icon) \
-      or (self.btnC1['text'] == icon and self.btnB2['text'] == icon and self.btnA3['text'] == icon):
+    if ([icon, icon, icon] in [
+      [self.btnA1['text'], self.btnA2['text'], self.btnA3['text']],
+      [self.btnB1['text'], self.btnB2['text'], self.btnB3['text']],
+      [self.btnC1['text'], self.btnC2['text'], self.btnC3['text']],
+      [self.btnA1['text'], self.btnB1['text'], self.btnC1['text']],
+      [self.btnA2['text'], self.btnB2['text'], self.btnC2['text']],
+      [self.btnA3['text'], self.btnB3['text'], self.btnC3['text']],
+      [self.btnA1['text'], self.btnB2['text'], self.btnC3['text']],
+      [self.btnC1['text'], self.btnB2['text'], self.btnA3['text']],
+    ]):
       return True
     return False
 
