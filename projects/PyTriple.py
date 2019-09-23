@@ -1,4 +1,4 @@
-# Check to see if three sides form a pythatgorian triple.
+# Check to see if three sides form a pythagorian triple.
 # By Ted Silbernagel
 # https://en.wikipedia.org/wiki/Pythagorean_triple
 

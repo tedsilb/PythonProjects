@@ -1,4 +1,4 @@
-# This pgoram will convert a word or sentence to pig latin.
+# This program will convert a word or sentence to pig latin.
 # By Ted Silbernagel
 
 # Import dependencies

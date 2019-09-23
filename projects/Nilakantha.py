@@ -1,7 +1,9 @@
 # Calculates pi to a certain degree of accuracy using the Nilakantha series
 
 # Import dependencies
-from decimal import setcontext, Context, Decimal
+from decimal import setcontext
+from decimal import Context
+from decimal import Decimal
 
 # Set maximum decimal places
 setcontext(Context(prec=100))

@@ -3,7 +3,8 @@
 
 # Import dependencies
 import tkinter as tk
-from random import choice, choices as wchoice
+from random import choice
+from random import choices
 from functools import partial
 
 # Set up class for GUI
@@ -14,33 +15,34 @@ class TicTacToe:
     master.title('Tic Tac Toe')
 
     # Set up base variables
-    self.availableCells = []
-    self.userChosenCells = []
-    self.cpuChosenCells = []
-    self.userIcon = 'X'
-    self.cpuIcon = 'O'
-    self.cpuWinMsg = 'Computer wins :('
-    self.userWinMsg = 'You win!'
-    self.tieMsg = 'Tie.'
-    self.newGameMsg = 'New game. Your turn.'
+    self.availableCells     = []
+    self.userChosenCells    = []
+    self.cpuChosenCells     = []
+    self.userIcon           = 'X'
+    self.cpuIcon            = 'O'
+    self.cpuWinMsg          = 'Computer wins :('
+    self.userWinMsg         = 'You win!'
+    self.tieMsg             = 'Tie.'
+    self.newGameMsg         = 'New game. Your turn.'
     self.alreadySelectedMsg = 'Spot already selected. Try again.'
-    self.cpuTurnMsg = 'Computer\'s turn...'
-    self.userTurnMsg = 'Your turn.'
-    self.resetGameTxt = 'Reset Game'
-    self.buttonFont = ('Helvetica', 90)
-    self.buttonHeight = 1
-    self.buttonWidth = 2
+    self.cpuTurnMsg         = 'Computer\'s turn...'
+    self.userTurnMsg        = 'Your turn.'
+    self.resetGameTxt       = 'Reset Game'
+    self.buttonFont         = ('Helvetica', 90)
+    self.bottomLabelFont    = ('Helvetica', 12, 'bold')
+    self.buttonHeight       = 1
+    self.buttonWidth        = 2
 
     # Define buttons
-    self.btnA1 = tk.Button(master, height=self.buttonHeight, width=self.buttonWidth)
-    self.btnA2 = tk.Button(master, height=self.buttonHeight, width=self.buttonWidth)
-    self.btnA3 = tk.Button(master, height=self.buttonHeight, width=self.buttonWidth)
-    self.btnB1 = tk.Button(master, height=self.buttonHeight, width=self.buttonWidth)
-    self.btnB2 = tk.Button(master, height=self.buttonHeight, width=self.buttonWidth)
-    self.btnB3 = tk.Button(master, height=self.buttonHeight, width=self.buttonWidth)
-    self.btnC1 = tk.Button(master, height=self.buttonHeight, width=self.buttonWidth)
-    self.btnC2 = tk.Button(master, height=self.buttonHeight, width=self.buttonWidth)
-    self.btnC3 = tk.Button(master, height=self.buttonHeight, width=self.buttonWidth)
+    self.btnA1 = tk.Button(master, height=self.buttonHeight, width=self.buttonWidth, font=self.buttonFont)
+    self.btnA2 = tk.Button(master, height=self.buttonHeight, width=self.buttonWidth, font=self.buttonFont)
+    self.btnA3 = tk.Button(master, height=self.buttonHeight, width=self.buttonWidth, font=self.buttonFont)
+    self.btnB1 = tk.Button(master, height=self.buttonHeight, width=self.buttonWidth, font=self.buttonFont)
+    self.btnB2 = tk.Button(master, height=self.buttonHeight, width=self.buttonWidth, font=self.buttonFont)
+    self.btnB3 = tk.Button(master, height=self.buttonHeight, width=self.buttonWidth, font=self.buttonFont)
+    self.btnC1 = tk.Button(master, height=self.buttonHeight, width=self.buttonWidth, font=self.buttonFont)
+    self.btnC2 = tk.Button(master, height=self.buttonHeight, width=self.buttonWidth, font=self.buttonFont)
+    self.btnC3 = tk.Button(master, height=self.buttonHeight, width=self.buttonWidth, font=self.buttonFont)
 
     # Set grid locations
     self.btnA1.grid(row=1, column=1)
@@ -64,21 +66,9 @@ class TicTacToe:
     self.btnC2['command'] = partial(self.buttonPress, self.btnC2, 'C2')
     self.btnC3['command'] = partial(self.buttonPress, self.btnC3, 'C3')
 
-    # Set button fonts
-    self.btnA1['font'] = self.buttonFont
-    self.btnA2['font'] = self.buttonFont
-    self.btnA3['font'] = self.buttonFont
-    self.btnB1['font'] = self.buttonFont
-    self.btnB2['font'] = self.buttonFont
-    self.btnB3['font'] = self.buttonFont
-    self.btnC1['font'] = self.buttonFont
-    self.btnC2['font'] = self.buttonFont
-    self.btnC3['font'] = self.buttonFont
-
     # Set up bottom label
-    self.bottomLabel = tk.Label(master)
+    self.bottomLabel = tk.Label(master, font=self.bottomLabelFont)
     self.bottomLabel.grid(row=4, column=1, columnspan=2, rowspan=2, sticky=(tk.N + tk.S + tk.W + tk.E))
-    self.bottomLabel['font'] = ('Helvetica', 12, 'bold')
 
     # Set up reset game button
     self.bottomButton = tk.Button(master, text=self.resetGameTxt, command=self.resetGame)
@@ -227,7 +217,7 @@ class TicTacToe:
     elif not self.userChosenCells:
       self.cpuStartCells = ['A1', 'A3', 'C1', 'C3', 'B2', 'A2', 'B3', 'C2', 'B1']
       self.cpuStartWeights = [.2, .2, .2, .2, .1, .025, .025, .025, .025]
-      self.cpuChoice = wchoice(population=self.cpuStartCells, weights=self.cpuStartWeights, k=1)[0]
+      self.cpuChoice = choices(population=self.cpuStartCells, weights=self.cpuStartWeights, k=1)[0]
 
     # If no winning moves for user or cpu, choose at random
     else:
@@ -278,7 +268,7 @@ class TicTacToe:
 
   # Set up function to check if user/cpu won
   def hasWon(self, icon):
-    if ([icon, icon, icon] in [
+    winningScenarios = [
       [self.btnA1['text'], self.btnA2['text'], self.btnA3['text']],
       [self.btnB1['text'], self.btnB2['text'], self.btnB3['text']],
       [self.btnC1['text'], self.btnC2['text'], self.btnC3['text']],
@@ -287,7 +277,8 @@ class TicTacToe:
       [self.btnA3['text'], self.btnB3['text'], self.btnC3['text']],
       [self.btnA1['text'], self.btnB2['text'], self.btnC3['text']],
       [self.btnC1['text'], self.btnB2['text'], self.btnA3['text']],
-    ]):
+    ]
+    if [icon, icon, icon] in winningScenarios:
       return True
     return False
 
@@ -306,7 +297,6 @@ class TicTacToe:
     self.bottomLabel['text'] = self.newGameMsg
     self.userChosenCells.clear()
     self.cpuChosenCells.clear()
-    self.availableCells.clear()
     self.availableCells = ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3']
     # Randomly have cpu start game
     if choice([True, False]):

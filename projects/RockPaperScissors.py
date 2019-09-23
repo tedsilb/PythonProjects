@@ -1,3 +1,5 @@
+# Rock paper scissors game!
+# By Ted Silbernagel
 
 # Import dependencies
 import random
