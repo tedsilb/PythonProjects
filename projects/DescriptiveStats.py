@@ -21,78 +21,68 @@ def gatherNumbers():
   return numbersList
 
 
-# Define function to calculate stats
-def descriptiveStats(numbersList):
-  # Calculate mean
-  listSum = 0
-  for number in numbersList:
-    listSum += number
-  listMean = listSum / len(numbersList)
+def calcMean(data: list):
+  return sum(data) / len(data)
 
-  # Round mean based on user input
-  roundTo = int(input('How many decimal places would you like your numbers rounded to? '))
-  listMean = round(listMean, roundTo)
 
-  # Calculate median
-  medianList = numbersList
-  medianList.sort()
+def calcMedian(data: list):
+  sorted_data = sorted(data)
   # Determine if list is even or odd length
-  if not len(numbersList) % 2:
+  if not len(sorted_data) % 2:
     # If it's even, grab the middle two numbers
-    listMedian = []
-    listMedian.append(medianList[int(len(medianList) / 2)])
-    listMedian.append(medianList[int((len(medianList) / 2) + 1)])
+    return [
+      sorted_data[int((len(sorted_data) / 2) - 1)],
+      sorted_data[int(len(sorted_data) / 2)],
+    ]
   else:
     # If it's odd, grab the middle number
-    listMedian = medianList[math.ceil(len(medianList) / 2)]
+    return sorted_data[len(sorted_data) // 2]
 
-  # Calculate mode
-  listMode = max(set(medianList), key=medianList.count)
 
-  # Calculate range
-  listMin = min(numbersList)
-  listMax = max(numbersList)
+def calcMode(data: list):
+  sorted_data = sorted(data)
+  return max(set(sorted_data), key=sorted_data.count)
 
-  # Calculate variance
-  listSqDiffsFromMean = []
-  for number in numbersList:
-    listSqDiffsFromMean.append((number - listMean) ** 2)
-  listVar = 0
-  for sqDiff in listSqDiffsFromMean:
-    listVar += sqDiff
-  listVar = round(listVar / len(numbersList), roundTo)
 
-  # Calculate standard deviation and standard error
-  listStDev = round(listVar ** 0.5, roundTo)
-  listStErr = round(listStDev / len(numbersList), roundTo)
+def calcVariance(data: list):
+  mean = calcMean(data)
+  return sum([((num - mean) ** 2) for num in data]) / len(data)
+
+
+# Define function to calculate stats
+def descriptiveStats(numbersList: list):
+  # Round based on user input
+  roundTo = int(input('How many decimal places would you like your numbers rounded to? '))
+
+  # Set up return data dict
+  returnData = {
+    'mean': round(calcMean(numbersList), roundTo),
+    'median': calcMedian(numbersList),
+    'mode': calcMode(numbersList),
+    'min': min(numbersList),
+    'max': max(numbersList),
+    'variance': round(calcVariance(numbersList), roundTo),
+  }
+
+  returnData['stDev'] = round(returnData['variance'] ** 0.5, roundTo)
+  returnData['stErr'] = round(returnData['stDev'] / len(numbersList), roundTo)
 
   # Ask user for confidence interval
-  confInt = int(input('Please enter a confidence interval (90, 95, 99): '))
-  if confInt == 90:
-    tStat = 1.64
-  elif confInt == 95:
-    tStat = 1.96
-  elif confInt == 99:
-    tStat = 2.58
+  returnData['confInt'] = int(input('Please enter a confidence interval (90, 95, 99): '))
+  tStats = {
+    90: 1.64,
+    95: 1.96,
+    99: 2.58,
+  }
 
   # Calculate confidence interval
-  listLB = round(listMean - (tStat * listStErr), roundTo)
-  listUB = round(listMean + (tStat * listStErr), roundTo)
+  returnData.update({
+    'lowerBound': round(returnData['mean'] - (tStats[returnData['confInt']] * returnData['stErr']), roundTo),
+    'upperBound': round(returnData['mean'] + (tStats[returnData['confInt']] * returnData['stErr']), roundTo),
+  })
 
   # Return dict of data
-  return {
-    'mean': listMean,
-    'median': listMedian,
-    'mode': listMode,
-    'min': listMin,
-    'max': listMax,
-    'variance': listVar,
-    'stDev': listStDev,
-    'stErr': listStErr,
-    'confInt': confInt,
-    'lowerBound': listLB,
-    'upperBound': listUB,
-  }
+  return returnData
 
 # Call function to gather numbers and calculate descriptive stats
 response = descriptiveStats(gatherNumbers())
