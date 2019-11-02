@@ -32,7 +32,7 @@ def playBlackjack():
   # Set up deck
   cardDeck = []
   def genCardDeck():
-    suits = ['hearts', 'diamonds','spades','clubs']
+    suits = ['hearts', 'diamonds', 'spades', 'clubs']
     faces = ['ace', 'two', 'three', 'four', 'five', 'six', 'seven',
              'eight', 'nine', 'ten', 'jack', 'queen', 'king']
     cardDeck.clear()
@@ -43,7 +43,7 @@ def playBlackjack():
       for j in range(1, 14):
         # Jack, queen, and king are all ten
         suitCardNo = 10 if (j > 10) else j
-        cardDeck.append(Card(uniqueCardNumber, suits[i], faces[j-1], suitCardNo))
+        cardDeck.append(Card(uniqueCardNumber, suits[i], faces[j - 1], suitCardNo))
         uniqueCardNumber += 1
 
   # Set up user's hand
