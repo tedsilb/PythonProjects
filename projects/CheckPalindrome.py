@@ -5,7 +5,8 @@
 def isPalindrome(inputWord):
   if inputWord == inputWord[::-1]:
     return True
-  return False
+  else:
+    return False
 
 # Ask user for a string to reverse
 print('This program will check to see if a given word is a palindrome.')

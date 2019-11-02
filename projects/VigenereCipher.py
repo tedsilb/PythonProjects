@@ -25,14 +25,32 @@ def shiftList(listToShift, numberToShift, direction):
   return newList
 
 
-# Define function to encrypt data
-def vigEncrypt(stringToEncrypt, userKey, cryptBase):
-  # Set up string to store encrypted message
-  encryptedMsg = ''
+# Define function to fill key to specified length
+def fillKey(key, length):
+  newKey = key
+  while len(newKey) < length:
+    if (length - len(newKey)) >= len(key):
+      newKey += key
+    else:
+      numberToSlice = int(float(length) % float(len(newKey)))
+      newKey += key[:numberToSlice]
+  return newKey
 
-  # Run through string, encrypt message
+
+# Define function to translate data
+def vigCrypt(rawString, userKey, cryptBase, operation):
+  # Set up string to store translated message
+  translatedMsg = ''
+
+  # Set up dict to determine shift direction
+  shiftDirs = {
+    'Encrypt': 'forward',
+    'Decrypt': 'back',
+  }
+
+  # Run through string, translate message
   n = 0
-  for letter in stringToEncrypt:
+  for letter in rawString:
     # Find position of letter in cryptBase
     letterPos = cryptBase.index(letter)
 
@@ -40,43 +58,16 @@ def vigEncrypt(stringToEncrypt, userKey, cryptBase):
     keyLetterPos = cryptBase.index(userKey[n])
 
     # Create shifted cryptBase for this letter
-    shiftedCryptBase = shiftList(cryptBase, keyLetterPos, 'forward')
+    shiftedCryptBase = shiftList(cryptBase, keyLetterPos, shiftDirs[operation])
 
-    # Get the encrypted letter, add to encrypted message
-    encryptedMsg += shiftedCryptBase[letterPos]
-
-    # Increment n counter
-    n += 1
-
-  # Return encrypted string
-  return f'Encrypted message: {encryptedMsg}'
-
-
-# Define function to decrypt data
-def vigDecrypt(stringToDecrypt, userKey, cryptBase):
-  # Set up string to store decrypted message
-  decryptedMsg = ''
-
-  # Run through string, decrypt message
-  n = 0
-  for letter in stringToDecrypt:
-    # Find position of letter in cryptBase
-    letterPos = cryptBase.index(letter)
-
-    # Find position of key letter in cryptBase
-    keyLetterPos = cryptBase.index(userKey[n])
-
-    # Create shifted cryptBase for this letter
-    shiftedCryptBase = shiftList(cryptBase, keyLetterPos, 'back')
-
-    # Get the decrypted letter, add to decrypted message
-    decryptedMsg += shiftedCryptBase[letterPos]
+    # Get the translated letter, add to translated message
+    translatedMsg += shiftedCryptBase[letterPos]
 
     # Increment n counter
     n += 1
 
   # Return decrypted string
-  return f'Decrypted message: {decryptedMsg}'
+  return f'{operation}ed message: {translatedMsg}'
 
 
 # Define main function
@@ -86,10 +77,10 @@ def vigenere():
 
   # Gather string from user
   if operation in ['encrypt', 'e']:
-    operation = 'e'
+    operation = 'Encrypt'
     stringCrypt = input('Please enter a message to encrypt (no numbers): ')
   elif operation in ['decrypt', 'd']:
-    operation = 'd'
+    operation = 'Decrypt'
     stringCrypt = input('Please enter a message to decrypt: ')
   else:
     print('Please enter a valid operation.')
@@ -105,31 +96,19 @@ def vigenere():
   # Strip punctuation and digits from string
   stringCrypt = stringCrypt.translate(remove_punctuation).translate(remove_digits)
 
-  # Ask user for key
+  # Ask user for key, make uppercase and remove spaces
   key = input('Please enter your key (a word): ').upper().replace(" ", "")
 
   # Repeat the key to match the length of the string
-  newKey = key
-  while len(newKey) < len(stringCrypt):
-    if (len(stringCrypt) - len(newKey)) >= len(key):
-      newKey += key
-    else:
-      numberToSlice = int(float(len(stringCrypt)) % float(len(newKey)))
-      newKey += key[:numberToSlice]
+  key = fillKey(key, len(stringCrypt))
 
   # Set up list of letters to use in crypto operations
   cryptBase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
                'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
-  # Call function based on user input
-  if operation == 'e':
-    return vigEncrypt(stringCrypt, newKey, cryptBase)
-  elif operation == 'd':
-    return vigDecrypt(stringCrypt, newKey, cryptBase)
-  else:
-    print('Please enter a valid operation.')
-    quit()
+  # Run translation
+  return vigCrypt(stringCrypt, key, cryptBase, operation)
 
-# Call function, print returned data
-response = vigenere()
-print(response)
+
+# Call main function, print returned data
+print(vigenere())

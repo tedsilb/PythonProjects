@@ -24,9 +24,6 @@ def estimateWeight(wgtP, wgtN, wgtD, wgtQ):
   d = Coin('dime', 'dimes',       0.10, 2.268, wgtD, 50)
   q = Coin('quarter', 'quarters', 0.25, 2.67,  wgtQ, 40)
 
-  # Determine value of currency
-  totalValue = p.value + n.value + d.value + q.value
-
   # Print a blank line before returning values
   print('')
 
@@ -41,7 +38,7 @@ def estimateWeight(wgtP, wgtN, wgtD, wgtQ):
         print(f'You have {coin.numberOfCoins} {coin.pluralName}, and you will need {coin.wrappersNeeded} wrappers for them.')
 
   # Total value of coins
-  print(f'The total value of your coins is ${totalValue}.')
+  print(f'The total value of your coins is ${p.value + n.value + d.value + q.value}.')
 
 # Gather data from user, call function
 print('Please enter the weights of your coins (in grams):')

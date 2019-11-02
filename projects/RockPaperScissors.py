@@ -16,11 +16,8 @@ def playRPS(userChoice):
   elif userChoice in ['s', 'scissors']:
     usrChoice = 'scissors'
 
-  # List of choices for computer
-  choices = ['rock', 'paper', 'scissors']
-
   # Pick a random choice
-  cpuChoice = random.choice(choices)
+  cpuChoice = random.choice(['rock', 'paper', 'scissors'])
 
   # Set up return values dict
   results = {

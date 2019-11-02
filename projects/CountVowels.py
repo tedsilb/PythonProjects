@@ -18,7 +18,7 @@ def countVowels(inputString):
 
   # Print counts for user
   for vowel, count in counts.items():
-    if count != 0:
+    if count:
       print(f'{vowel}: {count}')
 
 # Call function

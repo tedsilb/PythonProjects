@@ -107,9 +107,7 @@ def caesarCipher():
   translator = str.maketrans('', '', string.punctuation)
 
   # Strip punctuation, uppercase, split into list
-  stringCrypt = stringCrypt.translate(translator)
-  stringCrypt = stringCrypt.upper()
-  listCrypt = stringCrypt.split(' ')
+  listCrypt = stringCrypt.translate(translator).upper().split(' ')
 
   # If not cracking, ask user for key
   if operation != 'c':

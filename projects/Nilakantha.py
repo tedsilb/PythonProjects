@@ -16,7 +16,7 @@ def nilakantha(userPrecision):
   lastNum = Decimal(2.0)
   for i in range(1, precision + 1):
     if not i % 100000:
-      print(f'\rCalculating: ({i}/{precision})', end = "")
+      print(f'\rCalculating: ({i}/{precision})', end='')
     numToChange = Decimal(4.0) / (lastNum * (lastNum + Decimal(1.0)) * (lastNum + Decimal(2.0)))
     if i % 2:
       calculatedPi += numToChange

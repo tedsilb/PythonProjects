@@ -13,10 +13,10 @@ def sieveE(userNo):
 
   for number in numbersList:
     if number > 1:
-      for numMult in range(2, int(numToGen / number)):
+      for numMult in range(2, numToGen // number):
         try:
           numbersList.remove(number * numMult)
-        except Exception:
+        except ValueError:
           pass
       numbersList
 

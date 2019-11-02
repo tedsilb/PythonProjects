@@ -9,7 +9,7 @@ import random
 def higherLower():
   # Let the user know the game is starting, give instructions
   print('Guessing game!')
-  print('  A number between 1 and 100 will randomly be chosen.')
+  print('  A whole number between 1 and 100 will randomly be chosen.')
   print('  Guess a number, and I will tell you if the real number is higher or lower.')
 
   # Generate the number

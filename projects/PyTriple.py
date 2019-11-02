@@ -19,15 +19,11 @@ def pyTriple(a, b, c):
     smallNo1 = a
     smallNo2 = b
 
-  # Square the numbers
-  lNoSq = largestNo * largestNo
-  sNo1Sq = smallNo1 * smallNo1
-  sNo2Sq = smallNo2 * smallNo2
-
-  # Determine if the numbers form a pythagorean triple
-  if lNoSq == (sNo1Sq + sNo2Sq):
+  # Determine if the squared numbers form a pythagorean triple
+  if largestNo ** 2 == (smallNo1 ** 2 + smallNo2 ** 2):
     return True
-  return False
+  else:
+    return False
 
 # Gather numbers from user
 print('Please enter three whole numbers. This function will check to see if they form a pythagorean triple.')

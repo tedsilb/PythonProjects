@@ -13,9 +13,9 @@ def collatz(userNo):
   steps = 0
   while currentNo != 1:
     if currentNo % 2 == 0:
-      currentNo = int(currentNo / 2)
+      currentNo //= 2
     else:
-      currentNo = int(currentNo * 3) + 1
+      currentNo = (currentNo * 3) + 1
     steps += 1
     print(currentNo)
   print(f'Took {steps} steps.')

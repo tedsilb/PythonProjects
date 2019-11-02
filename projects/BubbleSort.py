@@ -16,12 +16,9 @@ def listIsSorted(listToCheck):
 
 # Define function to bubble sort
 def bubbleSort(userList):
-  listToSort = userList.split(',')
   # First parse the numbers
-  for item in listToSort:
-    parseItem = float(item)
-    parseItemIndex = listToSort.index(item)
-    listToSort[parseItemIndex] = parseItem
+  listToSort = [float(item) for item in userList.split(',')]
+
   # Then get down to business
   while not listIsSorted(listToSort):
     for item in listToSort:
@@ -42,5 +39,4 @@ def bubbleSort(userList):
 # Get data from user, call function
 print('This program will bubble sort a given list of numbers.')
 inputList = input('Please enter some numbers, separated by commas, to be sorted: ')
-response = bubbleSort(inputList)
-print(response)
+print(bubbleSort(inputList))

@@ -50,5 +50,5 @@ print('Magic 8-ball...')
 response = magic8Ball(input('Please enter your question: '))
 
 # Print response for user
-print(f'Your question is: \"{response["question"]}\"')
+print(f'Your question was: \"{response["question"]}\"')
 print(f'The Magic 8-ball\'s answer: \"{response["answer"]}\" ({response["value"]})')
