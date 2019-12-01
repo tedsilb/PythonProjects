@@ -16,10 +16,7 @@ class Card(object):
 
 # Define function to calculate hand value
 def calcHandValue(hand):
-  handValue = 0
-  for card in hand:
-    handValue += card.value
-  return handValue
+  return sum([card.value for card in hand])
 
 
 # Define function to print current card value
@@ -39,8 +36,8 @@ def playBlackjack():
 
     # Card number must be unique. Keep track of it here
     uniqueCardNumber = 1
-    for i in range(4):
-      for j in range(1, 14):
+    for i in range(len(suits)):
+      for j in range(1, len(faces) + 1):
         # Jack, queen, and king are all ten
         suitCardNo = 10 if (j > 10) else j
         cardDeck.append(Card(uniqueCardNumber, suits[i], faces[j - 1], suitCardNo))
