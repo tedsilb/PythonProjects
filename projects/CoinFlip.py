@@ -1,12 +1,10 @@
 # This program will flip a coin repeatedly, keeping track of heads and tails
 # By Ted Silbernagel
 
-# Import dependencies
 import random
 
 
-# Define function to check if a string is a number
-def isNumber(nbr):
+def isNumber(nbr) -> bool:
   try:
     int(nbr)
     return True
@@ -14,8 +12,7 @@ def isNumber(nbr):
     return False
 
 
-# Define function
-def flipCoin():
+def flipCoin() -> None:
   userQuit = False
   wantToQuit = ''
   heads = 0
@@ -65,5 +62,6 @@ def flipCoin():
       wantToQuit = ''
 
 # Call function
-print('This program will flip a coin and keep track of how many heads/tails you got.')
+print('This program will flip a coin and keep track of '
+      'how many heads/tails you got.')
 flipCoin()

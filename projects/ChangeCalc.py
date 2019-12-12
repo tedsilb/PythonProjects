@@ -7,7 +7,6 @@ import math
 from typing import Text
 
 
-# Define function
 def calcChange(price: float) -> Text:
   # Set value of coins
   coinValues = {

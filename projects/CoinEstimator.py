@@ -1,12 +1,14 @@
-# Given the weights of types of coins, estimate the number of coins and the number of wrappers needed.
+# Given the weights of types of coins,
+#   estimate the number of coins and the number of wrappers needed.
 # By Ted Silbernagel
 
-# Import dependencies
 import math
+from typing import Text
 
-# Set up coin class
+
 class Coin(object):
-  def __init__(self, name, pluralName, valuePerCoin, weightPerCoin, totalWeight, wrapperCapacity):
+  def __init__(self, name: Text, pluralName: Text, valuePerCoin: float,
+               weightPerCoin: float, totalWeight: float, wrapperCapacity: int):
     # mapped
     self.name = name
     self.pluralName = pluralName
@@ -16,8 +18,8 @@ class Coin(object):
     self.wrappersNeeded = math.ceil(self.numberOfCoins / wrapperCapacity)
     self.value = self.numberOfCoins * valuePerCoin
 
-# Define function
-def estimateWeight(wgtP, wgtN, wgtD, wgtQ):
+
+def estimateWeight(wgtP: float, wgtN: float, wgtD: float, wgtQ: float) -> None:
   # Set up Coin objects, calculate number of coins
   p = Coin('penny', 'pennies',    0.01, 2.5,   wgtP, 50)
   n = Coin('nickel', 'nickels',   0.05, 5.0,   wgtN, 40)
@@ -31,14 +33,16 @@ def estimateWeight(wgtP, wgtN, wgtD, wgtQ):
   for coin in [p, n, d, q]:
     if coin.numberOfCoins == 1:
       print(f'You have 1 {coin.name}, and you will need 1 wrapper for it.')
+    elif coin.wrappersNeeded == 1:
+      print(f'You have {coin.numberOfCoins} {coin.pluralName}, and you will '
+            'need 1 wrapper for them.')
     else:
-      if coin.wrappersNeeded == 1:
-        print(f'You have {coin.numberOfCoins} {coin.pluralName}, and you will need 1 wrapper for them.')
-      else:
-        print(f'You have {coin.numberOfCoins} {coin.pluralName}, and you will need {coin.wrappersNeeded} wrappers for them.')
+      print(f'You have {coin.numberOfCoins} {coin.pluralName}, and you will '
+            f'need {coin.wrappersNeeded} wrappers for them.')
 
   # Total value of coins
-  print(f'The total value of your coins is ${p.value + n.value + d.value + q.value}.')
+  print('The total value of your coins is '
+        f'${p.value + n.value + d.value + q.value}.')
 
 # Gather data from user, call function
 print('Please enter the weights of your coins (in grams):')
