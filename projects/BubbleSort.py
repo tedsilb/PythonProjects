@@ -1,9 +1,11 @@
 # Super basic bubble sort algorithm
 # By Ted Silbernagel
 
+from typing import List, Text
 
-# Define function to check to see if a list is sorted
-def listIsSorted(listToCheck):
+
+# Check if a list is sorted
+def listIsSorted(listToCheck: List[float]) -> bool:
   for item in listToCheck:
     itemIndex = listToCheck.index(item)
     if itemIndex != len(listToCheck) - 1:
@@ -14,8 +16,8 @@ def listIsSorted(listToCheck):
   return True
 
 
-# Define function to bubble sort
-def bubbleSort(userList):
+# Do the bubble sorting
+def bubbleSort(userList: Text) -> List[float]:
   # First parse the numbers
   listToSort = [float(item) for item in userList.split(',')]
 
