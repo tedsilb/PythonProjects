@@ -4,9 +4,11 @@
 # Import dependencies
 import math
 
+from typing import Text
+
 
 # Define function
-def calcChange(price):
+def calcChange(price: float) -> Text:
   # Set value of coins
   coinValues = {
     'q': 0.25,
@@ -28,10 +30,12 @@ def calcChange(price):
     remainingValue -= (nums[coin] * coinValues[coin])
 
   # Print values to console
-  return f'For ${price}, you will need {nums["q"]} quarters, {nums["d"]} dimes, {nums["n"]} nickels, and {nums["p"]} pennies.'
+  return (f'For ${price}, you will need {nums["q"]} quarters, '
+          f'{nums["d"]} dimes, {nums["n"]} nickels, and {nums["p"]} pennies.')
 
 # Gather data from user
-print('Please enter a price (no dollar sign), and this program will tell you what combination of coins you will need.')
+print('Please enter a price (no dollar sign), and this program will tell you '
+      'what combination of coins you will need.')
 userPrice = float(input('Enter price: '))
 
 # Call function, print response

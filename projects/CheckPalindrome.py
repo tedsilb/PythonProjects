@@ -1,8 +1,10 @@
 # A function to check if a word is a palindrome
 # By Ted Silbernagel
 
+from typing import Text
 
-def isPalindrome(inputWord):
+
+def isPalindrome(inputWord: Text) -> bool:
   if inputWord == inputWord[::-1]:
     return True
   else:
