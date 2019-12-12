@@ -1,10 +1,13 @@
 # This program will allow for many mathematical operations on two numbers
 # By Ted Silbernagel
 
+from typing import Text, Tuple
 
-def getOperation():
+
+def getOperation() -> Text:
   # Gather and parse operation
-  print('Calculator - please select what calculation you would like to perform:')
+  print('Calculator - please select what calculation '
+        'you would like to perform:')
   print('  (A)dd two numbers')
   print('  (S)ubtract one number from another')
   print('  (M)ultiply two numbers')
@@ -31,7 +34,7 @@ def getOperation():
     quit()
 
 
-def getNumbers(operation):
+def getNumbers(operation: Text) -> Tuple[float, float]:
   # Gather numbers from user
   if operation == 'add':
     firstNo = input('Enter first number to add: ')
@@ -54,7 +57,7 @@ def getNumbers(operation):
   return float(firstNo), float(secondNo)
 
 
-def calculate(firstNo, secondNo, method):
+def calculate(firstNo: float, secondNo: float, method: Text) -> float:
   if method == 'add':
     return firstNo + secondNo
   elif method == 'subtract':
@@ -69,7 +72,8 @@ def calculate(firstNo, secondNo, method):
     return firstNo % secondNo
 
 
-def printResult(firstNo, secondNo, result, operation):
+def printResult(firstNo: float, secondNo: float, result: float,
+                operation: Text) -> None:
   # Print numbers based on operation
   if operation == 'add':
     print(f'Calculated: {firstNo} plus {secondNo} equals {result}')
@@ -80,12 +84,14 @@ def printResult(firstNo, secondNo, result, operation):
   elif operation == 'divide':
     print(f'Calculated: {firstNo} divided by {secondNo} equals {result}')
   elif operation == 'raise':
-    print(f'Calculated: {firstNo} raised to the power of {secondNo} equals {result}')
+    print(f'Calculated: {firstNo} raised to the power of {secondNo} equals '
+          f'{result}')
   elif operation == 'modulo':
-    print(f'Calculated: The modulus of {firstNo} divided by {secondNo} equals {result}')
+    print(f'Calculated: The modulus of {firstNo} divided by {secondNo} equals '
+          f'{result}')
 
 
-def runCalculator():
+def runCalculator() -> None:
   # Get method from user
   operation = getOperation()
 
@@ -94,14 +100,6 @@ def runCalculator():
 
   # Call calculate function with user data
   calculatedValue = calculate(firstNo, secondNo, operation)
-
-  # Convert numbers to ints if they're ints
-  if not firstNo % 1:
-    firstNo = int(firstNo)
-  if not secondNo % 1:
-    secondNo = int(secondNo)
-  if not calculatedValue % 1:
-    calculatedValue = int(calculatedValue)
 
   # Print return values for user
   printResult(firstNo, secondNo, calculatedValue, operation)
