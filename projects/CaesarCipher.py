@@ -1,13 +1,13 @@
 # This program will encrypt and decrypt messages using a Caesar cipher
 # By Ted Silbernagel
 
-# Import dependencies
 import string
+from typing import List, Text
 
 
-# Define encrypt function
-def cEncrypt(listToEncrypt, encryptionKey, cryptBase):
-  # Set up list to store encrypted words
+def cEncrypt(listToEncrypt: List[Text], encryptionKey: Text,
+             cryptBase: List[Text]) -> Text:
+  # List to store encrypted words
   encryptedList = []
 
   # Run thorough list, encrypt words
@@ -27,12 +27,12 @@ def cEncrypt(listToEncrypt, encryptionKey, cryptBase):
   return encryptedString
 
 
-# Define decrypt function
-def cDecrypt(listToDecrypt, decryptionKey, cryptBase):
-  # Set up list to store decrypted words
+def cDecrypt(listToDecrypt: List[Text], decryptionKey: Text,
+             cryptBase: List[Text]) -> Text:
+  # List to store decrypted words
   decryptedList = []
 
-  # Run thorough list, decrypt words
+  # Run through list, decrypt words
   for word in listToDecrypt:
     currentWord = ''
     for letter in word:
@@ -49,9 +49,7 @@ def cDecrypt(listToDecrypt, decryptionKey, cryptBase):
   return decryptedString
 
 
-# Define crack function
-def cCrack(listToCrack, cryptBase):
-  # Let user know of crack starting
+def cCrack(listToCrack: List[Text], cryptBase: List[Text]) -> Text:
   print('Crack starting. Press enter to try again or any other key to exit.')
 
   # Try each combination
@@ -73,21 +71,22 @@ def cCrack(listToCrack, cryptBase):
     crackedString = ' '.join(crackedList)
 
     # Ask user if this makes sense or to try again
-    if input(f'Attempt {i}/26: "{crackedString}": Correct? ').lower() not in ['', 'n']:
+    if (input(f'Attempt {i}/26: "{crackedString}": Correct? ').lower()
+        not in ['', 'n']):
       return crackedString
 
   # Otherwise, let the user know crack was unsuccessful
   return 'Crack unsuccessful.'
 
 
-# Define main function
-def caesarCipher():
+def caesarCipher() -> Text:
   # Set up list of alphabet to use for encryption/decryption
   cryptBase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
                'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
   # Ask user to encrypt/decrypt
-  operation = input('Would you like to (e)ncrypt, (d)ecrypt, or (c)rack? ').lower()
+  operation = input('Would you like to (e)ncrypt, (d)ecrypt, or (c)rack? '
+                   ).lower()
 
   # Gather string from user
   if operation in ['encrypt', 'e']:
