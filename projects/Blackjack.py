@@ -40,7 +40,8 @@ def playBlackjack():
       for j in range(1, len(faces) + 1):
         # Jack, queen, and king are all ten
         suitCardNo = 10 if (j > 10) else j
-        cardDeck.append(Card(uniqueCardNumber, suits[i], faces[j - 1], suitCardNo))
+        cardDeck.append(Card(uniqueCardNumber, suits[i],
+                             faces[j - 1], suitCardNo))
         uniqueCardNumber += 1
 
   # Set up user's hand
@@ -79,7 +80,8 @@ def playBlackjack():
     cardDeck.remove(currentCard)
     # Get index of new card in hand (will be the last one)
     handCardIndex = len(hand) - 1
-    print(f'You have taken a {hand[handCardIndex].name} of {hand[handCardIndex].suit}.')
+    print(f'You have taken a {hand[handCardIndex].name} of '
+          f'{hand[handCardIndex].suit}.')
 
   # Define function to start turn
   def startTurn(i, rounds):

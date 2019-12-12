@@ -33,12 +33,14 @@ def bubbleSort(userList: Text) -> List[float]:
         # If out of order,
         if item > nextItem:
           # Switch them
-          listToSort[itemIndex], listToSort[nextItemIndex] = listToSort[nextItemIndex], listToSort[itemIndex]
+          (listToSort[itemIndex], listToSort[nextItemIndex]
+          ) = (listToSort[nextItemIndex], listToSort[itemIndex])
       else:
         pass
   return listToSort
 
 # Get data from user, call function
 print('This program will bubble sort a given list of numbers.')
-inputList = input('Please enter some numbers, separated by commas, to be sorted: ')
+inputList = input('Please enter some numbers, '
+                  'separated by commas, to be sorted: ')
 print(bubbleSort(inputList))

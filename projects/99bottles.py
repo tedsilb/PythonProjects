@@ -11,11 +11,13 @@ def gen_lyrics():
 
     elif i == 1:
       print('1 bottle of beer on the wall, 1 bottle of beer!')
-      print('Take it down, pass it around, no more bottles of beer on the wall!')
+      print('Take it down, pass it around, '
+            'no more bottles of beer on the wall!')
 
     else:
       print(f'{i} bottles of beer on the wall, {i} bottles of beer!')
-      print(f'Take one down, pass it around, {i - 1} bottles of beer on the wall!')
+      print('Take one down, pass it around, '
+            f'{i - 1} bottles of beer on the wall!')
 
 # Run the function, generate the lyrics!
 gen_lyrics()
