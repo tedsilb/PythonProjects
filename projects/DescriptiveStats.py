@@ -1,12 +1,11 @@
 # Calculate descriptive statistics for a list of numbers
 # By Ted Silbernagel
 
-# Import dependencies
 import math
-
+from typing import List, Text, Dict
 
 # Define function to gather numbers
-def gatherNumbers():
+def gatherNumbers() -> List[float]:
   # Prepare to gather numbers
   numbersList = []
   stopGathering = False
@@ -21,11 +20,11 @@ def gatherNumbers():
   return numbersList
 
 
-def calcMean(data: list):
+def calcMean(data: List[float]) -> float:
   return sum(data) / len(data)
 
 
-def calcMedian(data: list):
+def calcMedian(data: List[float]) -> float:
   sorted_data = sorted(data)
   # Determine if list is even or odd length
   if not len(sorted_data) % 2:
@@ -39,20 +38,21 @@ def calcMedian(data: list):
     return sorted_data[len(sorted_data) // 2]
 
 
-def calcMode(data: list):
+def calcMode(data: List[float]) -> float:
   sorted_data = sorted(data)
   return max(set(sorted_data), key=sorted_data.count)
 
 
-def calcVariance(data: list):
+def calcVariance(data: List[float]) -> float:
   mean = calcMean(data)
   return sum([((num - mean) ** 2) for num in data]) / len(data)
 
 
 # Define function to calculate stats
-def descriptiveStats(numbersList: list):
+def descriptiveStats(numbersList: List[float]) -> Dict[Text, float]:
   # Round based on user input
-  roundTo = int(input('How many decimal places would you like your numbers rounded to? '))
+  roundTo = int(input('How many decimal places would you like your numbers '
+                      'rounded to? '))
 
   # Set up return data dict
   returnData = {
@@ -68,7 +68,8 @@ def descriptiveStats(numbersList: list):
   returnData['stErr'] = round(returnData['stDev'] / len(numbersList), roundTo)
 
   # Ask user for confidence interval
-  returnData['confInt'] = int(input('Please enter a confidence interval (90, 95, 99): '))
+  returnData['confInt'] = int(input('Please enter a confidence interval '
+                                    '(90, 95, 99): '))
   tStats = {
     90: 1.64,
     95: 1.96,
@@ -77,8 +78,12 @@ def descriptiveStats(numbersList: list):
 
   # Calculate confidence interval
   returnData.update({
-    'lowerBound': round(returnData['mean'] - (tStats[returnData['confInt']] * returnData['stErr']), roundTo),
-    'upperBound': round(returnData['mean'] + (tStats[returnData['confInt']] * returnData['stErr']), roundTo),
+    'lowerBound': round(returnData['mean'] - (tStats[returnData['confInt']]
+                                              * returnData['stErr']),
+                        roundTo),
+    'upperBound': round(returnData['mean'] + (tStats[returnData['confInt']]
+                                              * returnData['stErr']),
+                        roundTo),
   })
 
   # Return dict of data

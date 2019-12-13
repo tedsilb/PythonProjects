@@ -1,7 +1,10 @@
 # This program will count the number of vowels in a string
 # By Ted Silbernagel
 
-def countVowels(inputString):
+from typing import Text
+
+
+def countVowels(inputString: Text):
   # Set up count vars for vowels
   counts = {
     'A': 0,
