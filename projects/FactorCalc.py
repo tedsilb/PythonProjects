@@ -1,14 +1,13 @@
 # Calculates all factors of a number
 # By Ted Silbernagel
 
-# Import dependencies
-from time import time
+import time
+from typing import Text, Dict
 
 
-# Define function
-def calcFactors(userNo):
+def calcFactors(userNo: float) -> Dict[Text, float]:
   # Get start time
-  startTime = time()
+  startTime = time.time()
 
   # Create list to store the factors in
   allFactors = []
@@ -22,12 +21,12 @@ def calcFactors(userNo):
   return {
     'userNo': userNo,
     'allFactors': allFactors,
-    'timeTaken': round(time() - startTime, 6),
+    'timeTaken': round(time.time() - startTime, 6),
   }
 
 # Get number from user
 print('This program will calculate all factors of the number you specify.')
-enteredNo = int(input('Please enter a number: '))
+enteredNo = float(input('Please enter a number: '))
 
 # Call function, print response
 response = calcFactors(enteredNo)

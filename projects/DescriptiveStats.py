@@ -4,7 +4,6 @@
 import math
 from typing import List, Text, Dict
 
-# Define function to gather numbers
 def gatherNumbers() -> List[float]:
   # Prepare to gather numbers
   numbersList = []

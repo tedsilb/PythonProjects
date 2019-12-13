@@ -1,14 +1,13 @@
 # Generate the nth term in the Fibonacci sequence
 # By Ted Silbernagel
 
-# Import dependencies
-from time import time
+import time
+from typing import Text, Dict
 
 
-# Define function
-def fibonacciGen(nTerm):
+def fibonacciGen(nTerm: float) -> Dict[Text, float]:
   # Get start time
-  startTime = time()
+  startTime = time.time()
 
   # Check to see if they picked 1, 2, or 3
   if nTerm <= 3:
@@ -31,12 +30,13 @@ def fibonacciGen(nTerm):
   return {
     'nTerm': nTerm,
     'fibNo': fibNo,
-    'timeTaken': round(time() - startTime, 6),
+    'timeTaken': round(time.time() - startTime, 6),
   }
 
 # Get n term from user
 print('This program will get you a specific number in the Fibonacci sequence.')
-userNTerm = int(input('Please enter which number in the sequence you would like: '))
+userNTerm = float(input('Please enter which number in the sequence '
+                        'you would like: '))
 
 # Call function, print response
 response = fibonacciGen(userNTerm)

@@ -1,14 +1,13 @@
 # Magic 8 ball.
 # By Ted Silbernagel
 
-# Import dependencies
-from random import randint
+import random
+from typing import Text, Dict
 
 
-# Define main function
-def magic8Ball(question):
+def magic8Ball(question: Text) -> Dict[Text, Text]:
   # Set up array to store responses and values
-  # Answers taken from https://en.wikipedia.org/wiki/Magic_8-Ball#Possible_answers
+  # Answers from https://en.wikipedia.org/wiki/Magic_8-Ball#Possible_answers
   responses = [
     ['It is certain.', 'positive'],
     ['It is decidedly so.', 'positive'],
@@ -35,7 +34,7 @@ def magic8Ball(question):
   ]
 
   # Choose a random response
-  chosenResponse = responses[randint(0, len(responses) - 1)]
+  chosenResponse = responses[random.randint(0, len(responses) - 1)]
 
   # Return data
   return {
@@ -51,4 +50,5 @@ response = magic8Ball(input('Please enter your question: '))
 
 # Print response for user
 print(f'Your question was: \"{response["question"]}\"')
-print(f'The Magic 8-ball\'s answer: \"{response["answer"]}\" ({response["value"]})')
+print(f'The Magic 8-ball\'s answer: \"{response["answer"]}\" '
+      f'({response["value"]})')
