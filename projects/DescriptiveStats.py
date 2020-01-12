@@ -51,7 +51,7 @@ def calc_variance(data: List[float]) -> float:
 def descriptive_stats(numbers_list: List[float]) -> Dict[Text, float]:
   # Round based on user input
   round_to = int(input('How many decimal places would you like your numbers '
-                      'rounded to? '))
+                       'rounded to? '))
 
   # Set up return data dict
   return_data = {
@@ -69,7 +69,7 @@ def descriptive_stats(numbers_list: List[float]) -> Dict[Text, float]:
 
   # Ask user for confidence interval
   return_data['confInt'] = int(input('Please enter a confidence interval '
-                                    '(90, 95, 99): '))
+                                     '(90, 95, 99): '))
   t_stats = {
     90: 1.64,
     95: 1.96,
