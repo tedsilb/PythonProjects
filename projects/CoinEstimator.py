@@ -20,7 +20,7 @@ class Coin(object):
     self.value = self.number_of_coins * value_per_coin
 
 
-def estimate_weight(wgt_p: float, wgt_n: float, wgt_d: float, wgt_q:
+def estimate_weight(wgt_p: float, wgt_n: float, wgt_d: float, wgt_q: float
                    ) -> None:
   # Set up Coin objects, calculate number of coins
   p = Coin('penny', 'pennies', 0.01, 2.5, wgt_p, 50)
