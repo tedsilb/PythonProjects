@@ -3,7 +3,6 @@
 
 import string
 import copy
-from typing import List
 
 
 # Shift list a certain number of times

@@ -1,7 +1,6 @@
 # Calculate descriptive statistics for a list of numbers
 # By Ted Silbernagel
 
-import math
 from typing import List, Text, Dict, Union
 
 def gather_numbers() -> List[float]:
