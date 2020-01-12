@@ -7,9 +7,9 @@ import math
 from typing import Text
 
 
-def calcChange(price: float) -> Text:
+def calc_change(price: float) -> Text:
   # Set value of coins
-  coinValues = {
+  coin_values = {
     'q': 0.25,
     'd': 0.10,
     'n': 0.05,
@@ -20,13 +20,13 @@ def calcChange(price: float) -> Text:
   nums = {}
 
   # Set up variable to track how much is left to break out
-  remainingValue = price
+  remaining_value = price
 
-  for coin in coinValues.keys():
+  for coin in coin_values.keys():
     # Determine number of coins
-    nums[coin] = math.floor(remainingValue / coinValues[coin])
+    nums[coin] = math.floor(remaining_value / coin_values[coin])
     # Subtract coin from remaining value
-    remainingValue -= (nums[coin] * coinValues[coin])
+    remaining_value -= (nums[coin] * coin_values[coin])
 
   # Print values to console
   return (f'For ${price}, you will need {nums["q"]} quarters, '
@@ -35,7 +35,7 @@ def calcChange(price: float) -> Text:
 # Gather data from user
 print('Please enter a price (no dollar sign), and this program will tell you '
       'what combination of coins you will need.')
-userPrice = float(input('Enter price: '))
+user_price = float(input('Enter price: '))
 
 # Call function, print response
-print(calcChange(userPrice))
+print(calc_change(user_price))

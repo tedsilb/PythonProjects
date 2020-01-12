@@ -5,83 +5,83 @@ import string
 from typing import List, Text
 
 
-def cEncrypt(listToEncrypt: List[Text], encryptionKey: Text,
-             cryptBase: List[Text]) -> Text:
+def caesar_encrypt(list_to_encrypt: List[Text], encryption_key: Text,
+                   crypt_base: List[Text]) -> Text:
   # List to store encrypted words
-  encryptedList = []
+  encrypted_list = []
 
   # Run thorough list, encrypt words
-  for word in listToEncrypt:
-    currentWord = ''
+  for word in list_to_encrypt:
+    current_word = ''
     for letter in word:
-      currentIndex = cryptBase.index(letter) + 1
-      newIndex = (currentIndex + encryptionKey) % 26
-      newIndex -= 1
-      currentWord += cryptBase[newIndex]
-    encryptedList.append(currentWord)
+      current_index = crypt_base.index(letter) + 1
+      new_index = (current_index + encryption_key) % 26
+      new_index -= 1
+      current_word += crypt_base[new_index]
+    encrypted_list.append(current_word)
 
   # Rejoin list to string
-  encryptedString = ' '.join(encryptedList)
+  encrypted_string = ' '.join(encrypted_list)
 
   # Return string
-  return encryptedString
+  return encrypted_string
 
 
-def cDecrypt(listToDecrypt: List[Text], decryptionKey: Text,
-             cryptBase: List[Text]) -> Text:
+def caesar_decrypt(list_to_decrypt: List[Text], decryption_key: Text,
+                   crypt_base: List[Text]) -> Text:
   # List to store decrypted words
-  decryptedList = []
+  decrypted_list = []
 
   # Run through list, decrypt words
-  for word in listToDecrypt:
-    currentWord = ''
+  for word in list_to_decrypt:
+    current_word = ''
     for letter in word:
-      currentIndex = cryptBase.index(letter) + 1
-      newIndex = (currentIndex - decryptionKey + 26) % 26
-      newIndex -= 1
-      currentWord += cryptBase[newIndex]
-    decryptedList.append(currentWord)
+      current_index = crypt_base.index(letter) + 1
+      new_index = (current_index - decryption_key + 26) % 26
+      new_index -= 1
+      current_word += crypt_base[new_index]
+    decrypted_list.append(current_word)
 
   # Rejoin list to string
-  decryptedString = ' '.join(decryptedList)
+  decrypted_string = ' '.join(decrypted_list)
 
   # Return string
-  return decryptedString
+  return decrypted_string
 
 
-def cCrack(listToCrack: List[Text], cryptBase: List[Text]) -> Text:
+def caesar_crack(list_to_crack: List[Text], crypt_base: List[Text]) -> Text:
   print('Crack starting. Press enter to try again or any other key to exit.')
 
   # Try each combination
   for i in range(1, 27):
     # Set up list to store cracked words
-    crackedList = []
+    cracked_list = []
 
     # Run thorough list, crack words
-    for word in listToCrack:
-      currentWord = ''
+    for word in list_to_crack:
+      current_word = ''
       for letter in word:
-        currentIndex = cryptBase.index(letter) + 1
-        newIndex = (currentIndex - i + 26) % 26
-        newIndex -= 1
-        currentWord += cryptBase[newIndex]
-      crackedList.append(currentWord)
+        current_index = crypt_base.index(letter) + 1
+        new_index = (current_index - i + 26) % 26
+        new_index -= 1
+        current_word += crypt_base[new_index]
+      cracked_list.append(current_word)
 
     # Rejoin list to string
-    crackedString = ' '.join(crackedList)
+    cracked_string = ' '.join(cracked_list)
 
     # Ask user if this makes sense or to try again
-    if (input(f'Attempt {i}/26: "{crackedString}": Correct? ').lower()
+    if (input(f'Attempt {i}/26: "{cracked_string}": Correct? ').lower()
         not in ['', 'n']):
-      return crackedString
+      return cracked_string
 
   # Otherwise, let the user know crack was unsuccessful
   return 'Crack unsuccessful.'
 
 
-def caesarCipher() -> Text:
+def caesar_cipher() -> Text:
   # Set up list of alphabet to use for encryption/decryption
-  cryptBase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+  crypt_base = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
                'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
   # Ask user to encrypt/decrypt
@@ -91,22 +91,22 @@ def caesarCipher() -> Text:
   # Gather string from user
   if operation in ['encrypt', 'e']:
     operation = 'e'
-    stringCrypt = input('Please enter the message to encrypt: ')
+    string_crypt = input('Please enter the message to encrypt: ')
   elif operation in ['decrypt', 'd']:
     operation = 'd'
-    stringCrypt = input('Please enter the message to decrypt: ')
+    string_crypt = input('Please enter the message to decrypt: ')
   elif operation in ['crack', 'c']:
     operation = 'c'
-    stringCrypt = input('Please enter the message to crack: ')
+    string_crypt = input('Please enter the message to crack: ')
   else:
     print('Please enter a valid operation.')
     quit()
 
-  # Make translator object to strip puncuation
+  # Make translator object to strip punctuation
   translator = str.maketrans('', '', string.punctuation)
 
   # Strip punctuation, uppercase, split into list
-  listCrypt = stringCrypt.translate(translator).upper().split(' ')
+  list_crypt = string_crypt.translate(translator).upper().split(' ')
 
   # If not cracking, ask user for key
   if operation != 'c':
@@ -114,11 +114,11 @@ def caesarCipher() -> Text:
 
   # Run encrypt or decrypt function, return response
   if operation == 'e':
-    return cEncrypt(listCrypt, key, cryptBase)
+    return caesar_encrypt(list_crypt, key, crypt_base)
   elif operation == 'd':
-    return cDecrypt(listCrypt, key, cryptBase)
+    return caesar_decrypt(list_crypt, key, crypt_base)
   elif operation == 'c':
-    return cCrack(listCrypt, cryptBase)
+    return caesar_crack(list_crypt, crypt_base)
 
 # Call function, print response
-print(caesarCipher())
+print(caesar_cipher())

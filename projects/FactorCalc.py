@@ -5,30 +5,30 @@ import time
 from typing import Text, Dict
 
 
-def calcFactors(userNo: float) -> Dict[Text, float]:
+def calc_factors(user_no: int) -> Dict[Text, float]:
   # Get start time
-  startTime = time.time()
+  start_time = time.time()
 
   # Create list to store the factors in
-  allFactors = []
+  all_factors = []
 
   # Calculate factors
-  for number in range(1, userNo + 1):
-    if not userNo % number:
-      allFactors.append(number)
+  for number in range(1, user_no + 1):
+    if not user_no % number:
+      all_factors.append(number)
 
   # Return data to user
   return {
-    'userNo': userNo,
-    'allFactors': allFactors,
-    'timeTaken': round(time.time() - startTime, 6),
+    'userNo': user_no,
+    'all_factors': all_factors,
+    'timeTaken': round(time.time() - start_time, 6),
   }
 
 # Get number from user
 print('This program will calculate all factors of the number you specify.')
-enteredNo = float(input('Please enter a number: '))
+entered_no = int(input('Please enter a number: '))
 
 # Call function, print response
-response = calcFactors(enteredNo)
+response = calc_factors(entered_no)
 print(f'All factors of {response["userNo"]}: {response["allFactors"]}')
 print(f'Took {response["timeTaken"]}s.')

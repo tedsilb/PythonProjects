@@ -4,18 +4,18 @@
 from typing import Text
 
 
-def isPalindrome(inputWord: Text) -> bool:
-  if inputWord == inputWord[::-1]:
+def is_palindrome(input_word: Text) -> bool:
+  if input_word == input_word[::-1]:
     return True
   else:
     return False
 
 # Ask user for a string to reverse
 print('This program will check to see if a given word is a palindrome.')
-stringToCheck = input('Please enter a word: ')
+string_to_check = input('Please enter a word: ')
 
 # Call function, print results
-if isPalindrome(stringToCheck):
-  print(f'Yes, {stringToCheck} is a palindrome.')
+if is_palindrome(string_to_check):
+  print(f'Yes, {string_to_check} is a palindrome.')
 else:
-  print(f'No, {stringToCheck} is not a palindrome.')
+  print(f'No, {string_to_check} is not a palindrome.')

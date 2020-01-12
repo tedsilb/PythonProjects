@@ -2,7 +2,7 @@
 # By Ted Silbernagel
 
 
-def fizzBuzz() -> None:
+def fizz_buzz() -> None:
   for i in range(1, 101):
     if not i % 3 and not i % 5:
       print('FizzBuzz')
@@ -13,4 +13,4 @@ def fizzBuzz() -> None:
     else:
       print(i)
 
-fizzBuzz()
+fizz_buzz()

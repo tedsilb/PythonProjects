@@ -7,19 +7,20 @@
 
 
 # Define function
-def collatz(userNo):
-  currentNo = userNo
-  print(currentNo)
+def collatz(user_no):
+  current_no = user_no
+  print(current_no)
   steps = 0
-  while currentNo != 1:
-    if currentNo % 2 == 0:
-      currentNo //= 2
+  while current_no != 1:
+    if current_no % 2 == 0:
+      current_no //= 2
     else:
-      currentNo = (currentNo * 3) + 1
+      current_no = (current_no * 3) + 1
     steps += 1
-    print(currentNo)
+    print(current_no)
   print(f'Took {steps} steps.')
 
 # Call function
-print('This program will perform the Collatz conjecture on a given whole number.')
+print('This program will perform the Collatz conjecture '
+      'on a given whole number.')
 collatz(int(input('Please enter a number: ')))

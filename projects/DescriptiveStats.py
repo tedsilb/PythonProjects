@@ -2,28 +2,28 @@
 # By Ted Silbernagel
 
 import math
-from typing import List, Text, Dict
+from typing import List, Text, Dict, Union
 
-def gatherNumbers() -> List[float]:
+def gather_numbers() -> List[float]:
   # Prepare to gather numbers
-  numbersList = []
-  stopGathering = False
+  numbers_list = []
+  stop_gathering = False
 
   # Gather list of numbers from user
-  while stopGathering == False:
-    enteredNumber = input('Please enter a number (press enter to stop): ')
-    if enteredNumber == '':
-      stopGathering = True
+  while not stop_gathering:
+    entered_number = input('Please enter a number (press enter to stop): ')
+    if entered_number == '':
+      stop_gathering = True
     else:
-      numbersList.append(float(enteredNumber))
-  return numbersList
+      numbers_list.append(float(entered_number))
+  return numbers_list
 
 
-def calcMean(data: List[float]) -> float:
+def calc_mean(data: List[float]) -> float:
   return sum(data) / len(data)
 
 
-def calcMedian(data: List[float]) -> float:
+def calc_median(data: List[float]) -> Union[float, List[float]]:
   sorted_data = sorted(data)
   # Determine if list is even or odd length
   if not len(sorted_data) % 2:
@@ -37,59 +37,60 @@ def calcMedian(data: List[float]) -> float:
     return sorted_data[len(sorted_data) // 2]
 
 
-def calcMode(data: List[float]) -> float:
+def calc_mode(data: List[float]) -> float:
   sorted_data = sorted(data)
   return max(set(sorted_data), key=sorted_data.count)
 
 
-def calcVariance(data: List[float]) -> float:
-  mean = calcMean(data)
+def calc_variance(data: List[float]) -> float:
+  mean = calc_mean(data)
   return sum([((num - mean) ** 2) for num in data]) / len(data)
 
 
 # Define function to calculate stats
-def descriptiveStats(numbersList: List[float]) -> Dict[Text, float]:
+def descriptive_stats(numbers_list: List[float]) -> Dict[Text, float]:
   # Round based on user input
-  roundTo = int(input('How many decimal places would you like your numbers '
+  round_to = int(input('How many decimal places would you like your numbers '
                       'rounded to? '))
 
   # Set up return data dict
-  returnData = {
-    'mean': round(calcMean(numbersList), roundTo),
-    'median': calcMedian(numbersList),
-    'mode': calcMode(numbersList),
-    'min': min(numbersList),
-    'max': max(numbersList),
-    'variance': round(calcVariance(numbersList), roundTo),
+  return_data = {
+    'mean': round(calc_mean(numbers_list), round_to),
+    'median': calc_median(numbers_list),
+    'mode': calc_mode(numbers_list),
+    'min': min(numbers_list),
+    'max': max(numbers_list),
+    'variance': round(calc_variance(numbers_list), round_to),
   }
 
-  returnData['stDev'] = round(returnData['variance'] ** 0.5, roundTo)
-  returnData['stErr'] = round(returnData['stDev'] / len(numbersList), roundTo)
+  return_data['stDev'] = round(return_data['variance'] ** 0.5, round_to)
+  return_data['stErr'] = round(return_data['stDev'] / len(numbers_list),
+                               round_to)
 
   # Ask user for confidence interval
-  returnData['confInt'] = int(input('Please enter a confidence interval '
+  return_data['confInt'] = int(input('Please enter a confidence interval '
                                     '(90, 95, 99): '))
-  tStats = {
+  t_stats = {
     90: 1.64,
     95: 1.96,
     99: 2.58,
   }
 
   # Calculate confidence interval
-  returnData.update({
-    'lowerBound': round(returnData['mean'] - (tStats[returnData['confInt']]
-                                              * returnData['stErr']),
-                        roundTo),
-    'upperBound': round(returnData['mean'] + (tStats[returnData['confInt']]
-                                              * returnData['stErr']),
-                        roundTo),
+  return_data.update({
+    'lowerBound': round(return_data['mean'] - (t_stats[return_data['confInt']]
+                                               * return_data['stErr']),
+                        round_to),
+    'upperBound': round(return_data['mean'] + (t_stats[return_data['confInt']]
+                                               * return_data['stErr']),
+                        round_to),
   })
 
   # Return dict of data
-  return returnData
+  return return_data
 
 # Call function to gather numbers and calculate descriptive stats
-response = descriptiveStats(gatherNumbers())
+response = descriptive_stats(gather_numbers())
 
 # Print data for user
 print(f'Mean:     {response["mean"]}')

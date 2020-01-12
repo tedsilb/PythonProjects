@@ -5,42 +5,42 @@ from typing import List, Text
 
 
 # Check if a list is sorted
-def listIsSorted(listToCheck: List[float]) -> bool:
-  for item in listToCheck:
-    itemIndex = listToCheck.index(item)
-    if itemIndex != len(listToCheck) - 1:
-      nextItemIndex = itemIndex + 1
-      nextItem = listToCheck[nextItemIndex]
-      if nextItem < item:
+def list_is_sorted(list_to_check: List[float]) -> bool:
+  for item in list_to_check:
+    item_index = list_to_check.index(item)
+    if item_index != len(list_to_check) - 1:
+      next_item_index = item_index + 1
+      next_item = list_to_check[next_item_index]
+      if next_item < item:
         return False
   return True
 
 
 # Do the bubble sorting
-def bubbleSort(userList: Text) -> List[float]:
+def bubble_sort(user_list: Text) -> List[float]:
   # First parse the numbers
-  listToSort = [float(item) for item in userList.split(',')]
+  list_to_sort = [float(item) for item in user_list.split(',')]
 
   # Then get down to business
-  while not listIsSorted(listToSort):
-    for item in listToSort:
-      itemIndex = listToSort.index(item)
+  while not list_is_sorted(list_to_sort):
+    for item in list_to_sort:
+      item_index = list_to_sort.index(item)
       # If not the last item in the list
-      if itemIndex != len(listToSort) - 1:
+      if item_index != len(list_to_sort) - 1:
         # Get the indexes
-        nextItemIndex = itemIndex + 1
-        nextItem = listToSort[nextItemIndex]
+        next_item_index = item_index + 1
+        next_item = list_to_sort[next_item_index]
         # If out of order,
-        if item > nextItem:
+        if item > next_item:
           # Switch them
-          (listToSort[itemIndex], listToSort[nextItemIndex]
-          ) = (listToSort[nextItemIndex], listToSort[itemIndex])
+          (list_to_sort[item_index], list_to_sort[next_item_index]
+          ) = (list_to_sort[next_item_index], list_to_sort[item_index])
       else:
         pass
-  return listToSort
+  return list_to_sort
 
 # Get data from user, call function
 print('This program will bubble sort a given list of numbers.')
-inputList = input('Please enter some numbers, '
+input_list = input('Please enter some numbers, '
                   'separated by commas, to be sorted: ')
-print(bubbleSort(inputList))
+print(bubble_sort(input_list))

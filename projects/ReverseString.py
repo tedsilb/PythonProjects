@@ -2,12 +2,12 @@
 # By Ted Silbernagel
 
 
-def reverseString(inputWord):
-  returnWord = ''
-  for _ in inputWord:
-    returnWord += inputWord[-1:]
-    inputWord = inputWord[:-1]
-  return returnWord
+def reverse_string(input_word):
+  return_word = ''
+  for _ in input_word:
+    return_word += input_word[-1:]
+    input_word = input_word[:-1]
+  return return_word
 
 # Get user string, run function, print results
-print(reverseString(input('Please enter a word/string to reverse: ')))
+print(reverse_string(input('Please enter a word/string to reverse: ')))

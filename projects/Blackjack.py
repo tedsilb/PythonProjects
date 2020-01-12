@@ -15,91 +15,91 @@ class Card(object):
 
 
 # Define function to calculate hand value
-def calcHandValue(hand):
+def calc_hand_value(hand):
   return sum([card.value for card in hand])
 
 
 # Define function to print current card value
-def printCurrentValue(currentValue):
-  print(f'The current value of your cards is {currentValue}.')
+def print_current_value(current_value):
+  print(f'The current value of your cards is {current_value}.')
 
 
 # Define main function
-def playBlackjack():
+def play_blackjack():
   # Set up deck
-  cardDeck = []
-  def genCardDeck():
+  card_deck = []
+  def gen_card_deck():
     suits = ['hearts', 'diamonds', 'spades', 'clubs']
     faces = ['ace', 'two', 'three', 'four', 'five', 'six', 'seven',
              'eight', 'nine', 'ten', 'jack', 'queen', 'king']
-    cardDeck.clear()
+    card_deck.clear()
 
     # Card number must be unique. Keep track of it here
-    uniqueCardNumber = 1
+    unique_card_number = 1
     for i in range(len(suits)):
       for j in range(1, len(faces) + 1):
         # Jack, queen, and king are all ten
-        suitCardNo = 10 if (j > 10) else j
-        cardDeck.append(Card(uniqueCardNumber, suits[i],
-                             faces[j - 1], suitCardNo))
-        uniqueCardNumber += 1
+        suit_card_no = 10 if (j > 10) else j
+        card_deck.append(Card(unique_card_number, suits[i],
+                             faces[j - 1], suit_card_no))
+        unique_card_number += 1
 
   # Set up user's hand
   hand = []
 
   # Set up starting score
-  global earnedScore
-  earnedScore = 100
+  global earned_score
+  earned_score = 100
 
   # Define function to process a turn
-  def hitOrStand():
+  def hit_or_stand():
     choice = input('Would you like to hit or stand? ')
-    if (choice.lower() in ['hit', 'h']):
+    if choice.lower() in ['hit', 'h']:
       print('Dealing new card...')
-      takeNewCard()
-      bustReturn = calcHandValue(hand)
-      if bustReturn > 21:
+      take_new_card()
+      bust_return = calc_hand_value(hand)
+      if bust_return > 21:
         print('Bust! Subtracting 21 points.')
-        global earnedScore
-        earnedScore -= 21
-      elif bustReturn == 21:
+        global earned_score
+        earned_score -= 21
+      elif bust_return == 21:
         print('Perfect 21! Ending turn.')
       else:
-        printCurrentValue(calcHandValue(hand))
-        hitOrStand()
-    elif (choice.lower() in ['stand', 's']):
+        print_current_value(calc_hand_value(hand))
+        hit_or_stand()
+    elif choice.lower() in ['stand', 's']:
       print('Ending turn...')
-      endTurn(calcHandValue(hand))
+      end_turn(calc_hand_value(hand))
 
   # Define function to take a new card
-  def takeNewCard():
-    currentCard = random.choice(cardDeck)
+  def take_new_card():
+    current_card = random.choice(card_deck)
     # Insert card into hand
-    hand.append(currentCard)
+    hand.append(current_card)
     # Remove card from deck
-    cardDeck.remove(currentCard)
+    card_deck.remove(current_card)
     # Get index of new card in hand (will be the last one)
-    handCardIndex = len(hand) - 1
-    print(f'You have taken a {hand[handCardIndex].name} of '
-          f'{hand[handCardIndex].suit}.')
+    hand_card_index = len(hand) - 1
+    print(f'You have taken a {hand[hand_card_index].name} of '
+          f'{hand[hand_card_index].suit}.')
 
   # Define function to start turn
-  def startTurn(i, rounds):
+  def start_turn(i, rounds):
     print(f'Starting round {i} of {rounds}.')
-    print(f'Your score is currently {earnedScore}.')
+    print(f'Your score is currently {earned_score}.')
     print('Drawing two cards...')
     hand.clear()
-    takeNewCard()
-    takeNewCard()
-    printCurrentValue(calcHandValue(hand))
-    hitOrStand()
+    take_new_card()
+    take_new_card()
+    print_current_value(calc_hand_value(hand))
+    hit_or_stand()
 
   # Define function to end turn
-  def endTurn(handValue):
-    roundScore = 21 - handValue
-    print(f'Round score: {roundScore}')
-    global earnedScore
-    earnedScore -= roundScore
+  def end_turn(hand_value):
+    round_score = 21 - hand_value
+    print(f'Round score: {round_score}')
+    global earned_score
+    earned_score -= round_score
     return
 
   # Start the game, give direction to user
@@ -109,22 +109,22 @@ def playBlackjack():
   # Run rounds a number of times
   rounds = 5
   for i in range(1, rounds + 1):
-    genCardDeck()
-    startTurn(i, rounds)
+    gen_card_deck()
+    start_turn(i, rounds)
     if i < rounds:
-      print(f'Score after round {i}: {earnedScore}')
+      print(f'Score after round {i}: {earned_score}')
     else:
-      start = f'Final score: {earnedScore}. Grade: '
-      if earnedScore >= 90:
+      start = f'Final score: {earned_score}. Grade: '
+      if earned_score >= 90:
         print(start + 'A')
-      elif earnedScore >= 80:
+      elif earned_score >= 80:
         print(start + 'B')
-      elif earnedScore >= 70:
+      elif earned_score >= 70:
         print(start + 'C')
-      elif earnedScore >= 60:
+      elif earned_score >= 60:
         print(start + 'D')
       else:
         print(start + 'F')
 
 # Call function
-playBlackjack()
+play_blackjack()

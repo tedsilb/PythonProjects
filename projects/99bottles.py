@@ -19,5 +19,6 @@ def gen_lyrics():
       print('Take one down, pass it around, '
             f'{i - 1} bottles of beer on the wall!')
 
+
 # Run the function, generate the lyrics!
 gen_lyrics()

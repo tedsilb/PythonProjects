@@ -4,7 +4,7 @@
 from typing import Text
 
 
-def countVowels(inputString: Text):
+def count_vowels(input_string: Text):
   # Set up count vars for vowels
   counts = {
     'A': 0,
@@ -15,7 +15,7 @@ def countVowels(inputString: Text):
   }
 
   # Start looping through the string
-  for char in inputString.upper():
+  for char in input_string.upper():
     if char in counts.keys():
       counts[char] += 1
 
@@ -26,5 +26,5 @@ def countVowels(inputString: Text):
 
 # Call function
 print('This program will count the number of vowels in a word/string.')
-userString = input('Please enter a string: ')
-countVowels(userString)
+user_string = input('Please enter a string: ')
+count_vowels(user_string)

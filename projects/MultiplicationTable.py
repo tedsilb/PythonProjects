@@ -2,41 +2,40 @@
 # By Ted Silbernagel
 
 
-# Define function
-def genMultiTable(toGen):
+def gen_multi_table(to_gen: int) -> None:
   # Add one to toGen
-  toGen += 1
+  to_gen += 1
 
   # Print the headers
-  currentRow = '     '
-  for number in range(1, toGen):
+  current_row = '     '
+  for number in range(1, to_gen):
     if number < 10:
-      currentRow += f'   {number} '
+      current_row += f'   {number} '
     else:
-      currentRow += f'  {number} '
-  print(currentRow)
+      current_row += f'  {number} '
+  print(current_row)
 
   # Print rows
-  for number in range(1, toGen):
+  for number in range(1, to_gen):
     # Initialise first number
     if number < 10:
-      currentRow = f'   {number} '
+      current_row = f'   {number} '
     else:
-      currentRow = f'  {number} '
+      current_row = f'  {number} '
     # Start multiplications
-    for multiNum in range(1, toGen):
-      if (multiNum * number) < 10:
-        currentRow += f'   {multiNum * number} '
-      elif (multiNum * number < 100):
-        currentRow += f'  {multiNum * number} '
+    for multi_num in range(1, to_gen):
+      if (multi_num * number) < 10:
+        current_row += f'   {multi_num * number} '
+      elif (multi_num * number) < 100:
+        current_row += f'  {multi_num * number} '
       else:
-        currentRow += f' {multiNum * number} '
-    print(currentRow)
+        current_row += f' {multi_num * number} '
+    print(current_row)
 
 # Gather the number of rows/columns to generate
 print('This program will generate a multiplication table (up to 31, cleanly).')
-userNo = int(input('Please enter the number of rows/columns to generate: '))
+user_no = int(input('Please enter the number of rows/columns to generate: '))
 print('\n')
 
 # Run function
-genMultiTable(userNo)
+gen_multi_table(user_no)

@@ -10,23 +10,28 @@ setcontext(Context(prec=100))
 
 
 # Set up function to calculate
-def nilakantha(userPrecision):
-  precision = int(userPrecision)
-  calculatedPi = Decimal(3.0)
-  lastNum = Decimal(2.0)
+def nilakantha(user_precision):
+  precision = int(user_precision)
+  calculated_pi = Decimal(3.0)
+  last_num = Decimal(2.0)
   for i in range(1, precision + 1):
     if not i % 100000:
       print(f'\rCalculating: ({i}/{precision})', end='')
-    numToChange = Decimal(4.0) / (lastNum * (lastNum + Decimal(1.0)) * (lastNum + Decimal(2.0)))
+    num_to_change = Decimal(4.0) / (last_num
+                                    * (last_num + Decimal(1.0))
+                                    * (last_num + Decimal(2.0)))
     if i % 2:
-      calculatedPi += numToChange
+      calculated_pi += num_to_change
     else:
-      calculatedPi -= numToChange
-    lastNum += Decimal(2.0)
+      calculated_pi -= num_to_change
+    last_num += Decimal(2.0)
   print('\n')
-  return calculatedPi
+  return calculated_pi
 
 # Get precision from user, call function
-print('This program calculates pi to a specific precision using the Nilakantha series.')
-print('(Not the number of decimal places - the higher the precision, the more accurate the calculation will be)')
-print('Result: ' + nilakantha(input('Please enter the precision you\'d like: ')))
+print('This program calculates pi to a specific precision '
+      'using the Nilakantha series.')
+print('(Not the number of decimal places - the higher the precision, '
+      'the more accurate the calculation will be)')
+print('Result: '
+      + nilakantha(input('Please enter the precision you\'d like: ')))

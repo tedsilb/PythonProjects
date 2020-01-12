@@ -4,7 +4,7 @@
 import random
 
 
-def isNumber(nbr) -> bool:
+def is_number(nbr) -> bool:
   try:
     int(nbr)
     return True
@@ -12,14 +12,14 @@ def isNumber(nbr) -> bool:
     return False
 
 
-def flipCoin() -> None:
-  userQuit = False
-  wantToQuit = ''
+def flip_coin() -> None:
+  user_quit = False
+  want_to_quit = ''
   heads = 0
   tails = 0
-  timesToRun = 0
+  times_to_run = 0
 
-  while not userQuit:
+  while not user_quit:
     # Flip a coin, get the result
     flip = random.choice([True, False])
 
@@ -49,19 +49,19 @@ def flipCoin() -> None:
         print(f'Totals: {heads} heads, {tails} tails')
 
     # Subtract one from run times
-    if timesToRun > 0:
-      timesToRun -= 1
+    if times_to_run > 0:
+      times_to_run -= 1
 
     # Ask user if they want to continue
-    if not timesToRun:
-      wantToQuit = input('Press q to quit, enter to continue: ')
-    if wantToQuit.lower() == 'q':
-      userQuit = True
-    elif isNumber(wantToQuit):
-      timesToRun = int(wantToQuit)
-      wantToQuit = ''
+    if not times_to_run:
+      want_to_quit = input('Press q to quit, enter to continue: ')
+    if want_to_quit.lower() == 'q':
+      user_quit = True
+    elif is_number(want_to_quit):
+      times_to_run = int(want_to_quit)
+      want_to_quit = ''
 
 # Call function
 print('This program will flip a coin and keep track of '
       'how many heads/tails you got.')
-flipCoin()
+flip_coin()

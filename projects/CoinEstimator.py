@@ -7,38 +7,40 @@ from typing import Text
 
 
 class Coin(object):
-  def __init__(self, name: Text, pluralName: Text, valuePerCoin: float,
-               weightPerCoin: float, totalWeight: float, wrapperCapacity: int):
+  def __init__(self, name: Text, plural_name: Text, value_per_coin: float,
+               weight_per_coin: float, total_weight: float,
+               wrapper_capacity: int):
     # mapped
     self.name = name
-    self.pluralName = pluralName
+    self.plural_name = plural_name
 
     # calculated
-    self.numberOfCoins = math.floor(totalWeight / weightPerCoin)
-    self.wrappersNeeded = math.ceil(self.numberOfCoins / wrapperCapacity)
-    self.value = self.numberOfCoins * valuePerCoin
+    self.number_of_coins = math.floor(total_weight / weight_per_coin)
+    self.wrappers_needed = math.ceil(self.number_of_coins / wrapper_capacity)
+    self.value = self.number_of_coins * value_per_coin
 
 
-def estimateWeight(wgtP: float, wgtN: float, wgtD: float, wgtQ: float) -> None:
+def estimate_weight(wgt_p: float, wgt_n: float, wgt_d: float, wgt_q:
+                   ) -> None:
   # Set up Coin objects, calculate number of coins
-  p = Coin('penny', 'pennies',    0.01, 2.5,   wgtP, 50)
-  n = Coin('nickel', 'nickels',   0.05, 5.0,   wgtN, 40)
-  d = Coin('dime', 'dimes',       0.10, 2.268, wgtD, 50)
-  q = Coin('quarter', 'quarters', 0.25, 2.67,  wgtQ, 40)
+  p = Coin('penny', 'pennies', 0.01, 2.5, wgt_p, 50)
+  n = Coin('nickel', 'nickels', 0.05, 5.0, wgt_n, 40)
+  d = Coin('dime', 'dimes', 0.10, 2.268, wgt_d, 50)
+  q = Coin('quarter', 'quarters', 0.25, 2.67, wgt_q, 40)
 
   # Print a blank line before returning values
   print('')
 
   # Print the values for the user
   for coin in [p, n, d, q]:
-    if coin.numberOfCoins == 1:
+    if coin.number_of_coins == 1:
       print(f'You have 1 {coin.name}, and you will need 1 wrapper for it.')
-    elif coin.wrappersNeeded == 1:
-      print(f'You have {coin.numberOfCoins} {coin.pluralName}, and you will '
+    elif coin.wrappers_needed == 1:
+      print(f'You have {coin.number_of_coins} {coin.plural_name}, and you will '
             'need 1 wrapper for them.')
     else:
-      print(f'You have {coin.numberOfCoins} {coin.pluralName}, and you will '
-            f'need {coin.wrappersNeeded} wrappers for them.')
+      print(f'You have {coin.number_of_coins} {coin.plural_name}, and you will '
+            f'need {coin.wrappers_needed} wrappers for them.')
 
   # Total value of coins
   print('The total value of your coins is '
@@ -46,7 +48,7 @@ def estimateWeight(wgtP: float, wgtN: float, wgtD: float, wgtQ: float) -> None:
 
 # Gather data from user, call function
 print('Please enter the weights of your coins (in grams):')
-estimateWeight(
+estimate_weight(
   float(input('What is the weight of your pennies? ')),
   float(input('What is the weight of your nickels? ')),
   float(input('What is the weight of your dimes? ')),

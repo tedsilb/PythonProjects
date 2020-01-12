@@ -5,7 +5,7 @@ import random
 from typing import Text, Dict
 
 
-def magic8Ball(question: Text) -> Dict[Text, Text]:
+def magic_8_ball(question: Text) -> Dict[Text, Text]:
   # Set up array to store responses and values
   # Answers from https://en.wikipedia.org/wiki/Magic_8-Ball#Possible_answers
   responses = [
@@ -34,19 +34,19 @@ def magic8Ball(question: Text) -> Dict[Text, Text]:
   ]
 
   # Choose a random response
-  chosenResponse = responses[random.randint(0, len(responses) - 1)]
+  chosen_response = responses[random.randint(0, len(responses) - 1)]
 
   # Return data
   return {
     'question': question,
-    'answer': chosenResponse[0],
-    'value': chosenResponse[1],
+    'answer': chosen_response[0],
+    'value': chosen_response[1],
   }
 
 
 # Get user input, call function
 print('Magic 8-ball...')
-response = magic8Ball(input('Please enter your question: '))
+response = magic_8_ball(input('Please enter your question: '))
 
 # Print response for user
 print(f'Your question was: \"{response["question"]}\"')

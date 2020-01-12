@@ -7,26 +7,26 @@ decimal.setcontext(decimal.Context(prec=100))
 
 
 # Set up function to calculate
-def gregoryLeibniz(userPrecision: float) -> decimal.Decimal:
-  calculatedPi = decimal.Decimal(1.0)
-  currentNum = decimal.Decimal(3.0)
-  for i in range(1, userPrecision + 1):
+def gregory_leibniz(user_precision: int) -> decimal.Decimal:
+  calculated_pi = decimal.Decimal(1.0)
+  current_num = decimal.Decimal(3.0)
+  for i in range(1, user_precision + 1):
     if not i % 100000:
-      print(f'\rCalculating: ({i}/{userPrecision})', end = "")
-    numToChange = decimal.Decimal(1.0) / currentNum
+      print(f'\rCalculating: ({i}/{user_precision})', end ="")
+    num_to_change = decimal.Decimal(1.0) / current_num
     if not i % 2:
-      calculatedPi += numToChange
+      calculated_pi += num_to_change
     else:
-      calculatedPi -= numToChange
-    currentNum += decimal.Decimal(2.0)
+      calculated_pi -= num_to_change
+    current_num += decimal.Decimal(2.0)
   print('\n')
-  return calculatedPi * decimal.Decimal(4.0)
+  return calculated_pi * decimal.Decimal(4.0)
 
 # Get precision from user, call function
 print('This program calculates pi to a specific precision '
       'using the Gregory-Leibniz series.')
 print('(Not the number of decimal places - the higher the precision, '
       'the more accurate the calculation will be)')
-userNo = float(input('Please enter the precision you\'d like '
-                     '(at least few hundred thousand): '))
-print('Result: ' + gregoryLeibniz(userNo))
+user_no = int(input('Please enter the precision you\'d like '
+                    '(at least few hundred thousand): '))
+print('Result: ' + gregory_leibniz(user_no))
