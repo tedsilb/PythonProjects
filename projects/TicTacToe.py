@@ -305,10 +305,8 @@ class TicTacToe:
       [self.btn_a1['text'], self.btn_b2['text'], self.btn_c3['text']],
       [self.btn_c1['text'], self.btn_b2['text'], self.btn_a3['text']],
     ]
-    if [icon, icon, icon] in winning_scenarios:
-      return True
-    else:
-      return False
+
+    return ([icon, icon, icon] in winning_scenarios)
 
   # Set up function to reset game
   def reset_game(self):
