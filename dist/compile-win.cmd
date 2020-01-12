@@ -1,5 +1,6 @@
 :: This script uses Pyinstaller to build an exe then deletes temp files
-:: Run this from a command prompt, using the name of the file as the argument (no extension)
+:: Run this from a command prompt,
+::   using the name of the file as the argument (no extension)
 :: Example: ./compile-win.cmd CoinFlip
 
 :: Turn echo off
