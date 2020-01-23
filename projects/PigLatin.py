@@ -1,11 +1,10 @@
-# This program will convert a word or sentence to pig latin.
-# By Ted Silbernagel
+"""This program will convert a word or sentence to pig latin.
+By Ted Silbernagel
+"""
 
-# Import dependencies
 import string
 
 
-# Define function
 def convert_pig_latin(input_string):
   # Make translator object to strip punctuation
   translator = str.maketrans('', '', string.punctuation)
@@ -16,8 +15,9 @@ def convert_pig_latin(input_string):
   # Set up lists for reference
   pig_latin_list = []
   vowels = ['a', 'e', 'i', 'o', 'u']
-  consonant_clusters = ['bl', 'br', 'ch', 'cl', 'cr', 'dr', 'fl', 'fr', 'gl', 'gr', 'pl', 'pr', 'sc',
-                       'sh', 'sk', 'sl', 'sm', 'sn', 'sp', 'st', 'sw', 'th', 'tr', 'tw', 'wh', 'wr']
+  consonant_clusters = ['bl', 'br', 'ch', 'cl', 'cr', 'dr', 'fl', 'fr', 'gl',
+                        'gr', 'pl', 'pr', 'sc', 'sh', 'sk', 'sl', 'sm', 'sn',
+                        'sp', 'st', 'sw', 'th', 'tr', 'tw', 'wh', 'wr']
 
   # Convert each word to pig latin
   for word in input_list:
@@ -30,6 +30,7 @@ def convert_pig_latin(input_string):
 
   # Turn list back into string, return
   return ' '.join(pig_latin_list)
+
 
 # Gather data from user, call function
 print('This program will convert a word or string to Pig Latin')

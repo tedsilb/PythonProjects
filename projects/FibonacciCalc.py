@@ -1,11 +1,12 @@
-# Generate the nth term in the Fibonacci sequence
-# By Ted Silbernagel
+"""Generate the nth term in the Fibonacci sequence.
+By Ted Silbernagel
+"""
 
 import time
-from typing import Text, Dict
+from typing import Dict
 
 
-def fibonacci_gen(n_term: int) -> Dict[Text, float]:
+def fibonacci_gen(n_term: int) -> Dict[str, float]:
   # Get start time
   start_time = time.time()
 
@@ -15,7 +16,8 @@ def fibonacci_gen(n_term: int) -> Dict[Text, float]:
       fib_no = 0
     elif n_term in [2, 3]:
       fib_no = 1
-  # Otherwise will need to generate
+
+  # Otherwise, will need to generate
   else:
     # Initialise the loop at 3
     prev_no1 = 0
@@ -26,12 +28,12 @@ def fibonacci_gen(n_term: int) -> Dict[Text, float]:
       prev_no1, prev_no2 = prev_no2, fib_no
       fib_no = prev_no1 + prev_no2
 
-  # Return calculation for user
   return {
     'nTerm': n_term,
     'fib_no': fib_no,
     'timeTaken': round(time.time() - start_time, 6),
   }
+
 
 # Get n term from user
 print('This program will get you a specific number in the Fibonacci sequence.')

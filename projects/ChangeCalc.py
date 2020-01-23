@@ -1,13 +1,11 @@
-# Given a price, determine how many of each coin is needed to pay for it.
-# By Ted Silbernagel
+"""Given a price, determine how many coins are needed to total it.
+By Ted Silbernagel
+"""
 
-# Import dependencies
 import math
 
-from typing import Text
 
-
-def calc_change(price: float) -> Text:
+def calc_change(price: float) -> str:
   # Set value of coins
   coin_values = {
     'q': 0.25,
@@ -31,6 +29,7 @@ def calc_change(price: float) -> Text:
   # Print values to console
   return (f'For ${price}, you will need {nums["q"]} quarters, '
           f'{nums["d"]} dimes, {nums["n"]} nickels, and {nums["p"]} pennies.')
+
 
 # Gather data from user
 print('Please enter a price (no dollar sign), and this program will tell you '

@@ -1,10 +1,9 @@
-# This program will count the number of vowels in a string
-# By Ted Silbernagel
+"""Count the number of vowels in a string.
+By Ted Silbernagel
+"""
 
-from typing import Text
 
-
-def count_vowels(input_string: Text):
+def count_vowels(input_string: str) -> None:
   # Set up count vars for vowels
   counts = {
     'A': 0,
@@ -24,7 +23,7 @@ def count_vowels(input_string: Text):
     if count:
       print(f'{vowel}: {count}')
 
+
 # Call function
 print('This program will count the number of vowels in a word/string.')
-user_string = input('Please enter a string: ')
-count_vowels(user_string)
+count_vowels(input('Please enter a string: '))

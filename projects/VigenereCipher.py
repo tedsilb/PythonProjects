@@ -1,12 +1,15 @@
-# This program will encrypt and decrypt messages using a Vigenere cipher
-# By Ted Silbernagel
+"""This program will encrypt and decrypt messages using a Vigenere cipher.
+By Ted Silbernagel
+"""
 
-import string
 import copy
+import string
+from typing import List
 
 
-# Shift list a certain number of times
-def shift_list(list_to_shift, number_to_shift, direction):
+def shift_list(list_to_shift: List[str], number_to_shift: int, direction: str
+              ) -> List[str]:
+  """Shift list a certain number of times."""
   new_list = copy.deepcopy(list_to_shift)
   for _ in range(0, number_to_shift):
     if direction == 'forward':
@@ -21,23 +24,26 @@ def shift_list(list_to_shift, number_to_shift, direction):
       new_list.insert(0, last_item)
       # Remove the last item
       new_list.pop()
+
   return new_list
 
 
-# Fill key to specified length
-def fill_key(key, length):
-  newKey = key
-  while len(newKey) < length:
-    if (length - len(newKey)) >= len(key):
-      newKey += key
+def fill_key(key: str, length: int) -> str:
+  """Fill key to the specified length."""
+  new_key = key
+  while len(new_key) < length:
+    if (length - len(new_key)) >= len(key):
+      new_key += key
     else:
-      number_to_slice = int(float(length) % float(len(newKey)))
-      newKey += key[:number_to_slice]
-  return newKey
+      number_to_slice = int(float(length) % float(len(new_key)))
+      new_key += key[:number_to_slice]
+
+  return new_key
 
 
-# Translate data
-def vig_crypt(raw_string, user_key, crypt_base, operation):
+def vig_crypt(raw_string: str, user_key: str, crypt_base: List[str],
+              operation: str) -> str:
+  """Translate data."""
   # Set up string to store translated message
   translated_msg = ''
 
@@ -60,18 +66,17 @@ def vig_crypt(raw_string, user_key, crypt_base, operation):
     shifted_crypt_base = shift_list(crypt_base, key_letter_pos,
                                     shift_dirs[operation])
 
-    # Get the translated letter, add to translated message
+    # Get the translated letter, add to the translated message
     translated_msg += shifted_crypt_base[letter_pos]
 
     # Increment n counter
     n += 1
 
-  # Return decrypted string
   return f'{operation}ed message: {translated_msg}'
 
 
-# Main function
-def vigenere():
+def vigenere() -> str:
+  """Main function."""
   # Ask user to encrypt/decrypt
   operation = input('Would you like to (e)ncrypt or (d)ecrypt? ').lower()
 
@@ -83,8 +88,7 @@ def vigenere():
     operation = 'Decrypt'
     string_crypt = input('Please enter a message to decrypt: ')
   else:
-    print('Please enter a valid operation.')
-    quit()
+    raise Exception(f'Incorrect operation entered: {operation}')
 
   # Uppercase string and remove spaces
   string_crypt = string_crypt.upper().replace(" ", "")
@@ -95,7 +99,7 @@ def vigenere():
 
   # Strip punctuation and digits from string
   string_crypt = (string_crypt.translate(remove_punctuation)
-                            .translate(remove_digits))
+                              .translate(remove_digits))
 
   # Ask user for key, make uppercase and remove spaces
   key = input('Please enter your key (a word): ').upper().replace(" ", "")
@@ -111,5 +115,6 @@ def vigenere():
   return vig_crypt(string_crypt, key, crypt_base, operation)
 
 
-# Call main function, print returned data
-print(vigenere())
+if __name__ == '__main__':
+  # Call main function, print returned data
+  print(vigenere())

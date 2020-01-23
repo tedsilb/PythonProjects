@@ -1,5 +1,6 @@
-# Guessing game - try to guess the number
-# By Ted Silbernagel
+"""Guessing game - try to guess the number
+By Ted Silbernagel
+"""
 
 import random
 

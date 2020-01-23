@@ -1,10 +1,11 @@
-# This program will flip a coin repeatedly, keeping track of heads and tails
-# By Ted Silbernagel
+"""This program will flip a coin repeatedly, keeping track of heads and tails.
+By Ted Silbernagel
+"""
 
 import random
 
 
-def is_number(nbr) -> bool:
+def is_number(nbr: any) -> bool:
   try:
     int(nbr)
     return True
@@ -60,6 +61,7 @@ def flip_coin() -> None:
     elif is_number(want_to_quit):
       times_to_run = int(want_to_quit)
       want_to_quit = ''
+
 
 # Call function
 print('This program will flip a coin and keep track of '

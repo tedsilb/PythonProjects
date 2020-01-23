@@ -1,10 +1,11 @@
-# This program will allow for many mathematical operations on two numbers
-# By Ted Silbernagel
+"""This program will allow for many mathematical operations on two numbers.
+By Ted Silbernagel
+"""
 
-from typing import Text, Tuple
+from typing import Tuple
 
 
-def get_operation() -> Text:
+def get_operation() -> str:
   # Gather and parse operation
   print('Calculator - please select what calculation '
         'you would like to perform:')
@@ -34,7 +35,7 @@ def get_operation() -> Text:
     quit()
 
 
-def get_numbers(operation: Text) -> Tuple[float, float]:
+def get_numbers(operation: str) -> Tuple[float, float]:
   # Gather numbers from user
   if operation == 'add':
     first_no = input('Enter first number to add: ')
@@ -54,10 +55,12 @@ def get_numbers(operation: Text) -> Tuple[float, float]:
   elif operation == 'modulo':
     first_no = input('Enter the number to divide (numerator): ')
     second_no = input('Enter the number to divide by (denominator): ')
+  else:
+    raise Exception(f'Incorrect operation entered: {operation}')
   return float(first_no), float(second_no)
 
 
-def calculate(first_no: float, second_no: float, method: Text) -> float:
+def calculate(first_no: float, second_no: float, method: str) -> float:
   if method == 'add':
     return first_no + second_no
   elif method == 'subtract':
@@ -73,7 +76,7 @@ def calculate(first_no: float, second_no: float, method: Text) -> float:
 
 
 def print_result(first_no: float, second_no: float, result: float,
-                 operation: Text) -> None:
+                 operation: str) -> None:
   # Print numbers based on operation
   if operation == 'add':
     print(f'Calculated: {first_no} plus {second_no} equals {result}')
@@ -103,6 +106,7 @@ def run_calculator() -> None:
 
   # Print return values for user
   print_result(first_no, second_no, calculated_value, operation)
+
 
 # Call function
 run_calculator()

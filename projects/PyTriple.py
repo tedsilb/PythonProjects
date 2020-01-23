@@ -1,10 +1,10 @@
-# Check to see if three sides form a pythagorian triple.
-# By Ted Silbernagel
-# https://en.wikipedia.org/wiki/Pythagorean_triple
+"""Check to see if three sides form a Pythagorean triple.
+By Ted Silbernagel
+https://en.wikipedia.org/wiki/Pythagorean_triple
+"""
 
 
-# Define the function that will check for this
-def py_triple(a, b, c):
+def py_triple(a: int, b: int, c: int) -> bool:
   # Figure out which side is the longest
   if (a > b) and (a > c):
     largest_no = a
@@ -18,12 +18,12 @@ def py_triple(a, b, c):
     largest_no = c
     small_no1 = a
     small_no2 = b
+  else:
+    raise Exception(f'Incorrect input: {a} {b} {c}')
 
   # Determine if the squared numbers form a pythagorean triple
-  if largest_no ** 2 == (small_no1 ** 2 + small_no2 ** 2):
-    return True
-  else:
-    return False
+  return largest_no ** 2 == (small_no1 ** 2 + small_no2 ** 2)
+
 
 # Gather numbers from user
 print('Please enter three whole numbers. '

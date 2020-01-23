@@ -1,12 +1,13 @@
-# This program will encrypt and decrypt messages using a Caesar cipher
-# By Ted Silbernagel
+"""This program will encrypt and decrypt messages using a Caesar cipher.
+By Ted Silbernagel
+"""
 
 import string
-from typing import List, Text
+from typing import List
 
 
-def caesar_encrypt(list_to_encrypt: List[Text], encryption_key: Text,
-                   crypt_base: List[Text]) -> Text:
+def caesar_encrypt(list_to_encrypt: List[str], encryption_key: int,
+                   crypt_base: List[str]) -> str:
   # List to store encrypted words
   encrypted_list = []
 
@@ -23,12 +24,11 @@ def caesar_encrypt(list_to_encrypt: List[Text], encryption_key: Text,
   # Rejoin list to string
   encrypted_string = ' '.join(encrypted_list)
 
-  # Return string
   return encrypted_string
 
 
-def caesar_decrypt(list_to_decrypt: List[Text], decryption_key: Text,
-                   crypt_base: List[Text]) -> Text:
+def caesar_decrypt(list_to_decrypt: List[str], decryption_key: int,
+                   crypt_base: List[str]) -> str:
   # List to store decrypted words
   decrypted_list = []
 
@@ -45,11 +45,10 @@ def caesar_decrypt(list_to_decrypt: List[Text], decryption_key: Text,
   # Rejoin list to string
   decrypted_string = ' '.join(decrypted_list)
 
-  # Return string
   return decrypted_string
 
 
-def caesar_crack(list_to_crack: List[Text], crypt_base: List[Text]) -> Text:
+def caesar_crack(list_to_crack: List[str], crypt_base: List[str]) -> str:
   print('Crack starting. Press enter to try again or any other key to exit.')
 
   # Try each combination
@@ -79,10 +78,10 @@ def caesar_crack(list_to_crack: List[Text], crypt_base: List[Text]) -> Text:
   return 'Crack unsuccessful.'
 
 
-def caesar_cipher() -> Text:
+def caesar_cipher() -> str:
   # Set up list of alphabet to use for encryption/decryption
   crypt_base = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-               'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+                'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
   # Ask user to encrypt/decrypt
   operation = input('Would you like to (e)ncrypt, (d)ecrypt, or (c)rack? '
@@ -99,8 +98,7 @@ def caesar_cipher() -> Text:
     operation = 'c'
     string_crypt = input('Please enter the message to crack: ')
   else:
-    print('Please enter a valid operation.')
-    quit()
+    raise Exception(f'Invalid operation entered: {operation}')
 
   # Make translator object to strip punctuation
   translator = str.maketrans('', '', string.punctuation)
@@ -119,6 +117,7 @@ def caesar_cipher() -> Text:
     return caesar_decrypt(list_crypt, key, crypt_base)
   elif operation == 'c':
     return caesar_crack(list_crypt, crypt_base)
+
 
 # Call function, print response
 print(caesar_cipher())

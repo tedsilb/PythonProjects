@@ -1,11 +1,12 @@
-# Super basic bubble sort algorithm
-# By Ted Silbernagel
+"""Super basic bubble sort algorithm.
+By Ted Silbernagel
+"""
 
-from typing import List, Text
+from typing import List
 
 
-# Check if a list is sorted
 def list_is_sorted(list_to_check: List[float]) -> bool:
+  """Check if the list is sorted."""
   for item in list_to_check:
     item_index = list_to_check.index(item)
     if item_index != len(list_to_check) - 1:
@@ -16,8 +17,7 @@ def list_is_sorted(list_to_check: List[float]) -> bool:
   return True
 
 
-# Do the bubble sorting
-def bubble_sort(user_list: Text) -> List[float]:
+def bubble_sort(user_list: str) -> List[float]:
   # First parse the numbers
   list_to_sort = [float(item) for item in user_list.split(',')]
 
@@ -35,12 +35,11 @@ def bubble_sort(user_list: Text) -> List[float]:
           # Switch them
           (list_to_sort[item_index], list_to_sort[next_item_index]
           ) = (list_to_sort[next_item_index], list_to_sort[item_index])
-      else:
-        pass
+
   return list_to_sort
+
 
 # Get data from user, call function
 print('This program will bubble sort a given list of numbers.')
-input_list = input('Please enter some numbers, '
-                  'separated by commas, to be sorted: ')
-print(bubble_sort(input_list))
+print(bubble_sort(input('Please enter some numbers, '
+                        'separated by commas, to be sorted: ')))

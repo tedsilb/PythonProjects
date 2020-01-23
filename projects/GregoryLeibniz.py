@@ -1,4 +1,6 @@
-# Calculates pi to a certain degree of accuracy using the Gregory-Leibniz series
+"""Calculates Pi using the Gregory-Leibniz series.
+By Ted Silbernagel
+"""
 
 import decimal
 
@@ -6,21 +8,26 @@ import decimal
 decimal.setcontext(decimal.Context(prec=100))
 
 
-# Set up function to calculate
 def gregory_leibniz(user_precision: int) -> decimal.Decimal:
   calculated_pi = decimal.Decimal(1.0)
   current_num = decimal.Decimal(3.0)
+
   for i in range(1, user_precision + 1):
     if not i % 100000:
-      print(f'\rCalculating: ({i}/{user_precision})', end ="")
+      print(f'\rCalculating: ({i}/{user_precision})', end="")
+
     num_to_change = decimal.Decimal(1.0) / current_num
+
     if not i % 2:
       calculated_pi += num_to_change
     else:
       calculated_pi -= num_to_change
     current_num += decimal.Decimal(2.0)
+
   print('\n')
+
   return calculated_pi * decimal.Decimal(4.0)
+
 
 # Get precision from user, call function
 print('This program calculates pi to a specific precision '

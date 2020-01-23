@@ -1,20 +1,19 @@
-# Given the weights of types of coins,
-#   estimate the number of coins and the number of wrappers needed.
-# By Ted Silbernagel
+"""Estimate the number of coins and the number of wrappers needed for them.
+By Ted Silbernagel
+"""
 
 import math
-from typing import Text
 
 
 class Coin(object):
-  def __init__(self, name: Text, plural_name: Text, value_per_coin: float,
+  def __init__(self, name: str, plural_name: str, value_per_coin: float,
                weight_per_coin: float, total_weight: float,
                wrapper_capacity: int):
-    # mapped
+    # Mapped
     self.name = name
     self.plural_name = plural_name
 
-    # calculated
+    # Calculated
     self.number_of_coins = math.floor(total_weight / weight_per_coin)
     self.wrappers_needed = math.ceil(self.number_of_coins / wrapper_capacity)
     self.value = self.number_of_coins * value_per_coin

@@ -1,20 +1,22 @@
-# Calculate descriptive statistics for a list of numbers
-# By Ted Silbernagel
+"""Calculate descriptive statistics for a list of numbers.
+By Ted Silbernagel
+"""
 
-from typing import List, Text, Dict, Union
+from typing import Dict, List, Union
+
 
 def gather_numbers() -> List[float]:
   # Prepare to gather numbers
   numbers_list = []
-  stop_gathering = False
 
   # Gather list of numbers from user
-  while not stop_gathering:
+  while True:
     entered_number = input('Please enter a number (press enter to stop): ')
     if entered_number == '':
-      stop_gathering = True
+      break
     else:
       numbers_list.append(float(entered_number))
+
   return numbers_list
 
 
@@ -24,15 +26,16 @@ def calc_mean(data: List[float]) -> float:
 
 def calc_median(data: List[float]) -> Union[float, List[float]]:
   sorted_data = sorted(data)
-  # Determine if list is even or odd length
+
+  # If the list is even length, grab the middle two numbers
   if not len(sorted_data) % 2:
-    # If it's even, grab the middle two numbers
     return [
       sorted_data[int((len(sorted_data) / 2) - 1)],
       sorted_data[int(len(sorted_data) / 2)],
     ]
+
+  # If list is odd length, grab the middle number
   else:
-    # If it's odd, grab the middle number
     return sorted_data[len(sorted_data) // 2]
 
 
@@ -46,8 +49,7 @@ def calc_variance(data: List[float]) -> float:
   return sum([((num - mean) ** 2) for num in data]) / len(data)
 
 
-# Define function to calculate stats
-def descriptive_stats(numbers_list: List[float]) -> Dict[Text, float]:
+def descriptive_stats(numbers_list: List[float]) -> Dict[str, float]:
   # Round based on user input
   round_to = int(input('How many decimal places would you like your numbers '
                        'rounded to? '))
@@ -85,8 +87,8 @@ def descriptive_stats(numbers_list: List[float]) -> Dict[Text, float]:
                         round_to),
   })
 
-  # Return dict of data
   return return_data
+
 
 # Call function to gather numbers and calculate descriptive stats
 response = descriptive_stats(gather_numbers())

@@ -1,5 +1,6 @@
-# Generate a multiplication table.
-# By Ted Silbernagel
+"""Generate a multiplication table.
+By Ted Silbernagel
+"""
 
 
 def gen_multi_table(to_gen: int) -> None:
@@ -13,6 +14,7 @@ def gen_multi_table(to_gen: int) -> None:
       current_row += f'   {number} '
     else:
       current_row += f'  {number} '
+
   print(current_row)
 
   # Print rows
@@ -22,6 +24,7 @@ def gen_multi_table(to_gen: int) -> None:
       current_row = f'   {number} '
     else:
       current_row = f'  {number} '
+
     # Start multiplications
     for multi_num in range(1, to_gen):
       if (multi_num * number) < 10:
@@ -30,7 +33,9 @@ def gen_multi_table(to_gen: int) -> None:
         current_row += f'  {multi_num * number} '
       else:
         current_row += f' {multi_num * number} '
+
     print(current_row)
+
 
 # Gather the number of rows/columns to generate
 print('This program will generate a multiplication table (up to 31, cleanly).')

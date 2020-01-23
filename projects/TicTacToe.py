@@ -1,23 +1,21 @@
-# A Tic Tac Toe program. Uses tkinter for GUI.
-# By Ted Silbernagel
+"""A Tic Tac Toe program.
+Uses tkinter for GUI.
+By Ted Silbernagel
+"""
 
-# Import dependencies
-import tkinter as tk
-from random import choice
-from random import choices
 from functools import partial
+import random
+import tkinter as tk
 
-# Set up class for GUI
+
 class TicTacToe:
+  """Class for the GUI."""
   def __init__(self, master):
     # Set up core
     self.master = master
     master.title('Tic Tac Toe')
 
-    # Set up base variables
-    self.available_cells      = []
-    self.user_chosen_cells    = []
-    self.cpu_chosen_cells     = []
+    # Constants
     self.user_icon            = 'X'
     self.cpu_icon             = 'O'
     self.cpu_win_msg          = 'Computer wins :('
@@ -33,34 +31,33 @@ class TicTacToe:
     self.button_height        = 1
     self.button_width         = 2
 
+    # Base variables
+    self.available_cells   = []
+    self.user_chosen_cells = []
+    self.cpu_chosen_cells  = []
+    self.cpu_choice        = ''
+    self.cpu_started       = False
+    self.buttons_enabled   = True
+
     # Define buttons
-    self.btn_a1 = tk.Button(master,
-                            height=self.button_height, width=self.button_width,
-                            font=self.button_font)
-    self.btn_a2 = tk.Button(master,
-                            height=self.button_height, width=self.button_width,
-                            font=self.button_font)
-    self.btn_a3 = tk.Button(master,
-                            height=self.button_height, width=self.button_width,
-                            font=self.button_font)
-    self.btn_b1 = tk.Button(master,
-                            height=self.button_height, width=self.button_width,
-                            font=self.button_font)
-    self.btn_b2 = tk.Button(master,
-                            height=self.button_height, width=self.button_width,
-                            font=self.button_font)
-    self.btn_b3 = tk.Button(master,
-                            height=self.button_height, width=self.button_width,
-                            font=self.button_font)
-    self.btn_c1 = tk.Button(master,
-                            height=self.button_height, width=self.button_width,
-                            font=self.button_font)
-    self.btn_c2 = tk.Button(master,
-                            height=self.button_height, width=self.button_width,
-                            font=self.button_font)
-    self.btn_c3 = tk.Button(master,
-                            height=self.button_height, width=self.button_width,
-                            font=self.button_font)
+    self.btn_a1 = tk.Button(master, font=self.button_font,
+                            height=self.button_height, width=self.button_width)
+    self.btn_a2 = tk.Button(master, font=self.button_font,
+                            height=self.button_height, width=self.button_width)
+    self.btn_a3 = tk.Button(master, font=self.button_font,
+                            height=self.button_height, width=self.button_width)
+    self.btn_b1 = tk.Button(master, font=self.button_font,
+                            height=self.button_height, width=self.button_width)
+    self.btn_b2 = tk.Button(master, font=self.button_font,
+                            height=self.button_height, width=self.button_width)
+    self.btn_b3 = tk.Button(master, font=self.button_font,
+                            height=self.button_height, width=self.button_width)
+    self.btn_c1 = tk.Button(master, font=self.button_font,
+                            height=self.button_height, width=self.button_width)
+    self.btn_c2 = tk.Button(master, font=self.button_font,
+                            height=self.button_height, width=self.button_width)
+    self.btn_c3 = tk.Button(master, font=self.button_font,
+                            height=self.button_height, width=self.button_width)
 
     # Set grid locations
     self.btn_a1.grid(row=1, column=1)
@@ -99,12 +96,12 @@ class TicTacToe:
     # Reset game, initially
     self.reset_game()
 
-  # Set up function to handle button presses
-  def button_press(self, button, grid_loc):
-    # Ensure buttons are enabled
+  def button_press(self, button: tk.Button, grid_loc: str) -> None:
+    """Handle button presses."""
+    # Ensure that buttons are enabled
     if self.buttons_enabled:
-      # Ensure cell isn't yet selected
-      if button['text'] == '':
+      # Ensure the cell isn't yet selected
+      if not button['text']:
         # Set the cell as checked and chosen, remove from available
         button['text'] = self.user_icon
         # Set cell as chosen, remove from available
@@ -114,7 +111,7 @@ class TicTacToe:
         if self.has_won(self.user_icon):
           self.bottom_label['text'] = self.user_win_msg
           self.buttons_enabled = False
-        # If you didn't win, take computer's turn
+        # If you didn't win, take the computer's turn
         else:
           self.take_cpu_turn()
 
@@ -122,8 +119,8 @@ class TicTacToe:
       else:
         self.bottom_label['text'] = self.already_selected_msg
 
-  # Set up function to take CPU turn
-  def take_cpu_turn(self):
+  def take_cpu_turn(self) -> None:
+    """Take CPU turn."""
     self.bottom_label['text'] = self.cpu_turn_msg
     # Some winning strategies
     if self.cpu_started:
@@ -138,119 +135,142 @@ class TicTacToe:
       elif (self.user_chosen_cells == ['B2', 'C3']
             and self.cpu_chosen_cells == ['A1', 'C1']):
         self.cpu_choice = 'A3'
+
     # Block winning moves by user
     # A block
-    elif (('A2' in self.user_chosen_cells and 'A3' in self.user_chosen_cells)
-          or ('B1' in self.user_chosen_cells and 'C1' in self.user_chosen_cells)
-          or ('B2' in self.user_chosen_cells and 'C3' in self.user_chosen_cells)) \
-        and 'A1' in self.available_cells:
+    elif ((('A2' in self.user_chosen_cells
+            and 'A3' in self.user_chosen_cells)
+           or ('B1' in self.user_chosen_cells
+               and 'C1' in self.user_chosen_cells)
+           or ('B2' in self.user_chosen_cells
+               and 'C3' in self.user_chosen_cells))
+          and 'A1' in self.available_cells):
       self.cpu_choice = 'A1'
-    elif (('A1' in self.user_chosen_cells and 'A3' in self.user_chosen_cells)
-          or ('B2' in self.user_chosen_cells and 'C2' in self.user_chosen_cells)) \
-        and 'A2' in self.available_cells:
+    elif ((('A1' in self.user_chosen_cells
+            and 'A3' in self.user_chosen_cells)
+           or ('B2' in self.user_chosen_cells
+               and 'C2' in self.user_chosen_cells))
+          and 'A2' in self.available_cells):
       self.cpu_choice = 'A2'
-    elif (('A1' in self.user_chosen_cells and 'A2' in self.user_chosen_cells)
-          or ('B3' in self.user_chosen_cells and 'C3' in self.user_chosen_cells)
-          or ('C1' in self.user_chosen_cells and 'B2' in self.user_chosen_cells)) \
-        and 'A3' in self.available_cells:
+    elif ((('A1' in self.user_chosen_cells
+            and 'A2' in self.user_chosen_cells)
+           or ('B3' in self.user_chosen_cells
+               and 'C3' in self.user_chosen_cells)
+           or ('C1' in self.user_chosen_cells
+               and 'B2' in self.user_chosen_cells))
+          and 'A3' in self.available_cells):
       self.cpu_choice = 'A3'
     # B block
-    elif (('B2' in self.user_chosen_cells and 'B3' in self.user_chosen_cells)
-          or ('A1' in self.user_chosen_cells and 'C1' in self.user_chosen_cells)) \
-        and 'B1' in self.available_cells:
+    elif ((('B2' in self.user_chosen_cells
+            and 'B3' in self.user_chosen_cells)
+           or ('A1' in self.user_chosen_cells
+               and 'C1' in self.user_chosen_cells))
+          and 'B1' in self.available_cells):
       self.cpu_choice = 'B1'
-    elif (('B1' in self.user_chosen_cells and 'B3' in self.user_chosen_cells)
-          or ('A2' in self.user_chosen_cells and 'C2' in self.user_chosen_cells)
-          or ('A1' in self.user_chosen_cells and 'C3' in self.user_chosen_cells)) \
-        and 'B2' in self.available_cells:
+    elif ((('B1' in self.user_chosen_cells
+            and 'B3' in self.user_chosen_cells)
+           or ('A2' in self.user_chosen_cells
+               and 'C2' in self.user_chosen_cells)
+           or ('A1' in self.user_chosen_cells
+               and 'C3' in self.user_chosen_cells))
+          and 'B2' in self.available_cells):
       self.cpu_choice = 'B2'
-    elif (('B1' in self.user_chosen_cells and 'B2' in self.user_chosen_cells)
-          or ('A3' in self.user_chosen_cells and 'C3' in self.user_chosen_cells)) \
-        and 'B3' in self.available_cells:
+    elif ((('B1' in self.user_chosen_cells
+            and 'B2' in self.user_chosen_cells)
+           or ('A3' in self.user_chosen_cells
+               and 'C3' in self.user_chosen_cells))
+         and 'B3' in self.available_cells):
       self.cpu_choice = 'B3'
     # C block
-    elif (('C2' in self.user_chosen_cells and 'C3' in self.user_chosen_cells)
-          or ('A1' in self.user_chosen_cells and 'B1' in self.user_chosen_cells)
-          or ('B2' in self.user_chosen_cells and 'A3' in self.user_chosen_cells)) \
-        and 'C1' in self.available_cells:
+    elif ((('C2' in self.user_chosen_cells
+            and 'C3' in self.user_chosen_cells)
+           or ('A1' in self.user_chosen_cells
+               and 'B1' in self.user_chosen_cells)
+           or ('B2' in self.user_chosen_cells
+               and 'A3' in self.user_chosen_cells))
+          and 'C1' in self.available_cells):
       self.cpu_choice = 'C1'
-    elif (('C1' in self.user_chosen_cells and 'C3' in self.user_chosen_cells)
-          or ('A2' in self.user_chosen_cells and 'B2' in self.user_chosen_cells)) \
-        and 'C2' in self.available_cells:
+    elif ((('C1' in self.user_chosen_cells
+            and 'C3' in self.user_chosen_cells)
+           or ('A2' in self.user_chosen_cells
+               and 'B2' in self.user_chosen_cells))
+          and 'C2' in self.available_cells):
       self.cpu_choice = 'C2'
-    elif (('C1' in self.cpu_chosen_cells and 'C2' in self.user_chosen_cells)
-          or ('B3' in self.user_chosen_cells and 'C3' in self.user_chosen_cells)
-          or ('C1' in self.user_chosen_cells and 'B2' in self.user_chosen_cells)) \
-        and 'C3' in self.available_cells:
+    elif ((('C1' in self.cpu_chosen_cells
+            and 'C2' in self.user_chosen_cells)
+           or ('B3' in self.user_chosen_cells
+               and 'C3' in self.user_chosen_cells)
+           or ('C1' in self.user_chosen_cells
+               and 'B2' in self.user_chosen_cells))
+          and 'C3' in self.available_cells):
       self.cpu_choice = 'C3'
 
     # Take winning moves for cpu
     # A block
-    elif (('A2' in self.cpu_chosen_cells and 'A3' in self.cpu_chosen_cells)
-          or ('B1' in self.cpu_chosen_cells and 'C1' in self.cpu_chosen_cells)
-          or ('B2' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells)) \
-        and 'A1' in self.available_cells:
+    elif ((('A2' in self.cpu_chosen_cells and 'A3' in self.cpu_chosen_cells)
+           or ('B1' in self.cpu_chosen_cells and 'C1' in self.cpu_chosen_cells)
+           or ('B2' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells))
+          and 'A1' in self.available_cells):
       self.cpu_choice = 'A1'
-    elif (('A1' in self.cpu_chosen_cells and 'A3' in self.cpu_chosen_cells)
-          or ('B2' in self.cpu_chosen_cells and 'C2' in self.cpu_chosen_cells)) \
-        and 'A2' in self.available_cells:
+    elif ((('A1' in self.cpu_chosen_cells and 'A3' in self.cpu_chosen_cells)
+           or ('B2' in self.cpu_chosen_cells and 'C2' in self.cpu_chosen_cells))
+          and 'A2' in self.available_cells):
       self.cpu_choice = 'A2'
-    elif (('A1' in self.cpu_chosen_cells and 'A2' in self.cpu_chosen_cells)
-          or ('B3' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells)
-          or ('C1' in self.cpu_chosen_cells and 'B2' in self.cpu_chosen_cells)) \
-        and 'A3' in self.available_cells:
+    elif ((('A1' in self.cpu_chosen_cells and 'A2' in self.cpu_chosen_cells)
+           or ('B3' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells)
+           or ('C1' in self.cpu_chosen_cells and 'B2' in self.cpu_chosen_cells))
+          and 'A3' in self.available_cells):
       self.cpu_choice = 'A3'
     # B block
-    elif (('B2' in self.cpu_chosen_cells and 'B3' in self.cpu_chosen_cells)
-          or ('A1' in self.cpu_chosen_cells and 'C1' in self.cpu_chosen_cells)) \
-        and 'B1' in self.available_cells:
+    elif ((('B2' in self.cpu_chosen_cells and 'B3' in self.cpu_chosen_cells)
+           or ('A1' in self.cpu_chosen_cells and 'C1' in self.cpu_chosen_cells))
+          and 'B1' in self.available_cells):
       self.cpu_choice = 'B1'
-    elif (('B1' in self.cpu_chosen_cells and 'B3' in self.cpu_chosen_cells)
-          or ('A2' in self.cpu_chosen_cells and 'C2' in self.cpu_chosen_cells)
-          or ('A1' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells)) \
-        and 'B2' in self.available_cells:
+    elif ((('B1' in self.cpu_chosen_cells and 'B3' in self.cpu_chosen_cells)
+           or ('A2' in self.cpu_chosen_cells and 'C2' in self.cpu_chosen_cells)
+           or ('A1' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells))
+          and 'B2' in self.available_cells):
       self.cpu_choice = 'B2'
-    elif (('B1' in self.cpu_chosen_cells and 'B2' in self.cpu_chosen_cells)
-          or ('A3' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells)) \
-        and 'B3' in self.available_cells:
+    elif ((('B1' in self.cpu_chosen_cells and 'B2' in self.cpu_chosen_cells)
+           or ('A3' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells))
+          and 'B3' in self.available_cells):
       self.cpu_choice = 'B3'
     # C block
-    elif (('C2' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells)
-          or ('A1' in self.cpu_chosen_cells and 'B1' in self.cpu_chosen_cells)
-          or ('B2' in self.cpu_chosen_cells and 'A3' in self.cpu_chosen_cells)) \
-        and 'C1' in self.available_cells:
+    elif ((('C2' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells)
+           or ('A1' in self.cpu_chosen_cells and 'B1' in self.cpu_chosen_cells)
+           or ('B2' in self.cpu_chosen_cells and 'A3' in self.cpu_chosen_cells))
+          and 'C1' in self.available_cells):
       self.cpu_choice = 'C1'
-    elif (('C1' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells)
-          or ('A2' in self.cpu_chosen_cells and 'B2' in self.cpu_chosen_cells)) \
-        and 'C2' in self.available_cells:
+    elif ((('C1' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells)
+           or ('A2' in self.cpu_chosen_cells and 'B2' in self.cpu_chosen_cells))
+          and 'C2' in self.available_cells):
       self.cpu_choice = 'C2'
-    elif (('C1' in self.cpu_chosen_cells and 'C2' in self.cpu_chosen_cells)
-          or ('B3' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells)
-          or ('A1' in self.cpu_chosen_cells and 'B2' in self.cpu_chosen_cells)) \
-        and 'C3' in self.available_cells:
+    elif ((('C1' in self.cpu_chosen_cells and 'C2' in self.cpu_chosen_cells)
+           or ('B3' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells)
+           or ('A1' in self.cpu_chosen_cells and 'B2' in self.cpu_chosen_cells))
+          and 'C3' in self.available_cells):
       self.cpu_choice = 'C3'
 
     # Take smart starts
     # User start
     elif len(self.user_chosen_cells) == 1 and not self.cpu_chosen_cells:
       if self.user_chosen_cells[0] == 'B2':
-        self.cpu_choice = choice(['A1', 'A3', 'C1', 'C3'])
+        self.cpu_choice = random.choice(['A1', 'A3', 'C1', 'C3'])
       else:
         self.cpu_choice = 'B2'
     # CPU start
     elif not self.user_chosen_cells:
-      self.cpu_start_cells = ['A1', 'A3', 'C1', 'C3', 'B2',
-                              'A2', 'B3', 'C2', 'B1']
-      self.cpu_start_weights = [.2, .2, .2, .2, .1,
-                                .025, .025, .025, .025]
-      self.cpu_choice = choices(population=self.cpu_start_cells,
-                                weights=self.cpu_start_weights, k=1)[0]
+      self.cpu_choice = random.choices(
+          population=['A1', 'A3', 'C1', 'C3', 'B2', 'A2', 'B3', 'C2', 'B1'],
+          weights=[.2, .2, .2, .2, .1, .025, .025, .025, .025],
+          k=1
+          )[0]
 
     # If no winning moves for user or cpu, choose at random
     else:
       # First make sure it's not a tie
       if self.available_cells:
-        self.cpu_choice = choice(self.available_cells)
+        self.cpu_choice = random.choice(self.available_cells)
       # If it's a tie, end the game
       else:
         self.bottom_label['text'] = self.tie_msg
@@ -289,12 +309,14 @@ class TicTacToe:
       self.bottom_label['text'] = self.user_turn_msg
 
     # Check for tie
-    if not self.available_cells and self.bottom_label['text'] not in [self.cpu_win_msg, self.user_win_msg]:
+    if (not self.available_cells
+        and self.bottom_label['text'] not in [self.cpu_win_msg,
+                                              self.user_win_msg]):
       self.bottom_label['text'] = self.tie_msg
       self.buttons_enabled = False
 
-  # Set up function to check if user/cpu won
-  def has_won(self, icon):
+  def has_won(self, icon: str) -> bool:
+    """Check if user/CPU won."""
     winning_scenarios = [
       [self.btn_a1['text'], self.btn_a2['text'], self.btn_a3['text']],
       [self.btn_b1['text'], self.btn_b2['text'], self.btn_b3['text']],
@@ -306,10 +328,10 @@ class TicTacToe:
       [self.btn_c1['text'], self.btn_b2['text'], self.btn_a3['text']],
     ]
 
-    return ([icon, icon, icon] in winning_scenarios)
+    return [icon, icon, icon] in winning_scenarios
 
   # Set up function to reset game
-  def reset_game(self):
+  def reset_game(self) -> None:
     self.buttons_enabled = True
     self.btn_a1['text'] = ''
     self.btn_a2['text'] = ''
@@ -323,13 +345,13 @@ class TicTacToe:
     self.bottom_label['text'] = self.new_game_msg
     self.user_chosen_cells.clear()
     self.cpu_chosen_cells.clear()
-    self.available_cells = ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3']
+    self.available_cells = ['A1', 'A2', 'A3', 'B1', 'B2', 'B3',
+                            'C1', 'C2', 'C3']
     # Randomly have cpu start game
-    if choice([True, False]):
-      self.cpu_started = True
+    self.cpu_started = random.choice([True, False])
+    if self.cpu_started:
       self.take_cpu_turn()
-    else:
-      self.cpu_started = False
+
 
 # Initialise GUI
 root = tk.Tk()

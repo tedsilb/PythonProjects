@@ -1,5 +1,6 @@
-# A simple FizzBuzz program
-# By Ted Silbernagel
+"""A simple FizzBuzz program.
+By Ted Silbernagel
+"""
 
 
 def fizz_buzz() -> None:

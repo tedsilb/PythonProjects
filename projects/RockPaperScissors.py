@@ -1,12 +1,12 @@
-# Rock paper scissors game!
-# By Ted Silbernagel
+"""Rock paper scissors game.
+By Ted Silbernagel
+"""
 
-# Import dependencies
 import random
+from typing import Dict
 
 
-# Define function for game
-def play_rps(user_choice):
+def play_rps(user_choice: str) -> Dict[str, str]:
   # Parse user choice
   user_choice = user_choice.lower()
   if user_choice in ['r', 'rock']:
@@ -15,31 +15,33 @@ def play_rps(user_choice):
     usr_choice = 'paper'
   elif user_choice in ['s', 'scissors']:
     usr_choice = 'scissors'
+  else:
+    raise Exception(f'Invalid choice selected: {user_choice}')
 
   # Pick a random choice
-  cpuChoice = random.choice(['rock', 'paper', 'scissors'])
+  cpu_choice = random.choice(['rock', 'paper', 'scissors'])
 
   # Set up return values dict
   results = {
     'usr_choice': usr_choice,
-    'cpuChoice': cpuChoice,
+    'cpu_choice': cpu_choice,
   }
 
   # Check to see who won, return it
-  if usr_choice == cpuChoice:
+  if usr_choice == cpu_choice:
     results['result'] = 'Tie.'
-  elif (usr_choice == 'rock' and cpuChoice == 'scissors'
-        or usr_choice == 'paper' and cpuChoice == 'rock'
-        or usr_choice == 'scissors' and cpuChoice == 'paper'):
+  elif (usr_choice == 'rock' and cpu_choice == 'scissors'
+        or usr_choice == 'paper' and cpu_choice == 'rock'
+        or usr_choice == 'scissors' and cpu_choice == 'paper'):
     results['result'] = 'You win!'
   else:
     results['result'] = 'You lose :('
 
   return results
 
+
 # Call function, display results
 print('Rock, paper, scissors!')
-user_input = input('Please select (r)ock, (p)aper, or (s)cissors: ')
-response = play_rps(user_input)
-print(f'You picked {response["usrChoice"]}, '
-      f'the computer picked {response["cpuChoice"]}. {response["result"]}')
+response = play_rps(input('Please select (r)ock, (p)aper, or (s)cissors: '))
+print(f'You picked {response["usr_choice"]}, '
+      f'the computer picked {response["cpu_choice"]}. {response["result"]}')

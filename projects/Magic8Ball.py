@@ -1,13 +1,15 @@
-# Magic 8 ball.
-# By Ted Silbernagel
+"""Magic 8-ball.
+By Ted Silbernagel
+"""
 
 import random
-from typing import Text, Dict
+from typing import Dict
 
 
-def magic_8_ball(question: Text) -> Dict[Text, Text]:
-  # Set up array to store responses and values
-  # Answers from https://en.wikipedia.org/wiki/Magic_8-Ball#Possible_answers
+def magic_8_ball(question: str) -> Dict[str, str]:
+  """Set up array to store responses and values.
+  Answers from https://en.wikipedia.org/wiki/Magic_8-Ball#Possible_answers
+  """
   responses = [
     ['It is certain.', 'positive'],
     ['It is decidedly so.', 'positive'],
@@ -36,7 +38,6 @@ def magic_8_ball(question: Text) -> Dict[Text, Text]:
   # Choose a random response
   chosen_response = responses[random.randint(0, len(responses) - 1)]
 
-  # Return data
   return {
     'question': question,
     'answer': chosen_response[0],
