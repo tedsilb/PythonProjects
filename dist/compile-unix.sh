@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# This script uses Pyinstaller to build an Unix (Mac OR Linux) binary
+# This script uses Pyinstaller to build a Unix (Mac OR Linux) binary
 #   deletes temp files.
 # Run this from a terminal,
 #   using the name of the file as the argument (no extension)
