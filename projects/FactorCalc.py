@@ -19,9 +19,9 @@ def calc_factors(user_no: int) -> Dict[str, float]:
       all_factors.append(number)
 
   return {
-    'userNo': user_no,
-    'all_factors': all_factors,
-    'timeTaken': round(time.time() - start_time, 6),
+      'userNo': user_no,
+      'all_factors': all_factors,
+      'timeTaken': round(time.time() - start_time, 6),
   }
 
 

@@ -29,16 +29,17 @@ def fibonacci_gen(n_term: int) -> Dict[str, float]:
       fib_no = prev_no1 + prev_no2
 
   return {
-    'nTerm': n_term,
-    'fib_no': fib_no,
-    'timeTaken': round(time.time() - start_time, 6),
+      'nTerm': n_term,
+      'fib_no': fib_no,
+      'timeTaken': round(time.time() - start_time, 6),
   }
 
 
 # Get n term from user
 print('This program will get you a specific number in the Fibonacci sequence.')
-user_n_term = int(input('Please enter which number in the sequence '
-                        'you would like: '))
+user_n_term = int(
+    input('Please enter which number in the sequence '
+          'you would like: '))
 
 # Call function, print response
 response = fibonacci_gen(user_n_term)

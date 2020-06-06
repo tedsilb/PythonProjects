@@ -80,12 +80,14 @@ def caesar_crack(list_to_crack: List[str], crypt_base: List[str]) -> str:
 
 def caesar_cipher() -> str:
   # Set up list of alphabet to use for encryption/decryption
-  crypt_base = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-                'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+  crypt_base = [
+      'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
+      'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+  ]
 
   # Ask user to encrypt/decrypt
-  operation = input('Would you like to (e)ncrypt, (d)ecrypt, or (c)rack? '
-                   ).lower()
+  operation = input(
+      'Would you like to (e)ncrypt, (d)ecrypt, or (c)rack? ').lower()
 
   # Gather string from user
   if operation in ['encrypt', 'e']:

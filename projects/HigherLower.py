@@ -33,4 +33,5 @@ def higher_lower() -> None:
     elif guessed_number < number_to_guess:
       print('Higher!')
 
+
 higher_lower()

@@ -15,9 +15,11 @@ def convert_pig_latin(input_string):
   # Set up lists for reference
   pig_latin_list = []
   vowels = ['a', 'e', 'i', 'o', 'u']
-  consonant_clusters = ['bl', 'br', 'ch', 'cl', 'cr', 'dr', 'fl', 'fr', 'gl',
-                        'gr', 'pl', 'pr', 'sc', 'sh', 'sk', 'sl', 'sm', 'sn',
-                        'sp', 'st', 'sw', 'th', 'tr', 'tw', 'wh', 'wr']
+  consonant_clusters = [
+      'bl', 'br', 'ch', 'cl', 'cr', 'dr', 'fl', 'fr', 'gl', 'gr', 'pl', 'pr',
+      'sc', 'sh', 'sk', 'sl', 'sm', 'sn', 'sp', 'st', 'sw', 'th', 'tr', 'tw',
+      'wh', 'wr'
+  ]
 
   # Convert each word to pig latin
   for word in input_list:

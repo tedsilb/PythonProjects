@@ -30,8 +30,8 @@ def calc_median(data: List[float]) -> Union[float, List[float]]:
   # If the list is even length, grab the middle two numbers
   if not len(sorted_data) % 2:
     return [
-      sorted_data[int((len(sorted_data) / 2) - 1)],
-      sorted_data[int(len(sorted_data) / 2)],
+        sorted_data[int((len(sorted_data) / 2) - 1)],
+        sorted_data[int(len(sorted_data) / 2)],
     ]
 
   # If list is odd length, grab the middle number
@@ -46,45 +46,51 @@ def calc_mode(data: List[float]) -> float:
 
 def calc_variance(data: List[float]) -> float:
   mean = calc_mean(data)
-  return sum([((num - mean) ** 2) for num in data]) / len(data)
+  return sum([((num - mean)**2) for num in data]) / len(data)
 
 
 def descriptive_stats(numbers_list: List[float]) -> Dict[str, float]:
   # Round based on user input
-  round_to = int(input('How many decimal places would you like your numbers '
-                       'rounded to? '))
+  round_to = int(
+      input('How many decimal places would you like your numbers '
+            'rounded to? '))
 
   # Set up return data dict
   return_data = {
-    'mean': round(calc_mean(numbers_list), round_to),
-    'median': calc_median(numbers_list),
-    'mode': calc_mode(numbers_list),
-    'min': min(numbers_list),
-    'max': max(numbers_list),
-    'variance': round(calc_variance(numbers_list), round_to),
+      'mean': round(calc_mean(numbers_list), round_to),
+      'median': calc_median(numbers_list),
+      'mode': calc_mode(numbers_list),
+      'min': min(numbers_list),
+      'max': max(numbers_list),
+      'variance': round(calc_variance(numbers_list), round_to),
   }
 
-  return_data['stDev'] = round(return_data['variance'] ** 0.5, round_to)
+  return_data['stDev'] = round(return_data['variance']**0.5, round_to)
   return_data['stErr'] = round(return_data['stDev'] / len(numbers_list),
                                round_to)
 
   # Ask user for confidence interval
-  return_data['confInt'] = int(input('Please enter a confidence interval '
-                                     '(90, 95, 99): '))
+  return_data['confInt'] = int(
+      input('Please enter a confidence interval '
+            '(90, 95, 99): '))
   t_stats = {
-    90: 1.64,
-    95: 1.96,
-    99: 2.58,
+      90: 1.64,
+      95: 1.96,
+      99: 2.58,
   }
 
   # Calculate confidence interval
   return_data.update({
-    'lowerBound': round(return_data['mean'] - (t_stats[return_data['confInt']]
-                                               * return_data['stErr']),
-                        round_to),
-    'upperBound': round(return_data['mean'] + (t_stats[return_data['confInt']]
-                                               * return_data['stErr']),
-                        round_to),
+      'lowerBound':
+          round(
+              return_data['mean'] -
+              (t_stats[return_data['confInt']] * return_data['stErr']),
+              round_to),
+      'upperBound':
+          round(
+              return_data['mean'] +
+              (t_stats[return_data['confInt']] * return_data['stErr']),
+              round_to),
   })
 
   return return_data

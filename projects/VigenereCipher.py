@@ -7,8 +7,8 @@ import string
 from typing import List
 
 
-def shift_list(list_to_shift: List[str], number_to_shift: int, direction: str
-              ) -> List[str]:
+def shift_list(list_to_shift: List[str], number_to_shift: int,
+               direction: str) -> List[str]:
   """Shift list a certain number of times."""
   new_list = copy.deepcopy(list_to_shift)
   for _ in range(0, number_to_shift):
@@ -49,8 +49,8 @@ def vig_crypt(raw_string: str, user_key: str, crypt_base: List[str],
 
   # Set up dict to determine shift direction
   shift_dirs = {
-    'Encrypt': 'forward',
-    'Decrypt': 'back',
+      'Encrypt': 'forward',
+      'Decrypt': 'back',
   }
 
   # Run through string, translate message
@@ -98,8 +98,8 @@ def vigenere() -> str:
   remove_digits = str.maketrans('', '', string.digits)
 
   # Strip punctuation and digits from string
-  string_crypt = (string_crypt.translate(remove_punctuation)
-                              .translate(remove_digits))
+  string_crypt = (
+      string_crypt.translate(remove_punctuation).translate(remove_digits))
 
   # Ask user for key, make uppercase and remove spaces
   key = input('Please enter your key (a word): ').upper().replace(" ", "")
@@ -108,8 +108,10 @@ def vigenere() -> str:
   key = fill_key(key, len(string_crypt))
 
   # Set up list of letters to use in crypto operations
-  crypt_base = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-                'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+  crypt_base = [
+      'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
+      'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+  ]
 
   # Run translation
   return vig_crypt(string_crypt, key, crypt_base, operation)

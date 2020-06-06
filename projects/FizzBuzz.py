@@ -14,4 +14,5 @@ def fizz_buzz() -> None:
     else:
       print(i)
 
+
 fizz_buzz()

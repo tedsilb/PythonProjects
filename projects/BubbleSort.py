@@ -33,13 +33,16 @@ def bubble_sort(user_list: str) -> List[float]:
         # If out of order,
         if item > next_item:
           # Switch them
-          (list_to_sort[item_index], list_to_sort[next_item_index]
-          ) = (list_to_sort[next_item_index], list_to_sort[item_index])
+          (list_to_sort[item_index],
+           list_to_sort[next_item_index]) = (list_to_sort[next_item_index],
+                                             list_to_sort[item_index])
 
   return list_to_sort
 
 
 # Get data from user, call function
 print('This program will bubble sort a given list of numbers.')
-print(bubble_sort(input('Please enter some numbers, '
-                        'separated by commas, to be sorted: ')))
+print(
+    bubble_sort(
+        input('Please enter some numbers, '
+              'separated by commas, to be sorted: ')))

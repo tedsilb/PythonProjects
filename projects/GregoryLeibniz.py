@@ -34,6 +34,7 @@ print('This program calculates pi to a specific precision '
       'using the Gregory-Leibniz series.')
 print('(Not the number of decimal places - the higher the precision, '
       'the more accurate the calculation will be)')
-user_no = int(input('Please enter the precision you\'d like '
-                    '(at least few hundred thousand): '))
+user_no = int(
+    input('Please enter the precision you\'d like '
+          '(at least few hundred thousand): '))
 print('Result: ' + gregory_leibniz(user_no))

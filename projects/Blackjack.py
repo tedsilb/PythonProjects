@@ -7,6 +7,7 @@ from typing import List
 
 
 class Card(object):
+
   def __init__(self, number, suit, name, value):
     self.number = number
     self.suit = suit
@@ -25,10 +26,13 @@ def print_current_value(current_value: any) -> None:
 def play_blackjack() -> None:
   # Set up deck
   card_deck = []
+
   def gen_card_deck() -> None:
     suits = ['hearts', 'diamonds', 'spades', 'clubs']
-    faces = ['ace', 'two', 'three', 'four', 'five', 'six', 'seven',
-             'eight', 'nine', 'ten', 'jack', 'queen', 'king']
+    faces = [
+        'ace', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
+        'ten', 'jack', 'queen', 'king'
+    ]
     card_deck.clear()
 
     # Card number must be unique. Keep track of it here.
@@ -37,8 +41,8 @@ def play_blackjack() -> None:
       for j in range(1, len(faces) + 1):
         # Jack, queen, and king are all ten
         suit_card_no = 10 if (j > 10) else j
-        card_deck.append(Card(unique_card_number, suits[i],
-                             faces[j - 1], suit_card_no))
+        card_deck.append(
+            Card(unique_card_number, suits[i], faces[j - 1], suit_card_no))
         unique_card_number += 1
 
   # Set up user's hand
@@ -118,6 +122,7 @@ def play_blackjack() -> None:
         print(start + 'D')
       else:
         print(start + 'F')
+
 
 # Call function
 play_blackjack()

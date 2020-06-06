@@ -70,7 +70,7 @@ def calculate(first_no: float, second_no: float, method: str) -> float:
   elif method == 'divide':
     return first_no / second_no
   elif method == 'raise':
-    return first_no ** second_no
+    return first_no**second_no
   elif method == 'modulo':
     return first_no % second_no
 

@@ -23,16 +23,16 @@ def play_rps(user_choice: str) -> Dict[str, str]:
 
   # Set up return values dict
   results = {
-    'usr_choice': usr_choice,
-    'cpu_choice': cpu_choice,
+      'usr_choice': usr_choice,
+      'cpu_choice': cpu_choice,
   }
 
   # Check to see who won, return it
   if usr_choice == cpu_choice:
     results['result'] = 'Tie.'
-  elif (usr_choice == 'rock' and cpu_choice == 'scissors'
-        or usr_choice == 'paper' and cpu_choice == 'rock'
-        or usr_choice == 'scissors' and cpu_choice == 'paper'):
+  elif (usr_choice == 'rock' and cpu_choice == 'scissors' or
+        usr_choice == 'paper' and cpu_choice == 'rock' or
+        usr_choice == 'scissors' and cpu_choice == 'paper'):
     results['result'] = 'You win!'
   else:
     results['result'] = 'You lose :('

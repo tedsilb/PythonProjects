@@ -6,6 +6,7 @@ import math
 
 
 class Coin(object):
+
   def __init__(self, name: str, plural_name: str, value_per_coin: float,
                weight_per_coin: float, total_weight: float,
                wrapper_capacity: int):
@@ -19,8 +20,8 @@ class Coin(object):
     self.value = self.number_of_coins * value_per_coin
 
 
-def estimate_weight(wgt_p: float, wgt_n: float, wgt_d: float, wgt_q: float
-                   ) -> None:
+def estimate_weight(wgt_p: float, wgt_n: float, wgt_d: float,
+                    wgt_q: float) -> None:
   # Set up Coin objects, calculate number of coins
   p = Coin('penny', 'pennies', 0.01, 2.5, wgt_p, 50)
   n = Coin('nickel', 'nickels', 0.05, 5.0, wgt_n, 40)
@@ -45,11 +46,10 @@ def estimate_weight(wgt_p: float, wgt_n: float, wgt_d: float, wgt_q: float
   print('The total value of your coins is '
         f'${p.value + n.value + d.value + q.value}.')
 
+
 # Gather data from user, call function
 print('Please enter the weights of your coins (in grams):')
-estimate_weight(
-  float(input('What is the weight of your pennies? ')),
-  float(input('What is the weight of your nickels? ')),
-  float(input('What is the weight of your dimes? ')),
-  float(input('What is the weight of your quarters? '))
-)
+estimate_weight(float(input('What is the weight of your pennies? ')),
+                float(input('What is the weight of your nickels? ')),
+                float(input('What is the weight of your dimes? ')),
+                float(input('What is the weight of your quarters? ')))

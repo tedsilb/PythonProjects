@@ -8,10 +8,10 @@ import math
 def calc_change(price: float) -> str:
   # Set value of coins
   coin_values = {
-    'q': 0.25,
-    'd': 0.10,
-    'n': 0.05,
-    'p': 0.01,
+      'q': 0.25,
+      'd': 0.10,
+      'n': 0.05,
+      'p': 0.01,
   }
 
   # Set up dict to hold nums

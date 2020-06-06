@@ -6,11 +6,11 @@ By Ted Silbernagel
 def count_vowels(input_string: str) -> None:
   # Set up count vars for vowels
   counts = {
-    'A': 0,
-    'E': 0,
-    'I': 0,
-    'O': 0,
-    'U': 0,
+      'A': 0,
+      'E': 0,
+      'I': 0,
+      'O': 0,
+      'U': 0,
   }
 
   # Start looping through the string

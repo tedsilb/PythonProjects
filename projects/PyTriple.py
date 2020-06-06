@@ -22,16 +22,16 @@ def py_triple(a: int, b: int, c: int) -> bool:
     raise Exception(f'Incorrect input: {a} {b} {c}')
 
   # Determine if the squared numbers form a pythagorean triple
-  return largest_no ** 2 == (small_no1 ** 2 + small_no2 ** 2)
+  return largest_no**2 == (small_no1**2 + small_no2**2)
 
 
 # Gather numbers from user
 print('Please enter three whole numbers. '
       'This function will check to see if they form a pythagorean triple.')
 nums = [
-  int(input('Please enter your first number: ')),
-  int(input('Please enter your second number: ')),
-  int(input('Please enter your third number: ')),
+    int(input('Please enter your first number: ')),
+    int(input('Please enter your second number: ')),
+    int(input('Please enter your third number: ')),
 ]
 
 # Call the function, print response

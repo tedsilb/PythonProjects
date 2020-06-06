@@ -19,9 +19,9 @@ def sieve(user_no: int) -> Dict[str, Union[List[int], float]]:
         except ValueError:
           pass
 
-  return  {
-    'numbers_list': numbers_list,
-    'timeTaken': round(time.time() - start_time, 6),
+  return {
+      'numbers_list': numbers_list,
+      'timeTaken': round(time.time() - start_time, 6),
   }
 
 
