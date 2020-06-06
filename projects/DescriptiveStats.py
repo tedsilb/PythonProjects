@@ -71,8 +71,7 @@ def descriptive_stats(numbers_list: List[float]) -> Dict[str, float]:
 
   # Ask user for confidence interval
   return_data['confInt'] = int(
-      input('Please enter a confidence interval '
-            '(90, 95, 99): '))
+      input('Please enter a confidence interval (90, 95, 99): '))
   t_stats = {
       90: 1.64,
       95: 1.96,
