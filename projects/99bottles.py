@@ -2,8 +2,7 @@
 By Ted Silbernagel
 """
 
-
-def gen_lyrics() -> None:
+if __name__ == '__main__':
   # Start at 99 and work backwards
   for i in range(99, 0, -1):
     if i == 2:
@@ -17,7 +16,3 @@ def gen_lyrics() -> None:
       print(f'{i} bottles of beer on the wall, {i} bottles of beer!')
       print('Take one down, pass it around, '
             f'{i - 1} bottles of beer on the wall!')
-
-
-# Run the function, generate the lyrics!
-gen_lyrics()

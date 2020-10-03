@@ -6,10 +6,8 @@ from typing import Dict, List, Union
 
 
 def gather_numbers() -> List[float]:
-  # Prepare to gather numbers
   numbers_list = []
 
-  # Gather list of numbers from user
   while True:
     entered_number = input('Please enter a number (press enter to stop): ')
     if entered_number == '':
@@ -50,12 +48,10 @@ def calc_variance(data: List[float]) -> float:
 
 
 def descriptive_stats(numbers_list: List[float]) -> Dict[str, float]:
-  # Round based on user input
   round_to = int(
       input('How many decimal places would you like your numbers '
             'rounded to? '))
 
-  # Set up return data dict
   return_data = {
       'mean': round(calc_mean(numbers_list), round_to),
       'median': calc_median(numbers_list),
@@ -65,12 +61,11 @@ def descriptive_stats(numbers_list: List[float]) -> Dict[str, float]:
       'variance': round(calc_variance(numbers_list), round_to),
   }
 
-  return_data['stDev'] = round(return_data['variance']**0.5, round_to)
-  return_data['stErr'] = round(return_data['stDev'] / len(numbers_list),
-                               round_to)
+  return_data['st_dev'] = round(return_data['variance']**0.5, round_to)
+  return_data['st_err'] = round(return_data['st_dev'] / len(numbers_list),
+                                round_to)
 
-  # Ask user for confidence interval
-  return_data['confInt'] = int(
+  return_data['conf_int'] = int(
       input('Please enter a confidence interval (90, 95, 99): '))
   t_stats = {
       90: 1.64,
@@ -78,34 +73,32 @@ def descriptive_stats(numbers_list: List[float]) -> Dict[str, float]:
       99: 2.58,
   }
 
-  # Calculate confidence interval
   return_data.update({
-      'lowerBound':
+      'lower_bound':
           round(
               return_data['mean'] -
-              (t_stats[return_data['confInt']] * return_data['stErr']),
+              (t_stats[return_data['conf_int']] * return_data['st_err']),
               round_to),
-      'upperBound':
+      'upper_bound':
           round(
               return_data['mean'] +
-              (t_stats[return_data['confInt']] * return_data['stErr']),
+              (t_stats[return_data['conf_int']] * return_data['st_err']),
               round_to),
   })
 
   return return_data
 
 
-# Call function to gather numbers and calculate descriptive stats
-response = descriptive_stats(gather_numbers())
+if __name__ == '__main__':
+  response = descriptive_stats(gather_numbers())
 
-# Print data for user
-print(f'Mean:     {response["mean"]}')
-print(f'Median:   {response["median"]}')
-print(f'Mode:     {response["mode"]}')
-print(f'Range:    [{response["min"]}, {response["max"]}]')
-print(f'Variance: {response["variance"]}')
-print(f'Standard Deviation: {response["stDev"]}')
-print(f'Standard Error:     {response["stErr"]}')
-print(f'{response["confInt"]}% confidence interval:')
-print(f'  Lower Bound: {response["lowerBound"]}')
-print(f'  Upper Bound: {response["upperBound"]}')
+  print(f'Mean:     {response["mean"]}')
+  print(f'Median:   {response["median"]}')
+  print(f'Mode:     {response["mode"]}')
+  print(f'Range:    [{response["min"]}, {response["max"]}]')
+  print(f'Variance: {response["variance"]}')
+  print(f'Standard Deviation: {response["st_dev"]}')
+  print(f'Standard Error:     {response["st_err"]}')
+  print(f'{response["confInt"]}% confidence interval:')
+  print(f'  Lower Bound: {response["lower_bound"]}')
+  print(f'  Upper Bound: {response["upper_bound"]}')

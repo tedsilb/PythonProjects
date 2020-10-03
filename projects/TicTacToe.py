@@ -368,7 +368,7 @@ class TicTacToe:
       self.take_cpu_turn()
 
 
-# Initialise GUI
-root = tk.Tk()
-gui = TicTacToe(root)
-root.mainloop()
+if __name__ == '__main__':
+  root = tk.Tk()
+  gui = TicTacToe(root)
+  root.mainloop()

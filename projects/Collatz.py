@@ -23,7 +23,9 @@ def collatz(user_no: int) -> None:
   print(f'Took {steps} steps.')
 
 
-# Call function
-print('This program will perform the Collatz conjecture '
-      'on a given whole number.')
-collatz(int(input('Please enter a number: ')))
+if __name__ == '__main__':
+  print('This program will perform the Collatz conjecture '
+        'on a given whole number.')
+  num = int(input('Please enter a number: '))
+
+  collatz(num)

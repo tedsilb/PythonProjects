@@ -6,3 +6,4 @@ projects/__pycache__
 projects/dist
 projects/build
 *.spec
+.pytype

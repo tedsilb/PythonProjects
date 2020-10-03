@@ -15,4 +15,5 @@ def fizz_buzz() -> None:
       print(i)
 
 
-fizz_buzz()
+if __name__ == '__main__':
+  fizz_buzz()

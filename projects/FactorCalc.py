@@ -3,33 +3,26 @@ By Ted Silbernagel
 """
 
 import time
-from typing import Dict
+from typing import Dict, List, Union
 
 
-def calc_factors(user_no: int) -> Dict[str, float]:
-  # Get start time
+def calc_factors(user_no: int) -> Dict[str, Union[float, List[int]]]:
   start_time = time.time()
-
-  # Create list to store the factors in
-  all_factors = []
-
-  # Calculate factors
-  for number in range(1, user_no + 1):
-    if not user_no % number:
-      all_factors.append(number)
+  all_factors = [
+      number for number in range(1, user_no + 1) if not user_no % number
+  ]
 
   return {
-      'userNo': user_no,
+      'user_no': user_no,
       'all_factors': all_factors,
-      'timeTaken': round(time.time() - start_time, 6),
+      'time_taken': round(time.time() - start_time, 6),
   }
 
 
-# Get number from user
-print('This program will calculate all factors of the number you specify.')
-entered_no = int(input('Please enter a number: '))
+if __name__ == '__main__':
+  print('This program will calculate all factors of the number you specify.')
+  entered_no = int(input('Please enter a number: '))
 
-# Call function, print response
-response = calc_factors(entered_no)
-print(f'All factors of {response["userNo"]}: {response["allFactors"]}')
-print(f'Took {response["timeTaken"]}s.')
+  response = calc_factors(entered_no)
+  print(f'All factors of {response["user_no"]}: {response["all_factors"]}')
+  print(f'Took {response["time_taken"]}s.')

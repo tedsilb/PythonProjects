@@ -3,10 +3,10 @@ By Ted Silbernagel
 """
 
 import random
-from typing import List
+from typing import Any, List
 
 
-class Card(object):
+class Card:
 
   def __init__(self, number, suit, name, value):
     self.number = number
@@ -19,7 +19,7 @@ def calc_hand_value(hand: List[Card]) -> int:
   return sum([card.value for card in hand])
 
 
-def print_current_value(current_value: any) -> None:
+def print_current_value(current_value: Any) -> None:
   print(f'The current value of your cards is {current_value}.')
 
 
@@ -40,7 +40,7 @@ def play_blackjack() -> None:
     for i in range(len(suits)):
       for j in range(1, len(faces) + 1):
         # Jack, queen, and king are all ten
-        suit_card_no = 10 if (j > 10) else j
+        suit_card_no = 10 if j > 10 else j
         card_deck.append(
             Card(unique_card_number, suits[i], faces[j - 1], suit_card_no))
         unique_card_number += 1
@@ -124,5 +124,5 @@ def play_blackjack() -> None:
         print(start + 'F')
 
 
-# Call function
-play_blackjack()
+if __name__ == '__main__':
+  play_blackjack()

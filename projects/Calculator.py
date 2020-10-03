@@ -2,11 +2,22 @@
 By Ted Silbernagel
 """
 
+import enum
+import sys
 from typing import Tuple
 
 
-def get_operation() -> str:
-  # Gather and parse operation
+class Operation(enum.Enum):
+  ADD = enum.auto()
+  SUBTRACT = enum.auto()
+  MULTIPLY = enum.auto()
+  DIVIDE = enum.auto()
+  RAISE = enum.auto()
+  MODULO = enum.auto()
+
+
+def get_operation() -> Operation:
+  """Gather and parse operation."""
   print('Calculator - please select what calculation '
         'you would like to perform:')
   print('  (A)dd two numbers')
@@ -19,40 +30,40 @@ def get_operation() -> str:
 
   # Parse method
   if user_op == 'a':
-    return 'add'
+    return Operation.ADD
   elif user_op == 's':
-    return 'subtract'
+    return Operation.SUBTRACT
   elif user_op == 'm':
-    return 'multiply'
+    return Operation.MULTIPLY
   elif user_op == 'd':
-    return 'divide'
+    return Operation.DIVIDE
   elif user_op == 'r':
-    return 'raise'
+    return Operation.RAISE
   elif user_op == 'e':
-    return 'modulo'
+    return Operation.MODULO
   else:
     print('No calculation selected. Exiting.')
-    quit()
+    sys.exit()
 
 
-def get_numbers(operation: str) -> Tuple[float, float]:
-  # Gather numbers from user
-  if operation == 'add':
+def get_numbers(operation: Operation) -> Tuple[float, float]:
+  """Gather numbers from user."""
+  if operation is Operation.ADD:
     first_no = input('Enter first number to add: ')
     second_no = input('Enter second number to add: ')
-  elif operation == 'subtract':
+  elif operation is Operation.SUBTRACT:
     first_no = input('Enter the number to subtract from: ')
     second_no = input('Enter the number to subtract: ')
-  elif operation == 'multiply':
+  elif operation is Operation.MULTIPLY:
     first_no = input('Enter first number to multiply: ')
     second_no = input('Enter second number to multiply: ')
-  elif operation == 'divide':
+  elif operation is Operation.DIVIDE:
     first_no = input('Enter the number to divide (numerator): ')
     second_no = input('Enter the number to divide by (denominator): ')
-  elif operation == 'raise':
+  elif operation is Operation.RAISE:
     first_no = input('Enter the base number: ')
     second_no = input('Enter the number to raise to (exponent): ')
-  elif operation == 'modulo':
+  elif operation is Operation.MODULO:
     first_no = input('Enter the number to divide (numerator): ')
     second_no = input('Enter the number to divide by (denominator): ')
   else:
@@ -60,53 +71,47 @@ def get_numbers(operation: str) -> Tuple[float, float]:
   return float(first_no), float(second_no)
 
 
-def calculate(first_no: float, second_no: float, method: str) -> float:
-  if method == 'add':
+def calculate(first_no: float, second_no: float, method: Operation) -> float:
+  """Perform calculation based on operation."""
+  if method is Operation.ADD:
     return first_no + second_no
-  elif method == 'subtract':
+  elif method is Operation.SUBTRACT:
     return first_no - second_no
-  elif method == 'multiply':
+  elif method is Operation.MULTIPLY:
     return first_no * second_no
-  elif method == 'divide':
+  elif method is Operation.DIVIDE:
     return first_no / second_no
-  elif method == 'raise':
+  elif method is Operation.RAISE:
     return first_no**second_no
-  elif method == 'modulo':
+  elif method is Operation.MODULO:
     return first_no % second_no
+  else:
+    raise NotImplementedError('Operation not supported.')
 
 
 def print_result(first_no: float, second_no: float, result: float,
-                 operation: str) -> None:
-  # Print numbers based on operation
-  if operation == 'add':
+                 operation: Operation) -> None:
+  """Print numbers based on operation."""
+  if operation is Operation.ADD:
     print(f'Calculated: {first_no} plus {second_no} equals {result}')
-  elif operation == 'subtract':
+  elif operation is Operation.SUBTRACT:
     print(f'Calculated: {first_no} subtracted by {second_no} equals {result}')
-  elif operation == 'multiply':
+  elif operation is Operation.MULTIPLY:
     print(f'Calculated: {first_no} times {second_no} equals {result}')
-  elif operation == 'divide':
+  elif operation is Operation.DIVIDE:
     print(f'Calculated: {first_no} divided by {second_no} equals {result}')
-  elif operation == 'raise':
+  elif operation is Operation.RAISE:
     print(f'Calculated: {first_no} raised to the power of {second_no} '
           f'equals {result}')
-  elif operation == 'modulo':
+  elif operation is Operation.MODULO:
     print(f'Calculated: The modulus of {first_no} divided by {second_no} '
           f'equals {result}')
 
 
-def run_calculator() -> None:
-  # Get method from user
+if __name__ == '__main__':
   operation = get_operation()
-
-  # Get numbers from user
   first_no, second_no = get_numbers(operation)
 
-  # Call calculate function with user data
   calculated_value = calculate(first_no, second_no, operation)
 
-  # Print return values for user
   print_result(first_no, second_no, calculated_value, operation)
-
-
-# Call function
-run_calculator()

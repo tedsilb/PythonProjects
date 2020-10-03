@@ -5,44 +5,48 @@ By Ted Silbernagel
 from typing import List
 
 
-def list_is_sorted(list_to_check: List[float]) -> bool:
+def _parse_to_floats(user_nums: str) -> List[float]:
+  return [float(item) for item in user_nums.split(',')]
+
+
+def is_sorted(numbers: List[float]) -> bool:
   """Check if the list is sorted."""
-  for item in list_to_check:
-    item_index = list_to_check.index(item)
-    if item_index != len(list_to_check) - 1:
+  for item in numbers:
+    item_index = numbers.index(item)
+    if item_index != len(numbers) - 1:
       next_item_index = item_index + 1
-      next_item = list_to_check[next_item_index]
+      next_item = numbers[next_item_index]
       if next_item < item:
         return False
+
   return True
 
 
-def bubble_sort(user_list: str) -> List[float]:
-  # First parse the numbers
-  list_to_sort = [float(item) for item in user_list.split(',')]
-
-  # Then get down to business
-  while not list_is_sorted(list_to_sort):
-    for item in list_to_sort:
-      item_index = list_to_sort.index(item)
+def bubble_sort(nums_to_sort: List[float]) -> List[float]:
+  """Sort a list of floats using bubble sort."""
+  while not is_sorted(nums_to_sort):
+    for item in nums_to_sort:
+      item_index = nums_to_sort.index(item)
       # If not the last item in the list
-      if item_index != len(list_to_sort) - 1:
+      if item_index != len(nums_to_sort) - 1:
         # Get the indexes
         next_item_index = item_index + 1
-        next_item = list_to_sort[next_item_index]
+        next_item = nums_to_sort[next_item_index]
         # If out of order,
         if item > next_item:
           # Switch them
-          (list_to_sort[item_index],
-           list_to_sort[next_item_index]) = (list_to_sort[next_item_index],
-                                             list_to_sort[item_index])
+          (nums_to_sort[item_index],
+           nums_to_sort[next_item_index]) = (nums_to_sort[next_item_index],
+                                             nums_to_sort[item_index])
 
-  return list_to_sort
+  return nums_to_sort
 
 
-# Get data from user, call function
-print('This program will bubble sort a given list of numbers.')
-print(
-    bubble_sort(
-        input('Please enter some numbers, '
-              'separated by commas, to be sorted: ')))
+if __name__ == '__main__':
+  print('This program will bubble sort a given list of numbers.')
+  user_data = _parse_to_floats(
+      input('Please enter some numbers, separated by commas, '
+            'to be sorted: '))
+
+  response = bubble_sort(user_data)
+  print(response)

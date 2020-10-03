@@ -3,9 +3,10 @@ By Ted Silbernagel
 """
 
 import random
+from typing import Any
 
 
-def is_number(nbr: any) -> bool:
+def is_number(nbr: Any) -> bool:
   try:
     int(nbr)
     return True
@@ -63,7 +64,7 @@ def flip_coin() -> None:
       want_to_quit = ''
 
 
-# Call function
-print('This program will flip a coin and keep track of '
-      'how many heads/tails you got.')
-flip_coin()
+if __name__ == '__main__':
+  print('This program will flip a coin and keep track of '
+        'how many heads/tails you got.')
+  flip_coin()

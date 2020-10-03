@@ -2,124 +2,112 @@
 By Ted Silbernagel
 """
 
+import enum
 import string
 from typing import List
 
 
-def caesar_encrypt(list_to_encrypt: List[str], encryption_key: int,
-                   crypt_base: List[str]) -> str:
-  # List to store encrypted words
-  encrypted_list = []
-
-  # Run thorough list, encrypt words
-  for word in list_to_encrypt:
-    current_word = ''
-    for letter in word:
-      current_index = crypt_base.index(letter) + 1
-      new_index = (current_index + encryption_key) % 26
-      new_index -= 1
-      current_word += crypt_base[new_index]
-    encrypted_list.append(current_word)
-
-  # Rejoin list to string
-  encrypted_string = ' '.join(encrypted_list)
-
-  return encrypted_string
+class Operation(enum.Enum):
+  ENCRYPT = enum.auto()
+  DECRYPT = enum.auto()
+  CRACK = enum.auto()
 
 
-def caesar_decrypt(list_to_decrypt: List[str], decryption_key: int,
-                   crypt_base: List[str]) -> str:
-  # List to store decrypted words
-  decrypted_list = []
+class CaesarCipher:
+  crypt_base: List[str] = [char for char in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ']
 
-  # Run through list, decrypt words
-  for word in list_to_decrypt:
-    current_word = ''
-    for letter in word:
-      current_index = crypt_base.index(letter) + 1
-      new_index = (current_index - decryption_key + 26) % 26
-      new_index -= 1
-      current_word += crypt_base[new_index]
-    decrypted_list.append(current_word)
+  def parse_input(self, message: str) -> List[str]:
+    return message.translate(str.maketrans(
+        '', '', string.punctuation)).upper().split(' ')
 
-  # Rejoin list to string
-  decrypted_string = ' '.join(decrypted_list)
+  def encrypt(self, key: int, message: str) -> str:
+    encrypted_words: List[str] = []
 
-  return decrypted_string
-
-
-def caesar_crack(list_to_crack: List[str], crypt_base: List[str]) -> str:
-  print('Crack starting. Press enter to try again or any other key to exit.')
-
-  # Try each combination
-  for i in range(1, 27):
-    # Set up list to store cracked words
-    cracked_list = []
-
-    # Run thorough list, crack words
-    for word in list_to_crack:
+    for word in self.parse_input(message):
       current_word = ''
       for letter in word:
-        current_index = crypt_base.index(letter) + 1
-        new_index = (current_index - i + 26) % 26
+        current_index = self.crypt_base.index(letter) + 1
+        new_index = (current_index + key) % 26
         new_index -= 1
-        current_word += crypt_base[new_index]
-      cracked_list.append(current_word)
+        current_word += self.crypt_base[new_index]
+      encrypted_words.append(current_word)
 
-    # Rejoin list to string
-    cracked_string = ' '.join(cracked_list)
+    return ' '.join(encrypted_words)
 
-    # Ask user if this makes sense or to try again
-    if (input(f'Attempt {i}/26: "{cracked_string}": Correct? ').lower()
-        not in ['', 'n']):
-      return cracked_string
+  def decrypt(self, key: int, message: str) -> str:
+    decrypted_words: List[str] = []
 
-  # Otherwise, let the user know crack was unsuccessful
-  return 'Crack unsuccessful.'
+    for word in self.parse_input(message):
+      current_word = ''
+      for letter in word:
+        current_index = self.crypt_base.index(letter) + 1
+        new_index = (current_index - key + 26) % 26
+        new_index -= 1
+        current_word += self.crypt_base[new_index]
+      decrypted_words.append(current_word)
+
+    return ' '.join(decrypted_words)
+
+  def crack(self, message: str) -> str:
+    print('Crack starting. Press enter to try again or any other key to exit.')
+
+    # Try each combination
+    for i in range(1, 27):
+      cracked_words: List[str] = []
+
+      # Run through list, crack words
+      for word in self.parse_input(message):
+        current_word = ''
+        for letter in word:
+          current_index = self.crypt_base.index(letter) + 1
+          new_index = (current_index - i + 26) % 26
+          new_index -= 1
+          current_word += self.crypt_base[new_index]
+        cracked_words.append(current_word)
+
+      cracked_string = ' '.join(cracked_words)
+
+      if (input(f'Attempt {i}/26: "{cracked_string}": Correct? ').lower()
+          not in ['', 'n']):
+        return cracked_string
+
+    return 'Crack unsuccessful.'
 
 
-def caesar_cipher() -> str:
-  # Set up list of alphabet to use for encryption/decryption
-  crypt_base = [
-      'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
-      'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
-  ]
-
-  # Ask user to encrypt/decrypt
-  operation = input(
+def _gather_operation() -> Operation:
+  operation_input = input(
       'Would you like to (e)ncrypt, (d)ecrypt, or (c)rack? ').lower()
-
-  # Gather string from user
-  if operation in ['encrypt', 'e']:
-    operation = 'e'
-    string_crypt = input('Please enter the message to encrypt: ')
-  elif operation in ['decrypt', 'd']:
-    operation = 'd'
-    string_crypt = input('Please enter the message to decrypt: ')
-  elif operation in ['crack', 'c']:
-    operation = 'c'
-    string_crypt = input('Please enter the message to crack: ')
+  if operation_input in ['e', 'encrypt']:
+    return Operation.ENCRYPT
+  elif operation_input in ['d', 'decrypt']:
+    return Operation.DECRYPT
+  elif operation_input in ['c', 'crack']:
+    return Operation.CRACK
   else:
-    raise Exception(f'Invalid operation entered: {operation}')
-
-  # Make translator object to strip punctuation
-  translator = str.maketrans('', '', string.punctuation)
-
-  # Strip punctuation, uppercase, split into list
-  list_crypt = string_crypt.translate(translator).upper().split(' ')
-
-  # If not cracking, ask user for key
-  if operation != 'c':
-    key = int(input('Please enter the key to use (1 to 25): '))
-
-  # Run encrypt or decrypt function, return response
-  if operation == 'e':
-    return caesar_encrypt(list_crypt, key, crypt_base)
-  elif operation == 'd':
-    return caesar_decrypt(list_crypt, key, crypt_base)
-  elif operation == 'c':
-    return caesar_crack(list_crypt, crypt_base)
+    raise Exception('Invalid operation entered.')
 
 
-# Call function, print response
-print(caesar_cipher())
+def _gather_message(operation: Operation) -> str:
+  return input(f'Please enter the message to {operation.name.lower()}: ')
+
+
+def _gather_encryption_key() -> int:
+  return int(input('Please enter the key to use (1 to 25): '))
+
+
+if __name__ == '__main__':
+  operation = _gather_operation()
+  message = _gather_message(operation)
+  if operation is Operation.ENCRYPT or operation is Operation.DECRYPT:
+    encryption_key = _gather_encryption_key()
+
+  cipher = CaesarCipher()
+
+  if operation is Operation.ENCRYPT:
+    response = cipher.encrypt(encryption_key, message)
+  elif operation is Operation.DECRYPT:
+    response = cipher.decrypt(encryption_key, message)
+  elif operation is Operation.CRACK:
+    response = cipher.crack(message)
+
+  print(response)

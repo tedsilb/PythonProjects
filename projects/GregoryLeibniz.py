@@ -29,12 +29,15 @@ def gregory_leibniz(user_precision: int) -> decimal.Decimal:
   return calculated_pi * decimal.Decimal(4.0)
 
 
-# Get precision from user, call function
-print('This program calculates pi to a specific precision '
-      'using the Gregory-Leibniz series.')
-print('(Not the number of decimal places - the higher the precision, '
-      'the more accurate the calculation will be)')
-user_no = int(
-    input('Please enter the precision you\'d like '
-          '(at least few hundred thousand): '))
-print('Result: ' + gregory_leibniz(user_no))
+if __name__ == '__main__':
+  print('This program calculates pi to a specific precision '
+        'using the Gregory-Leibniz series.')
+  print('(Not the number of decimal places - the higher the precision, '
+        'the more accurate the calculation will be)')
+
+  user_no = int(
+      input('Please enter the precision you\'d like '
+            '(at least few hundred thousand): '))
+
+  result: decimal.Decimal = gregory_leibniz(user_no)
+  print('Result: ' + str(result))

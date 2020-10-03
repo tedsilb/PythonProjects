@@ -37,10 +37,10 @@ def gen_multi_table(to_gen: int) -> None:
     print(current_row)
 
 
-# Gather the number of rows/columns to generate
-print('This program will generate a multiplication table (up to 31, cleanly).')
-user_no = int(input('Please enter the number of rows/columns to generate: '))
-print('\n')
+if __name__ == '__main__':
+  print('This program will generate a multiplication table '
+        '(up to 31, cleanly).')
+  user_no = int(input('Please enter the number of rows/columns to generate: '))
+  print('')
 
-# Run function
-gen_multi_table(user_no)
+  gen_multi_table(user_no)

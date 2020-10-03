@@ -16,9 +16,9 @@ def nilakantha(user_precision: int) -> decimal.Decimal:
     if not i % 100000:
       print(f'\rCalculating: ({i}/{user_precision})', end='')
 
-    num_to_change = decimal.Decimal(4.0) / (last_num *
-                                            (last_num + decimal.Decimal(1.0)) *
-                                            (last_num + decimal.Decimal(2.0)))
+    num_to_change = (decimal.Decimal(4.0) /
+                     (last_num * (last_num + decimal.Decimal(1.0)) *
+                      (last_num + decimal.Decimal(2.0))))
 
     if i % 2:
       calculated_pi += num_to_change
@@ -32,10 +32,13 @@ def nilakantha(user_precision: int) -> decimal.Decimal:
   return calculated_pi
 
 
-# Get precision from user, call function
-print('This program calculates pi to a specific precision '
-      'using the Nilakantha series.')
-print('(Not the number of decimal places - the higher the precision, '
-      'the more accurate the calculation will be)')
-print('Result: ' +
-      nilakantha(int(input('Please enter the precision you\'d like: '))))
+if __name__ == '__main__':
+  print('This program calculates pi to a specific precision '
+        'using the Nilakantha series.')
+  print('(Not the number of decimal places - the higher the precision, '
+        'the more accurate the calculation will be)')
+
+  user_no = int(input('Please enter the precision you\'d like: '))
+
+  result: decimal.Decimal = nilakantha(user_no)
+  print('Result: ' + str(result))
