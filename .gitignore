@@ -7,3 +7,4 @@ projects/dist
 projects/build
 *.spec
 .pytype
+bazel-*
