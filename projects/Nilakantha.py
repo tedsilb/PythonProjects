@@ -8,13 +8,13 @@ import decimal
 decimal.setcontext(decimal.Context(prec=100))
 
 
-def nilakantha(user_precision: int) -> decimal.Decimal:
+def nilakantha(precision: int) -> decimal.Decimal:
   calculated_pi = decimal.Decimal(3.0)
   last_num = decimal.Decimal(2.0)
 
-  for i in range(1, user_precision + 1):
+  for i in range(1, precision + 1):
     if not i % 100000:
-      print(f'\rCalculating: ({i}/{user_precision})', end='')
+      print(f'\rCalculating: ({i}/{precision})', end='')
 
     num_to_change = (decimal.Decimal(4.0) /
                      (last_num * (last_num + decimal.Decimal(1.0)) *
