@@ -3,8 +3,6 @@
 dist/*
 !dist/compile*
 projects/__pycache__
-projects/dist
-projects/build
 *.spec
 .pytype
 bazel-*
