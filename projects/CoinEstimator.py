@@ -7,9 +7,8 @@ import math
 
 class Coin(object):
 
-  def __init__(self, name: str, plural_name: str, value_per_coin: float,
-               weight_per_coin: float, total_weight: float,
-               wrapper_capacity: int):
+  def __init__(self, name: str, plural_name: str, value_per_coin: float, weight_per_coin: float,
+               total_weight: float, wrapper_capacity: int):
     self.name = name
     self.plural_name = plural_name
 
@@ -18,8 +17,7 @@ class Coin(object):
     self.value = self.number_of_coins * value_per_coin
 
 
-def estimate_weight(wgt_p: float, wgt_n: float, wgt_d: float,
-                    wgt_q: float) -> None:
+def estimate_weight(wgt_p: float, wgt_n: float, wgt_d: float, wgt_q: float) -> None:
   penny = Coin('penny', 'pennies', 0.01, 2.5, wgt_p, 50)
   nickel = Coin('nickel', 'nickels', 0.05, 5.0, wgt_n, 40)
   dime = Coin('dime', 'dimes', 0.10, 2.268, wgt_d, 50)

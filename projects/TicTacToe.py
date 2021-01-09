@@ -109,9 +109,7 @@ class TicTacToe:
                            sticky=(tk.N + tk.S + tk.W + tk.E))
 
     # Set up reset game button
-    self.bottom_button = tk.Button(master,
-                                   text=self.reset_game_txt,
-                                   command=self.reset_game)
+    self.bottom_button = tk.Button(master, text=self.reset_game_txt, command=self.reset_game)
     self.bottom_button.grid(row=4, column=3, columnspan=2, pady=(15, 15))
 
     # Reset game, initially
@@ -145,126 +143,106 @@ class TicTacToe:
     self.bottom_label['text'] = self.cpu_turn_msg
     # Some winning strategies
     if self.cpu_started:
-      if (self.cpu_chosen_cells == ['A1', 'A3'] and
-          len(self.user_chosen_cells) == 2):
+      if self.cpu_chosen_cells == ['A1', 'A3'] and len(self.user_chosen_cells) == 2:
         if self.user_chosen_cells in [['B1', 'A2'], ['C1', 'A2']]:
           self.cpu_choice = 'C3'
         elif self.user_chosen_cells == ['B3', 'A2']:
           self.cpu_choice = 'C1'
         elif self.user_chosen_cells == ['A2', 'C2']:
           self.cpu_choice = 'B2'
-      elif (self.user_chosen_cells == ['B2', 'C3'] and
-            self.cpu_chosen_cells == ['A1', 'C1']):
+      elif self.user_chosen_cells == ['B2', 'C3'] and self.cpu_chosen_cells == ['A1', 'C1']:
         self.cpu_choice = 'A3'
 
     # Block winning moves by user
     # A block
-    elif (
-        (('A2' in self.user_chosen_cells and 'A3' in self.user_chosen_cells) or
-         ('B1' in self.user_chosen_cells and 'C1' in self.user_chosen_cells) or
-         ('B2' in self.user_chosen_cells and 'C3' in self.user_chosen_cells))
-        and 'A1' in self.available_cells):
+    elif ((('A2' in self.user_chosen_cells and 'A3' in self.user_chosen_cells) or
+           ('B1' in self.user_chosen_cells and 'C1' in self.user_chosen_cells) or
+           ('B2' in self.user_chosen_cells and 'C3' in self.user_chosen_cells)) and
+          'A1' in self.available_cells):
       self.cpu_choice = 'A1'
-    elif (
-        (('A1' in self.user_chosen_cells and 'A3' in self.user_chosen_cells) or
-         ('B2' in self.user_chosen_cells and 'C2' in self.user_chosen_cells))
-        and 'A2' in self.available_cells):
+    elif ((('A1' in self.user_chosen_cells and 'A3' in self.user_chosen_cells) or
+           ('B2' in self.user_chosen_cells and 'C2' in self.user_chosen_cells)) and
+          'A2' in self.available_cells):
       self.cpu_choice = 'A2'
-    elif (
-        (('A1' in self.user_chosen_cells and 'A2' in self.user_chosen_cells) or
-         ('B3' in self.user_chosen_cells and 'C3' in self.user_chosen_cells) or
-         ('C1' in self.user_chosen_cells and 'B2' in self.user_chosen_cells))
-        and 'A3' in self.available_cells):
+    elif ((('A1' in self.user_chosen_cells and 'A2' in self.user_chosen_cells) or
+           ('B3' in self.user_chosen_cells and 'C3' in self.user_chosen_cells) or
+           ('C1' in self.user_chosen_cells and 'B2' in self.user_chosen_cells)) and
+          'A3' in self.available_cells):
       self.cpu_choice = 'A3'
     # B block
-    elif (
-        (('B2' in self.user_chosen_cells and 'B3' in self.user_chosen_cells) or
-         ('A1' in self.user_chosen_cells and 'C1' in self.user_chosen_cells))
-        and 'B1' in self.available_cells):
+    elif ((('B2' in self.user_chosen_cells and 'B3' in self.user_chosen_cells) or
+           ('A1' in self.user_chosen_cells and 'C1' in self.user_chosen_cells)) and
+          'B1' in self.available_cells):
       self.cpu_choice = 'B1'
-    elif (
-        (('B1' in self.user_chosen_cells and 'B3' in self.user_chosen_cells) or
-         ('A2' in self.user_chosen_cells and 'C2' in self.user_chosen_cells) or
-         ('A1' in self.user_chosen_cells and 'C3' in self.user_chosen_cells))
-        and 'B2' in self.available_cells):
+    elif ((('B1' in self.user_chosen_cells and 'B3' in self.user_chosen_cells) or
+           ('A2' in self.user_chosen_cells and 'C2' in self.user_chosen_cells) or
+           ('A1' in self.user_chosen_cells and 'C3' in self.user_chosen_cells)) and
+          'B2' in self.available_cells):
       self.cpu_choice = 'B2'
-    elif (
-        (('B1' in self.user_chosen_cells and 'B2' in self.user_chosen_cells) or
-         ('A3' in self.user_chosen_cells and 'C3' in self.user_chosen_cells))
-        and 'B3' in self.available_cells):
+    elif ((('B1' in self.user_chosen_cells and 'B2' in self.user_chosen_cells) or
+           ('A3' in self.user_chosen_cells and 'C3' in self.user_chosen_cells)) and
+          'B3' in self.available_cells):
       self.cpu_choice = 'B3'
     # C block
-    elif (
-        (('C2' in self.user_chosen_cells and 'C3' in self.user_chosen_cells) or
-         ('A1' in self.user_chosen_cells and 'B1' in self.user_chosen_cells) or
-         ('B2' in self.user_chosen_cells and 'A3' in self.user_chosen_cells))
-        and 'C1' in self.available_cells):
+    elif ((('C2' in self.user_chosen_cells and 'C3' in self.user_chosen_cells) or
+           ('A1' in self.user_chosen_cells and 'B1' in self.user_chosen_cells) or
+           ('B2' in self.user_chosen_cells and 'A3' in self.user_chosen_cells)) and
+          'C1' in self.available_cells):
       self.cpu_choice = 'C1'
-    elif (
-        (('C1' in self.user_chosen_cells and 'C3' in self.user_chosen_cells) or
-         ('A2' in self.user_chosen_cells and 'B2' in self.user_chosen_cells))
-        and 'C2' in self.available_cells):
+    elif ((('C1' in self.user_chosen_cells and 'C3' in self.user_chosen_cells) or
+           ('A2' in self.user_chosen_cells and 'B2' in self.user_chosen_cells)) and
+          'C2' in self.available_cells):
       self.cpu_choice = 'C2'
-    elif (
-        (('C1' in self.cpu_chosen_cells and 'C2' in self.user_chosen_cells) or
-         ('B3' in self.user_chosen_cells and 'C3' in self.user_chosen_cells) or
-         ('C1' in self.user_chosen_cells and 'B2' in self.user_chosen_cells))
-        and 'C3' in self.available_cells):
+    elif ((('C1' in self.cpu_chosen_cells and 'C2' in self.user_chosen_cells) or
+           ('B3' in self.user_chosen_cells and 'C3' in self.user_chosen_cells) or
+           ('C1' in self.user_chosen_cells and 'B2' in self.user_chosen_cells)) and
+          'C3' in self.available_cells):
       self.cpu_choice = 'C3'
 
     # Take winning moves for cpu
     # A block
-    elif (
-        (('A2' in self.cpu_chosen_cells and 'A3' in self.cpu_chosen_cells) or
-         ('B1' in self.cpu_chosen_cells and 'C1' in self.cpu_chosen_cells) or
-         ('B2' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells)) and
-        'A1' in self.available_cells):
+    elif ((('A2' in self.cpu_chosen_cells and 'A3' in self.cpu_chosen_cells) or
+           ('B1' in self.cpu_chosen_cells and 'C1' in self.cpu_chosen_cells) or
+           ('B2' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells)) and
+          'A1' in self.available_cells):
       self.cpu_choice = 'A1'
-    elif (
-        (('A1' in self.cpu_chosen_cells and 'A3' in self.cpu_chosen_cells) or
-         ('B2' in self.cpu_chosen_cells and 'C2' in self.cpu_chosen_cells)) and
-        'A2' in self.available_cells):
+    elif ((('A1' in self.cpu_chosen_cells and 'A3' in self.cpu_chosen_cells) or
+           ('B2' in self.cpu_chosen_cells and 'C2' in self.cpu_chosen_cells)) and
+          'A2' in self.available_cells):
       self.cpu_choice = 'A2'
-    elif (
-        (('A1' in self.cpu_chosen_cells and 'A2' in self.cpu_chosen_cells) or
-         ('B3' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells) or
-         ('C1' in self.cpu_chosen_cells and 'B2' in self.cpu_chosen_cells)) and
-        'A3' in self.available_cells):
+    elif ((('A1' in self.cpu_chosen_cells and 'A2' in self.cpu_chosen_cells) or
+           ('B3' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells) or
+           ('C1' in self.cpu_chosen_cells and 'B2' in self.cpu_chosen_cells)) and
+          'A3' in self.available_cells):
       self.cpu_choice = 'A3'
     # B block
-    elif (
-        (('B2' in self.cpu_chosen_cells and 'B3' in self.cpu_chosen_cells) or
-         ('A1' in self.cpu_chosen_cells and 'C1' in self.cpu_chosen_cells)) and
-        'B1' in self.available_cells):
+    elif ((('B2' in self.cpu_chosen_cells and 'B3' in self.cpu_chosen_cells) or
+           ('A1' in self.cpu_chosen_cells and 'C1' in self.cpu_chosen_cells)) and
+          'B1' in self.available_cells):
       self.cpu_choice = 'B1'
-    elif (
-        (('B1' in self.cpu_chosen_cells and 'B3' in self.cpu_chosen_cells) or
-         ('A2' in self.cpu_chosen_cells and 'C2' in self.cpu_chosen_cells) or
-         ('A1' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells)) and
-        'B2' in self.available_cells):
+    elif ((('B1' in self.cpu_chosen_cells and 'B3' in self.cpu_chosen_cells) or
+           ('A2' in self.cpu_chosen_cells and 'C2' in self.cpu_chosen_cells) or
+           ('A1' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells)) and
+          'B2' in self.available_cells):
       self.cpu_choice = 'B2'
-    elif (
-        (('B1' in self.cpu_chosen_cells and 'B2' in self.cpu_chosen_cells) or
-         ('A3' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells)) and
-        'B3' in self.available_cells):
+    elif ((('B1' in self.cpu_chosen_cells and 'B2' in self.cpu_chosen_cells) or
+           ('A3' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells)) and
+          'B3' in self.available_cells):
       self.cpu_choice = 'B3'
     # C block
-    elif (
-        (('C2' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells) or
-         ('A1' in self.cpu_chosen_cells and 'B1' in self.cpu_chosen_cells) or
-         ('B2' in self.cpu_chosen_cells and 'A3' in self.cpu_chosen_cells)) and
-        'C1' in self.available_cells):
+    elif ((('C2' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells) or
+           ('A1' in self.cpu_chosen_cells and 'B1' in self.cpu_chosen_cells) or
+           ('B2' in self.cpu_chosen_cells and 'A3' in self.cpu_chosen_cells)) and
+          'C1' in self.available_cells):
       self.cpu_choice = 'C1'
-    elif (
-        (('C1' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells) or
-         ('A2' in self.cpu_chosen_cells and 'B2' in self.cpu_chosen_cells)) and
-        'C2' in self.available_cells):
+    elif ((('C1' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells) or
+           ('A2' in self.cpu_chosen_cells and 'B2' in self.cpu_chosen_cells)) and
+          'C2' in self.available_cells):
       self.cpu_choice = 'C2'
-    elif (
-        (('C1' in self.cpu_chosen_cells and 'C2' in self.cpu_chosen_cells) or
-         ('B3' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells) or
-         ('A1' in self.cpu_chosen_cells and 'B2' in self.cpu_chosen_cells)) and
-        'C3' in self.available_cells):
+    elif ((('C1' in self.cpu_chosen_cells and 'C2' in self.cpu_chosen_cells) or
+           ('B3' in self.cpu_chosen_cells and 'C3' in self.cpu_chosen_cells) or
+           ('A1' in self.cpu_chosen_cells and 'B2' in self.cpu_chosen_cells)) and
+          'C3' in self.available_cells):
       self.cpu_choice = 'C3'
 
     # Take smart starts
@@ -359,9 +337,7 @@ class TicTacToe:
     self.bottom_label['text'] = self.new_game_msg
     self.user_chosen_cells.clear()
     self.cpu_chosen_cells.clear()
-    self.available_cells = [
-        'A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3'
-    ]
+    self.available_cells = ['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3']
     # Randomly have cpu start game
     self.cpu_started = random.choice([True, False])
     if self.cpu_started:

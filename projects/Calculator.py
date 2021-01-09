@@ -18,8 +18,7 @@ class Operation(enum.Enum):
 
 def get_operation() -> Operation:
   """Gather and parse operation."""
-  print('Calculator - please select what calculation '
-        'you would like to perform:')
+  print('Calculator - please select what calculation you would like to perform:')
   print('  (A)dd two numbers')
   print('  (S)ubtract one number from another')
   print('  (M)ultiply two numbers')
@@ -89,8 +88,7 @@ def calculate(first_no: float, second_no: float, method: Operation) -> float:
     raise NotImplementedError('Operation not supported.')
 
 
-def print_result(first_no: float, second_no: float, result: float,
-                 operation: Operation) -> None:
+def print_result(first_no: float, second_no: float, result: float, operation: Operation) -> None:
   """Print numbers based on operation."""
   if operation is Operation.ADD:
     print(f'Calculated: {first_no} plus {second_no} equals {result}')
@@ -101,11 +99,9 @@ def print_result(first_no: float, second_no: float, result: float,
   elif operation is Operation.DIVIDE:
     print(f'Calculated: {first_no} divided by {second_no} equals {result}')
   elif operation is Operation.RAISE:
-    print(f'Calculated: {first_no} raised to the power of {second_no} '
-          f'equals {result}')
+    print(f'Calculated: {first_no} raised to the power of {second_no} equals {result}')
   elif operation is Operation.MODULO:
-    print(f'Calculated: The modulus of {first_no} divided by {second_no} '
-          f'equals {result}')
+    print(f'Calculated: The modulus of {first_no} divided by {second_no} equals {result}')
 
 
 if __name__ == '__main__':

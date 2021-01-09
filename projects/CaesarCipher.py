@@ -17,8 +17,7 @@ class CaesarCipher:
   crypt_base: List[str] = [char for char in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ']
 
   def parse_input(self, message: str) -> List[str]:
-    return message.translate(str.maketrans(
-        '', '', string.punctuation)).upper().split(' ')
+    return message.translate(str.maketrans('', '', string.punctuation)).upper().split(' ')
 
   def encrypt(self, key: int, message: str) -> str:
     encrypted_words: List[str] = []
@@ -67,16 +66,14 @@ class CaesarCipher:
 
       cracked_string = ' '.join(cracked_words)
 
-      if (input(f'Attempt {i}/26: "{cracked_string}": Correct? ').lower()
-          not in ['', 'n']):
+      if input(f'Attempt {i}/26: "{cracked_string}": Correct? ').lower() not in ['', 'n']:
         return cracked_string
 
     return 'Crack unsuccessful.'
 
 
 def _gather_operation() -> Operation:
-  operation_input = input(
-      'Would you like to (e)ncrypt, (d)ecrypt, or (c)rack? ').lower()
+  operation_input = input('Would you like to (e)ncrypt, (d)ecrypt, or (c)rack? ').lower()
   if operation_input in ['e', 'encrypt']:
     return Operation.ENCRYPT
   elif operation_input in ['d', 'decrypt']:

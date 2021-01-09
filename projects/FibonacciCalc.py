@@ -32,11 +32,8 @@ def fibonacci_gen(n_term: int) -> Dict[str, float]:
 
 
 if __name__ == '__main__':
-  print(
-      'This program will get you a specific number in the Fibonacci sequence.')
-  user_n_term = int(
-      input('Please enter which number in the sequence '
-            'you would like: '))
+  print('This program will get you a specific number in the Fibonacci sequence.')
+  user_n_term = int(input('Please enter which number in the sequence you would like: '))
 
   response = fibonacci_gen(user_n_term)
   last_digit = response['n_term'] % 10

@@ -48,9 +48,7 @@ def calc_variance(data: List[float]) -> float:
 
 
 def descriptive_stats(numbers_list: List[float]) -> Dict[str, float]:
-  round_to = int(
-      input('How many decimal places would you like your numbers '
-            'rounded to? '))
+  round_to = int(input('How many decimal places would you like your numbers rounded to? '))
 
   return_data = {
       'mean': round(calc_mean(numbers_list), round_to),
@@ -62,11 +60,9 @@ def descriptive_stats(numbers_list: List[float]) -> Dict[str, float]:
   }
 
   return_data['st_dev'] = round(return_data['variance']**0.5, round_to)
-  return_data['st_err'] = round(return_data['st_dev'] / len(numbers_list),
-                                round_to)
+  return_data['st_err'] = round(return_data['st_dev'] / len(numbers_list), round_to)
 
-  return_data['conf_int'] = int(
-      input('Please enter a confidence interval (90, 95, 99): '))
+  return_data['conf_int'] = int(input('Please enter a confidence interval (90, 95, 99): '))
   t_stats = {
       90: 1.64,
       95: 1.96,
@@ -75,15 +71,11 @@ def descriptive_stats(numbers_list: List[float]) -> Dict[str, float]:
 
   return_data.update({
       'lower_bound':
-          round(
-              return_data['mean'] -
-              (t_stats[return_data['conf_int']] * return_data['st_err']),
-              round_to),
+          round(return_data['mean'] - (t_stats[return_data['conf_int']] * return_data['st_err']),
+                round_to),
       'upper_bound':
-          round(
-              return_data['mean'] +
-              (t_stats[return_data['conf_int']] * return_data['st_err']),
-              round_to),
+          round(return_data['mean'] + (t_stats[return_data['conf_int']] * return_data['st_err']),
+                round_to),
   })
 
   return return_data

@@ -65,6 +65,5 @@ def flip_coin() -> None:
 
 
 if __name__ == '__main__':
-  print('This program will flip a coin and keep track of '
-        'how many heads/tails you got.')
+  print('This program will flip a coin and keep track of how many heads/tails you got.')
   flip_coin()

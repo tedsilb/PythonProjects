@@ -38,8 +38,7 @@ def gen_multi_table(to_gen: int) -> None:
 
 
 if __name__ == '__main__':
-  print('This program will generate a multiplication table '
-        '(up to 31, cleanly).')
+  print('This program will generate a multiplication table (up to 31, cleanly).')
   user_no = int(input('Please enter the number of rows/columns to generate: '))
   print('')
 

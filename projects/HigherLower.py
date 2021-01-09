@@ -8,8 +8,7 @@ import random
 def higher_lower() -> None:
   print('Guessing game!')
   print('  A whole number between 1 and 100 will randomly be chosen.')
-  print('  Guess a number, and I will tell you if the real number '
-        'is higher or lower.')
+  print('  Guess a number, and I will tell you if the real number is higher or lower.')
 
   number_to_guess = random.randint(1, 100)
   guess_correct = False

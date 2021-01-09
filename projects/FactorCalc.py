@@ -8,9 +8,7 @@ from typing import Dict, List, Union
 
 def calc_factors(user_no: int) -> Dict[str, Union[float, List[int]]]:
   start_time = time.time()
-  all_factors = [
-      number for number in range(1, user_no + 1) if not user_no % number
-  ]
+  all_factors = [number for number in range(1, user_no + 1) if not user_no % number]
 
   return {
       'user_no': user_no,

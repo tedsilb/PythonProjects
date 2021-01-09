@@ -47,5 +47,4 @@ if __name__ == '__main__':
   response = magic_8_ball(input('Please enter your question: '))
 
   print(f'Your question was: \"{response["question"]}\"')
-  print(f'The Magic 8-ball\'s answer: \"{response["answer"]}\" '
-        f'({response["value"]})')
+  print(f'The Magic 8-ball\'s answer: \"{response["answer"]}\" ({response["value"]})')

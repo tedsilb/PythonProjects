@@ -38,8 +38,7 @@ class VigenereCipher:
       key_letter_pos = self.crypt_base.index(key[n])
 
       # Create shifted crypt_base for this letter
-      shifted_crypt_base = self._shift_list(self.crypt_base, key_letter_pos,
-                                            shift_dir)
+      shifted_crypt_base = self._shift_list(self.crypt_base, key_letter_pos, shift_dir)
 
       # Get the translated letter, add to the translated message
       translated_msg += shifted_crypt_base[letter_pos]
@@ -59,8 +58,7 @@ class VigenereCipher:
     return upper_message.translate(remove_punctuation).translate(remove_digits)
 
   @staticmethod
-  def _shift_list(list_to_shift: List[str], shift_n: int,
-                  direction: Direction) -> List[str]:
+  def _shift_list(list_to_shift: List[str], shift_n: int, direction: Direction) -> List[str]:
     """Shift list a certain number of times."""
     new_list = copy.deepcopy(list_to_shift)
     for _ in range(0, shift_n):

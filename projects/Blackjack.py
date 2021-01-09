@@ -30,8 +30,8 @@ def play_blackjack() -> None:
   def gen_card_deck() -> None:
     suits = ['hearts', 'diamonds', 'spades', 'clubs']
     faces = [
-        'ace', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
-        'ten', 'jack', 'queen', 'king'
+        'ace', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'jack',
+        'queen', 'king'
     ]
     card_deck.clear()
 
@@ -41,8 +41,7 @@ def play_blackjack() -> None:
       for j in range(1, len(faces) + 1):
         # Jack, queen, and king are all ten
         suit_card_no = 10 if j > 10 else j
-        card_deck.append(
-            Card(unique_card_number, suits[i], faces[j - 1], suit_card_no))
+        card_deck.append(Card(unique_card_number, suits[i], faces[j - 1], suit_card_no))
         unique_card_number += 1
 
   # Set up user's hand
@@ -80,8 +79,7 @@ def play_blackjack() -> None:
     card_deck.remove(current_card)
     # Get index of new card in hand (will be the last one)
     hand_card_index = len(hand) - 1
-    print(f'You have taken a {hand[hand_card_index].name} of '
-          f'{hand[hand_card_index].suit}.')
+    print(f'You have taken a {hand[hand_card_index].name} of {hand[hand_card_index].suit}.')
 
   def start_turn(i: int, rounds: int) -> None:
     print(f'Starting round {i} of {rounds}.')

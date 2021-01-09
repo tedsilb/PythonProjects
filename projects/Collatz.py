@@ -24,8 +24,7 @@ def collatz(user_no: int) -> None:
 
 
 if __name__ == '__main__':
-  print('This program will perform the Collatz conjecture '
-        'on a given whole number.')
+  print('This program will perform the Collatz conjecture on a given whole number.')
   num = int(input('Please enter a number: '))
 
   collatz(num)

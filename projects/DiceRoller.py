@@ -14,11 +14,7 @@ def roll_dice(n: int = 1, sides: int = 6) -> None:
 
 
 if __name__ == '__main__':
-  user_sides = int(
-      input('How many sides would you like the dice to have? '
-            '(default: 6) '))
-  user_n = int(
-      input('How many times would you like the die to roll? '
-            '(default: 1) '))
+  user_sides = int(input('How many sides would you like the dice to have? (default: 6) '))
+  user_n = int(input('How many times would you like the die to roll? (default: 1) '))
 
   roll_dice(user_n, user_sides)
