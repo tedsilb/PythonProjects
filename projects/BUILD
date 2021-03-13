@@ -1,141 +1,142 @@
 load("@rules_python//python:defs.bzl", "py_binary")
 
 py_binary(
-    name = "99bottles",
-    srcs = ["99bottles.py"],
+    name = "blackjack",
+    srcs = ["blackjack.py"],
 )
 
 py_binary(
-    name = "Blackjack",
-    srcs = ["Blackjack.py"],
+    name = "bubble_sort",
+    srcs = ["bubble_sort.py"],
 )
 
 py_binary(
-    name = "BubbleSort",
-    srcs = ["BubbleSort.py"],
+    name = "caesar_cipher",
+    srcs = ["caesar_cipher.py"],
 )
 
 py_binary(
-    name = "CaesarCipher",
-    srcs = ["CaesarCipher.py"],
+    name = "calculator",
+    srcs = ["calculator.py"],
 )
 
 py_binary(
-    name = "Calculator",
-    srcs = ["Calculator.py"],
+    name = "change_calc",
+    srcs = ["change_calc.py"],
 )
 
 py_binary(
-    name = "ChangeCalc",
-    srcs = ["ChangeCalc.py"],
+    name = "check_palindrome",
+    srcs = ["check_palindrome.py"],
 )
 
 py_binary(
-    name = "CheckPalindrome",
-    srcs = ["CheckPalindrome.py"],
+    name = "coin_estimator",
+    srcs = ["coin_estimator.py"],
 )
 
 py_binary(
-    name = "CoinEstimator",
-    srcs = ["CoinEstimator.py"],
+    name = "coin_flip",
+    srcs = ["coin_flip.py"],
 )
 
 py_binary(
-    name = "CoinFlip",
-    srcs = ["CoinFlip.py"],
+    name = "collatz",
+    srcs = ["collatz.py"],
 )
 
 py_binary(
-    name = "Collatz",
-    srcs = ["Collatz.py"],
+    name = "count_vowels",
+    srcs = ["count_vowels.py"],
 )
 
 py_binary(
-    name = "CountVowels",
-    srcs = ["CountVowels.py"],
+    name = "descriptive_stats",
+    srcs = ["descriptive_stats.py"],
 )
 
 py_binary(
-    name = "DescriptiveStats",
-    srcs = ["DescriptiveStats.py"],
+    name = "dice_roller",
+    srcs = ["dice_roller.py"],
 )
 
 py_binary(
-    name = "DiceRoller",
-    srcs = ["DiceRoller.py"],
+    name = "factor_calc",
+    srcs = ["factor_calc.py"],
 )
 
 py_binary(
-    name = "FactorCalc",
-    srcs = ["FactorCalc.py"],
+    name = "fibonacci",
+    srcs = ["fibonacci.py"],
 )
 
 py_binary(
-    name = "FibonacciCalc",
-    srcs = ["FibonacciCalc.py"],
+    name = "fizz_buzz",
+    srcs = ["fizz_buzz.py"],
 )
 
 py_binary(
-    name = "FizzBuzz",
-    srcs = ["FizzBuzz.py"],
+    name = "gregory_leibniz",
+    srcs = ["gregory_leibniz.py"],
 )
 
 py_binary(
-    name = "GregoryLeibniz",
-    srcs = ["GregoryLeibniz.py"],
+    name = "higher_lower",
+    srcs = ["higher_lower.py"],
 )
 
 py_binary(
-    name = "HigherLower",
-    srcs = ["HigherLower.py"],
+    name = "magic_eight_ball",
+    srcs = ["magic_eight_ball.py"],
 )
 
 py_binary(
-    name = "Magic8Ball",
-    srcs = ["Magic8Ball.py"],
+    name = "multiplication_table",
+    srcs = ["multiplication_table.py"],
 )
 
 py_binary(
-    name = "MultiplicationTable",
-    srcs = ["MultiplicationTable.py"],
+    name = "nilakantha",
+    srcs = ["nilakantha.py"],
 )
 
 py_binary(
-    name = "Nilakantha",
-    srcs = ["Nilakantha.py"],
+    name = "ninety_nine_bottles",
+    srcs = ["ninety_nine_bottles.py"],
+)
+
+
+py_binary(
+    name = "pig_latin",
+    srcs = ["pig_latin.py"],
 )
 
 py_binary(
-    name = "PigLatin",
-    srcs = ["PigLatin.py"],
+    name = "py_triple",
+    srcs = ["py_triple.py"],
 )
 
 py_binary(
-    name = "PyTriple",
-    srcs = ["PyTriple.py"],
+    name = "reverse_string",
+    srcs = ["reverse_string.py"],
 )
 
 py_binary(
-    name = "ReverseString",
-    srcs = ["ReverseString.py"],
+    name = "rock_paper_scissors",
+    srcs = ["rock_paper_scissors.py"],
 )
 
 py_binary(
-    name = "RockPaperScissors",
-    srcs = ["RockPaperScissors.py"],
+    name = "sieve_of_eratosthenes",
+    srcs = ["sieve_of_eratosthenes.py"],
 )
 
 py_binary(
-    name = "SieveOfEratosthenes",
-    srcs = ["SieveOfEratosthenes.py"],
+    name = "tic_tac_toe",
+    srcs = ["tic_tac_toe.py"],
 )
 
 py_binary(
-    name = "TicTacToe",
-    srcs = ["TicTacToe.py"],
-)
-
-py_binary(
-    name = "VigenereCipher",
-    srcs = ["VigenereCipher.py"],
+    name = "vigenere_cipher",
+    srcs = ["vigenere_cipher.py"],
 )
