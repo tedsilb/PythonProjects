@@ -15,7 +15,7 @@ Projects are built using [Bazel](https://bazel.build).
 - To run a specific project:
   - `bazel run projects:{project} {args}`
 - For example:
-  - `bazel run projects:Magic8Ball`
+  - `bazel run projects:magic_eight_ball`
 
 ## Formatting
 
