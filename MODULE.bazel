@@ -1,1 +1,1 @@
-bazel_dep(name = "rules_python", version = "0.31.0")
+bazel_dep(name = "rules_python", version = "0.37.2")
